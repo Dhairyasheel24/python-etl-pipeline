@@ -1,0 +1,268 @@
+2025-10-07 11:04:27,939 - CompleteETLScheduler - INFO - start:223 - 
+======================================================================
+2025-10-07 11:04:27,940 - CompleteETLScheduler - INFO - start:224 - 🌟 STARTING COMPLETE ETL SCHEDULER 🌟
+2025-10-07 11:04:27,940 - CompleteETLScheduler - INFO - start:225 - ======================================================================
+2025-10-07 11:04:27,940 - CompleteETLScheduler - INFO - start:226 - Schedule: Every 5 minute(s)
+2025-10-07 11:04:27,940 - CompleteETLScheduler - INFO - start:227 - Data Directory: ./data
+2025-10-07 11:04:27,941 - CompleteETLScheduler - INFO - start:228 - Pipeline: Extract (CSV→Staging) + Transform (Staging→Transformed)
+2025-10-07 11:04:27,942 - CompleteETLScheduler - INFO - start:229 - Press Ctrl+C to stop
+2025-10-07 11:04:27,942 - CompleteETLScheduler - INFO - start:230 - ======================================================================
+2025-10-07 11:04:27,942 - CompleteETLScheduler - INFO - start:236 - 
+▶️ Running initial complete ETL pipeline...
+2025-10-07 11:04:27,943 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+2025-10-07 11:04:27,943 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #1
+2025-10-07 11:04:27,943 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:04:27
+2025-10-07 11:04:27,944 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+2025-10-07 11:04:27,946 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: branches.csv
+2025-10-07 11:04:27,952 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: customers.csv
+2025-10-07 11:04:27,954 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: loans.csv
+2025-10-07 11:04:27,981 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: transactions.csv
+2025-10-07 11:04:27,982 - CompleteETLScheduler - INFO - run_extraction_phase:103 - 
+======================================================================
+2025-10-07 11:04:27,982 - CompleteETLScheduler - INFO - run_extraction_phase:104 - PHASE 1: EXTRACTION (CSV → MySQL Staging)
+2025-10-07 11:04:27,983 - CompleteETLScheduler - INFO - run_extraction_phase:105 - ======================================================================
+2025-10-07 11:04:27,983 - CompleteETLScheduler - INFO - run_extraction_phase:111 - Connecting to MySQL database...
+2025-10-07 11:04:28,210 - CompleteETLScheduler - INFO - run_extraction_phase:117 - Creating/verifying staging tables...
+2025-10-07 11:04:28,229 - CompleteETLScheduler - INFO - run_extraction_phase:123 - Extracting CSV files to staging tables...
+2025-10-07 11:04:28,309 - CompleteETLScheduler - INFO - run_extraction_phase:131 - ----------------------------------------
+2025-10-07 11:04:28,314 - CompleteETLScheduler - INFO - run_extraction_phase:139 - branches: 25 total (+0 new)
+2025-10-07 11:04:28,318 - CompleteETLScheduler - INFO - run_extraction_phase:139 - customers: 5,024 total (+0 new)
+2025-10-07 11:04:28,320 - CompleteETLScheduler - INFO - run_extraction_phase:139 - loans: 2,006 total (+0 new)
+2025-10-07 11:04:28,352 - CompleteETLScheduler - INFO - run_extraction_phase:139 - transactions: 100,004 total (+0 new)
+2025-10-07 11:04:28,353 - CompleteETLScheduler - INFO - run_extraction_phase:141 - ----------------------------------------
+2025-10-07 11:04:28,353 - CompleteETLScheduler - INFO - run_extraction_phase:142 - Total CSV rows processed: 107,063
+2025-10-07 11:04:28,354 - CompleteETLScheduler - INFO - run_extraction_phase:143 - Total new records inserted: 0
+2025-10-07 11:04:28,354 - CompleteETLScheduler - INFO - run_extraction_phase:144 - ✅ Extraction phase completed successfully
+2025-10-07 11:04:28,364 - CompleteETLScheduler - INFO - run_transformation_phase:159 - 
+======================================================================
+2025-10-07 11:04:28,364 - CompleteETLScheduler - INFO - run_transformation_phase:160 - PHASE 2: TRANSFORMATION (Staging → Transformed)
+2025-10-07 11:04:28,365 - CompleteETLScheduler - INFO - run_transformation_phase:161 - ======================================================================
+2025-10-07 11:07:39,940 - CompleteETLScheduler - INFO - run_transformation_phase:167 - ✅ Transformation phase completed successfully
+2025-10-07 11:07:39,943 - CompleteETLScheduler - INFO - run_complete_etl_job:207 - 
+✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+2025-10-07 11:07:39,943 - CompleteETLScheduler - INFO - run_complete_etl_job:208 - COMPLETE ETL PIPELINE SUCCEEDED
+2025-10-07 11:07:39,944 - CompleteETLScheduler - INFO - run_complete_etl_job:209 - Duration: 192.0 seconds
+2025-10-07 11:07:39,944 - CompleteETLScheduler - INFO - run_complete_etl_job:210 - Success Rate: 100.0% (1/1)
+2025-10-07 11:07:39,944 - CompleteETLScheduler - INFO - run_complete_etl_job:211 - ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+
+2025-10-07 11:07:39,945 - CompleteETLScheduler - INFO - start:240 - 
+⏰ Scheduler now running (every 5 min)...
+2025-10-07 11:10:07,263 - CompleteETLScheduler - INFO - start:223 - 
+======================================================================
+2025-10-07 11:10:07,264 - CompleteETLScheduler - INFO - start:224 - STARTING COMPLETE ETL SCHEDULER 
+2025-10-07 11:10:07,264 - CompleteETLScheduler - INFO - start:225 - ======================================================================
+2025-10-07 11:10:07,264 - CompleteETLScheduler - INFO - start:226 - Schedule: Every 1 minute(s)
+2025-10-07 11:10:07,264 - CompleteETLScheduler - INFO - start:227 - Data Directory: ./data
+2025-10-07 11:10:07,264 - CompleteETLScheduler - INFO - start:228 - Pipeline: Extract (CSV→Staging) + Transform (Staging→Transformed)
+2025-10-07 11:10:07,265 - CompleteETLScheduler - INFO - start:229 - Press Ctrl+C to stop
+2025-10-07 11:10:07,265 - CompleteETLScheduler - INFO - start:230 - ======================================================================
+2025-10-07 11:10:07,265 - CompleteETLScheduler - INFO - start:236 - 
+ Running initial complete ETL pipeline...
+2025-10-07 11:10:07,265 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:10:07,266 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #1
+2025-10-07 11:10:07,266 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:10:07
+2025-10-07 11:10:07,266 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:10:07,267 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: branches.csv
+2025-10-07 11:10:07,271 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: customers.csv
+2025-10-07 11:10:07,273 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: loans.csv
+2025-10-07 11:10:07,298 - CompleteETLScheduler - INFO - _check_for_file_changes:80 - 📄 New CSV file: transactions.csv
+2025-10-07 11:10:07,299 - CompleteETLScheduler - INFO - run_extraction_phase:103 - 
+======================================================================
+2025-10-07 11:10:07,299 - CompleteETLScheduler - INFO - run_extraction_phase:104 - PHASE 1: EXTRACTION (CSV → MySQL Staging)
+2025-10-07 11:10:07,300 - CompleteETLScheduler - INFO - run_extraction_phase:105 - ======================================================================
+2025-10-07 11:10:07,300 - CompleteETLScheduler - INFO - run_extraction_phase:111 - Connecting to MySQL database...
+2025-10-07 11:10:07,563 - CompleteETLScheduler - INFO - run_extraction_phase:117 - Creating/verifying staging tables...
+2025-10-07 11:10:07,574 - CompleteETLScheduler - INFO - run_extraction_phase:123 - Extracting CSV files to staging tables...
+2025-10-07 11:10:07,658 - CompleteETLScheduler - INFO - run_extraction_phase:131 - ----------------------------------------
+2025-10-07 11:10:07,662 - CompleteETLScheduler - INFO - run_extraction_phase:139 - branches: 25 total (+0 new)
+2025-10-07 11:10:07,665 - CompleteETLScheduler - INFO - run_extraction_phase:139 - customers: 5,024 total (+0 new)
+2025-10-07 11:10:07,667 - CompleteETLScheduler - INFO - run_extraction_phase:139 - loans: 2,006 total (+0 new)
+2025-10-07 11:10:07,698 - CompleteETLScheduler - INFO - run_extraction_phase:139 - transactions: 100,004 total (+0 new)
+2025-10-07 11:10:07,698 - CompleteETLScheduler - INFO - run_extraction_phase:141 - ----------------------------------------
+2025-10-07 11:10:07,699 - CompleteETLScheduler - INFO - run_extraction_phase:142 - Total CSV rows processed: 107,063
+2025-10-07 11:10:07,699 - CompleteETLScheduler - INFO - run_extraction_phase:143 - Total new records inserted: 0
+2025-10-07 11:10:07,700 - CompleteETLScheduler - INFO - run_extraction_phase:144 - ✅ Extraction phase completed successfully
+2025-10-07 11:10:07,702 - CompleteETLScheduler - INFO - run_transformation_phase:159 - 
+======================================================================
+2025-10-07 11:10:07,702 - CompleteETLScheduler - INFO - run_transformation_phase:160 - PHASE 2: TRANSFORMATION (Staging → Transformed)
+2025-10-07 11:10:07,703 - CompleteETLScheduler - INFO - run_transformation_phase:161 - ======================================================================
+2025-10-07 11:13:08,202 - CompleteETLScheduler - INFO - run_transformation_phase:167 - ✅ Transformation phase completed successfully
+2025-10-07 11:13:08,206 - CompleteETLScheduler - INFO - run_complete_etl_job:207 - 
+....................
+2025-10-07 11:13:08,206 - CompleteETLScheduler - INFO - run_complete_etl_job:208 - COMPLETE ETL PIPELINE SUCCEEDED
+2025-10-07 11:13:08,206 - CompleteETLScheduler - INFO - run_complete_etl_job:209 - Duration: 180.9 seconds
+2025-10-07 11:13:08,207 - CompleteETLScheduler - INFO - run_complete_etl_job:210 - Success Rate: 100.0% (1/1)
+2025-10-07 11:13:08,207 - CompleteETLScheduler - INFO - run_complete_etl_job:211 - ....................
+
+2025-10-07 11:13:08,207 - CompleteETLScheduler - INFO - start:240 - 
+ Scheduler now running (every 1 min)...
+2025-10-07 11:13:08,208 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:13:08,208 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #2
+2025-10-07 11:13:08,208 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:13:08
+2025-10-07 11:13:08,208 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:13:08,236 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:13:08,237 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:14:08,263 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:14:08,264 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #3
+2025-10-07 11:14:08,264 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:14:08
+2025-10-07 11:14:08,264 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:14:08,297 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:14:08,297 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:15:08,322 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:15:08,323 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #4
+2025-10-07 11:15:08,324 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:15:08
+2025-10-07 11:15:08,324 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:15:08,352 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:15:08,352 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:16:08,378 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:16:08,379 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #5
+2025-10-07 11:16:08,379 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:16:08
+2025-10-07 11:16:08,380 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:16:08,408 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:16:08,408 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:17:08,434 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:17:08,435 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #6
+2025-10-07 11:17:08,435 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:17:08
+2025-10-07 11:17:08,436 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:17:08,466 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:17:08,466 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:18:08,493 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:18:08,494 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #7
+2025-10-07 11:18:08,494 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:18:08
+2025-10-07 11:18:08,494 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:18:08,524 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:18:08,525 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:19:08,552 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:19:08,552 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #8
+2025-10-07 11:19:08,553 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:19:08
+2025-10-07 11:19:08,553 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:19:08,581 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:19:08,581 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:20:08,607 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:20:08,608 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #9
+2025-10-07 11:20:08,608 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:20:08
+2025-10-07 11:20:08,608 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:20:08,636 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:20:08,637 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:21:08,716 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:21:08,716 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #10
+2025-10-07 11:21:08,717 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:21:08
+2025-10-07 11:21:08,717 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:21:08,757 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:21:08,758 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:22:08,778 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:22:08,778 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #11
+2025-10-07 11:22:08,779 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:22:08
+2025-10-07 11:22:08,779 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:22:08,803 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:22:08,803 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:23:08,823 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:23:08,823 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #12
+2025-10-07 11:23:08,823 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:23:08
+2025-10-07 11:23:08,823 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:23:08,836 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:23:08,836 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:24:08,855 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:24:08,856 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #13
+2025-10-07 11:24:08,856 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:24:08
+2025-10-07 11:24:08,856 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:24:08,873 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:24:08,874 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:25:08,900 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:25:08,900 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #14
+2025-10-07 11:25:08,901 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:25:08
+2025-10-07 11:25:08,901 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:25:08,919 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:25:08,919 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:26:08,936 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:26:08,936 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #15
+2025-10-07 11:26:08,937 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:26:08
+2025-10-07 11:26:08,937 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:26:08,960 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:26:08,960 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:27:08,979 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:27:08,979 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #16
+2025-10-07 11:27:08,979 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:27:08
+2025-10-07 11:27:08,981 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:27:08,993 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:27:08,993 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:28:09,012 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:28:09,012 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #17
+2025-10-07 11:28:09,012 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:28:09
+2025-10-07 11:28:09,013 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:28:09,025 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:28:09,025 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:29:09,044 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:29:09,045 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #18
+2025-10-07 11:29:09,045 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:29:09
+2025-10-07 11:29:09,045 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:29:09,063 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:29:09,063 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:30:09,086 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:30:09,086 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #19
+2025-10-07 11:30:09,086 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:30:09
+2025-10-07 11:30:09,086 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:30:09,099 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:30:09,099 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:31:09,120 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:31:09,120 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #20
+2025-10-07 11:31:09,120 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:31:09
+2025-10-07 11:31:09,121 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:31:09,136 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:31:09,136 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:32:09,158 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:32:09,158 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #21
+2025-10-07 11:32:09,158 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:32:09
+2025-10-07 11:32:09,158 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:32:09,175 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:32:09,175 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:33:09,199 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:33:09,199 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #22
+2025-10-07 11:33:09,205 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:33:09
+2025-10-07 11:33:09,206 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:33:09,223 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:33:09,223 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:34:09,241 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:34:09,241 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #23
+2025-10-07 11:34:09,241 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:34:09
+2025-10-07 11:34:09,241 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:34:09,253 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:34:09,254 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:35:09,274 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:35:09,274 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #24
+2025-10-07 11:35:09,276 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:35:09
+2025-10-07 11:35:09,276 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:35:09,292 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:35:09,292 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run
+2025-10-07 11:36:09,312 - CompleteETLScheduler - INFO - run_complete_etl_job:181 - 
+....................
+2025-10-07 11:36:09,312 - CompleteETLScheduler - INFO - run_complete_etl_job:182 - COMPLETE ETL PIPELINE - Run #25
+2025-10-07 11:36:09,312 - CompleteETLScheduler - INFO - run_complete_etl_job:183 - Started: 2025-10-07 11:36:09
+2025-10-07 11:36:09,313 - CompleteETLScheduler - INFO - run_complete_etl_job:184 - ....................
+2025-10-07 11:36:09,325 - CompleteETLScheduler - INFO - _check_for_file_changes:93 - ✓ No CSV file changes detected
+2025-10-07 11:36:09,325 - CompleteETLScheduler - INFO - run_complete_etl_job:189 - ⏭️ No changes detected - skipping ETL run

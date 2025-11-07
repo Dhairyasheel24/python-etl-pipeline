@@ -1,0 +1,27 @@
+branch_id,branch_name,city,state,manager_name
+QT0001,Jain-Gour Branch,Mango,Punjab,Vanya Devi
+QT0002,Bahri Group Branch,Howrah,Uttar Pradesh,Tejas Datta
+QT0003,Varughese-Sood Branch,Thane,Meghalaya,Yashvi Basak
+QT0004,"Viswanathan, Singh and Bhattacharyya Branch",Agra,Maharashtra,Nitesh Bhat
+QT0005,Suri-Chacko Branch,Suryapet,Chhattisgarh,Udyati Gour
+QT0006,Chandran-Bhargava Branch,Adoni,Assam,Yatan Dey
+QT0007,"Bumb, Shenoy and Zacharia Branch",Mysore,Chhattisgarh,Imaran Mane
+QT0008,Bahl PLC Branch,Chandrapur,Andhra Pradesh,Jagvi Nigam
+QT0009,Tank-Dubey Branch,Ludhiana,Meghalaya,Vihaan Bajwa
+QT0010,Raghavan-Rege Branch,Durg,Odisha,Onveer Mannan
+QT0011,Parsa-Wason Branch,Vadodara,Arunachal Pradesh,Xiti Manda
+QT0012,"Chaudhari, Gara and Kunda Branch",Sambhal,Telangana,Urvi Contractor
+QT0013,"Natarajan, Swaminathan and Gulati Branch",Latur,Telangana,Baghyawati Minhas
+QT0014,"Parsa, Baral and Bath Branch",Gopalpur,Kerala,Veda Choudhury
+QT0015,"Kala, Sachar and Agrawal Branch",Bhopal,Manipur,Kritika Nori
+QT0016,Master and Sons Branch,Alappuzha,Odisha,Jack Chaudhry
+QT0017,Chawla Ltd Branch,Adoni,Punjab,Luke Dasgupta
+QT0018,Sodhi-Balasubramanian Branch,Varanasi,Chhattisgarh,Lavanya Batra
+QT0019,"Sangha, Bora and Oak Branch",Bhatpara,Telangana,Urishilla Kapur
+QT0020,"Bal, Barad and Mani Branch",Bulandshahr,Assam,Ekani Lad
+QT0021,Gandhi PLC Branch,Mumbai,Goa,Aarnav Sarma
+QT0022,Virk Inc Branch,Aligarh,Kerala,Jatin Roy
+QT0023,Ramachandran-Prabhu Branch,Ambarnath,Uttarakhand,Vivaan Narayanan
+QT0024,Dass-Dara Branch,Udupi,Bihar,Ishaan Ganesan
+QT0025,Dube Group Branch,Ambarnath,Jharkhand,Idika Seth
+QT0025,Dube Group Branch,Ambarnath,,Idika Seth

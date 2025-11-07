@@ -1,0 +1,202 @@
+2025-11-06 11:08:51,775 - CompleteETLScheduler - INFO - start:285 - 
+================================================================================
+2025-11-06 11:08:51,775 - CompleteETLScheduler - INFO - start:286 - 🎯 STARTING COMPLETE ETL SCHEDULER
+2025-11-06 11:08:51,776 - CompleteETLScheduler - INFO - start:287 - ================================================================================
+2025-11-06 11:08:51,777 - CompleteETLScheduler - INFO - start:288 - ⏰ Schedule: Every 1 minute(s)
+2025-11-06 11:08:51,777 - CompleteETLScheduler - INFO - start:289 - 📂 Data Directory: ./data
+2025-11-06 11:08:51,778 - CompleteETLScheduler - INFO - start:290 - 📍 Pipeline: CSV → Staging → Transformed → PostgreSQL
+2025-11-06 11:08:51,778 - CompleteETLScheduler - INFO - start:291 - 🛑 Press Ctrl+C to stop
+2025-11-06 11:08:51,779 - CompleteETLScheduler - INFO - start:292 - ================================================================================
+2025-11-06 11:08:51,780 - CompleteETLScheduler - INFO - start:298 - 
+🔄 Running initial complete ETL pipeline...
+2025-11-06 11:08:51,783 - CompleteETLScheduler - INFO - run_complete_etl_job:236 - 
+================================================================================
+2025-11-06 11:08:51,784 - CompleteETLScheduler - INFO - run_complete_etl_job:237 - 🚀 COMPLETE ETL PIPELINE - RUN #1
+2025-11-06 11:08:51,785 - CompleteETLScheduler - INFO - run_complete_etl_job:238 - ⏰ Started: 2025-11-06 11:08:51
+2025-11-06 11:08:51,787 - CompleteETLScheduler - INFO - run_complete_etl_job:239 - ================================================================================
+2025-11-06 11:08:51,788 - CompleteETLScheduler - INFO - run_extraction_phase:104 - 
+======================================================================
+2025-11-06 11:08:51,788 - CompleteETLScheduler - INFO - run_extraction_phase:105 - 📤 PHASE 1: EXTRACTION (CSV → MySQL Staging)
+2025-11-06 11:08:51,789 - CompleteETLScheduler - INFO - run_extraction_phase:106 - ======================================================================
+2025-11-06 11:08:52,437 - CompleteETLScheduler - INFO - run_extraction_phase:129 - 
+📊 Extraction Summary:
+2025-11-06 11:08:52,456 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   branches: 25 total (+0 new)
+2025-11-06 11:08:52,478 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   customers: 5,022 total (+0 new)
+2025-11-06 11:08:52,501 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   loans: 2,006 total (+0 new)
+2025-11-06 11:08:52,578 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   transactions: 100,004 total (+0 new)
+2025-11-06 11:08:52,579 - CompleteETLScheduler - INFO - run_extraction_phase:134 - 
+  Total processed: 107,061
+2025-11-06 11:08:52,579 - CompleteETLScheduler - INFO - run_extraction_phase:135 -   Total new: 0
+2025-11-06 11:08:52,580 - CompleteETLScheduler - INFO - run_extraction_phase:136 - ✅ Extraction completed
+2025-11-06 11:08:52,583 - CompleteETLScheduler - INFO - run_transformation_phase:148 - 
+======================================================================
+2025-11-06 11:08:52,583 - CompleteETLScheduler - INFO - run_transformation_phase:149 - ⚙️  PHASE 2: TRANSFORMATION (Staging → Transformed)
+2025-11-06 11:08:52,584 - CompleteETLScheduler - INFO - run_transformation_phase:150 - ======================================================================
+2025-11-06 11:08:52,584 - CompleteETLScheduler - ERROR - run_complete_etl_job:278 - ❌ Complete ETL pipeline failed: DataTransformer.__init__() missing 1 required positional argument: 'config'
+2025-11-06 11:08:52,587 - CompleteETLScheduler - ERROR - run_complete_etl_job:280 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\etl_scheduler.py", line 254, in run_complete_etl_job
+    if not self.run_transformation_phase():
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\HP\python-etl-pipeline\etl_scheduler.py", line 152, in run_transformation_phase
+    transformer = DataTransformer()
+TypeError: DataTransformer.__init__() missing 1 required positional argument: 'config'
+
+2025-11-06 11:08:52,588 - CompleteETLScheduler - INFO - start:302 - 
+✓ Scheduler now running (every 1 min)...
+2025-11-06 11:09:17,539 - CompleteETLScheduler - INFO - _signal_handler:43 - 🛑 Shutdown signal received, stopping scheduler...
+2025-11-06 11:09:17,598 - CompleteETLScheduler - INFO - start:315 - 
+================================================================================
+2025-11-06 11:09:17,599 - CompleteETLScheduler - INFO - start:316 - 🏁 COMPLETE ETL SCHEDULER STOPPED
+2025-11-06 11:09:17,600 - CompleteETLScheduler - INFO - start:317 - 📊 Total Runs: 1
+2025-11-06 11:09:17,600 - CompleteETLScheduler - INFO - start:318 - ✅ Successful: 0
+2025-11-06 11:09:17,601 - CompleteETLScheduler - INFO - start:319 - ❌ Failed: 1
+2025-11-06 11:09:17,601 - CompleteETLScheduler - INFO - start:320 - ================================================================================
+
+2025-11-06 11:17:46,958 - CompleteETLScheduler - INFO - start:296 - 
+================================================================================
+2025-11-06 11:17:46,959 - CompleteETLScheduler - INFO - start:297 - 🎯 STARTING COMPLETE ETL SCHEDULER
+2025-11-06 11:17:46,959 - CompleteETLScheduler - INFO - start:298 - ================================================================================
+2025-11-06 11:17:46,960 - CompleteETLScheduler - INFO - start:299 - ⏰ Schedule: Every 1 minute(s)
+2025-11-06 11:17:46,960 - CompleteETLScheduler - INFO - start:300 - 📂 Data Directory: ./data
+2025-11-06 11:17:46,961 - CompleteETLScheduler - INFO - start:301 - 📍 Pipeline: CSV → Staging → Transformed → PostgreSQL
+2025-11-06 11:17:46,961 - CompleteETLScheduler - INFO - start:302 - 🛑 Press Ctrl+C to stop
+2025-11-06 11:17:46,962 - CompleteETLScheduler - INFO - start:303 - ================================================================================
+2025-11-06 11:17:46,963 - CompleteETLScheduler - INFO - start:309 - 
+🔄 Running initial complete ETL pipeline...
+2025-11-06 11:17:46,963 - CompleteETLScheduler - INFO - run_complete_etl_job:247 - 
+================================================================================
+2025-11-06 11:17:46,964 - CompleteETLScheduler - INFO - run_complete_etl_job:248 - 🚀 COMPLETE ETL PIPELINE - RUN #1
+2025-11-06 11:17:46,964 - CompleteETLScheduler - INFO - run_complete_etl_job:249 - ⏰ Started: 2025-11-06 11:17:46
+2025-11-06 11:17:46,965 - CompleteETLScheduler - INFO - run_complete_etl_job:250 - ================================================================================
+2025-11-06 11:17:46,967 - CompleteETLScheduler - INFO - run_extraction_phase:104 - 
+======================================================================
+2025-11-06 11:17:46,968 - CompleteETLScheduler - INFO - run_extraction_phase:105 - 📤 PHASE 1: EXTRACTION (CSV → MySQL Staging)
+2025-11-06 11:17:46,972 - CompleteETLScheduler - INFO - run_extraction_phase:106 - ======================================================================
+2025-11-06 11:17:47,245 - CompleteETLScheduler - INFO - run_extraction_phase:129 - 
+📊 Extraction Summary:
+2025-11-06 11:17:47,247 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   branches: 25 total (+0 new)
+2025-11-06 11:17:47,251 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   customers: 5,022 total (+0 new)
+2025-11-06 11:17:47,253 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   loans: 2,006 total (+0 new)
+2025-11-06 11:17:47,281 - CompleteETLScheduler - INFO - run_extraction_phase:132 -   transactions: 100,004 total (+0 new)
+2025-11-06 11:17:47,282 - CompleteETLScheduler - INFO - run_extraction_phase:134 - 
+  Total processed: 107,061
+2025-11-06 11:17:47,282 - CompleteETLScheduler - INFO - run_extraction_phase:135 -   Total new: 0
+2025-11-06 11:17:47,283 - CompleteETLScheduler - INFO - run_extraction_phase:136 - ✅ Extraction completed
+2025-11-06 11:17:47,285 - CompleteETLScheduler - INFO - run_transformation_phase:148 - 
+======================================================================
+2025-11-06 11:17:47,286 - CompleteETLScheduler - INFO - run_transformation_phase:149 - ⚙️  PHASE 2: TRANSFORMATION (Staging → Transformed)
+2025-11-06 11:17:47,286 - CompleteETLScheduler - INFO - run_transformation_phase:150 - ======================================================================
+2025-11-06 11:17:47,289 - CompleteETLScheduler - ERROR - run_transformation_phase:193 - ❌ Transformation failed: 'DataTransformer' object has no attribute 'connect_staging'
+2025-11-06 11:17:47,290 - CompleteETLScheduler - ERROR - run_complete_etl_job:289 - ❌ Complete ETL pipeline failed: 'DataTransformer' object has no attribute 'close_connections'
+2025-11-06 11:17:47,294 - CompleteETLScheduler - ERROR - run_complete_etl_job:291 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\etl_scheduler.py", line 265, in run_complete_etl_job
+    if not self.run_transformation_phase():
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\HP\python-etl-pipeline\etl_scheduler.py", line 196, in run_transformation_phase
+    transformer.close_connections()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataTransformer' object has no attribute 'close_connections'
+
+2025-11-06 11:17:47,294 - CompleteETLScheduler - INFO - start:313 - 
+✓ Scheduler now running (every 1 min)...
+2025-11-06 11:17:57,976 - CompleteETLScheduler - INFO - _signal_handler:43 - 🛑 Shutdown signal received, stopping scheduler...
+2025-11-06 11:17:58,298 - CompleteETLScheduler - INFO - start:326 - 
+================================================================================
+2025-11-06 11:17:58,299 - CompleteETLScheduler - INFO - start:327 - 🏁 COMPLETE ETL SCHEDULER STOPPED
+2025-11-06 11:17:58,300 - CompleteETLScheduler - INFO - start:328 - 📊 Total Runs: 1
+2025-11-06 11:17:58,300 - CompleteETLScheduler - INFO - start:329 - ✅ Successful: 0
+2025-11-06 11:17:58,301 - CompleteETLScheduler - INFO - start:330 - ❌ Failed: 1
+2025-11-06 11:17:58,301 - CompleteETLScheduler - INFO - start:331 - ================================================================================
+
+2025-11-06 11:44:02,367 - ETL_Pipeline - INFO - main:394 - Starting ETL pipeline in full mode
+2025-11-06 11:44:02,371 - ETL_Pipeline - ERROR - main:427 - Pipeline failed: MySQLExtractor.__init__() takes 1 positional argument but 2 were given
+2025-11-06 11:44:02,372 - ETL_Pipeline - ERROR - main:428 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 416, in main
+    run_full_pipeline()
+    ~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 266, in run_full_pipeline
+    extract_results = run_extract_phase()
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 31, in run_extract_phase
+    extractor = MySQLExtractor(config)
+TypeError: MySQLExtractor.__init__() takes 1 positional argument but 2 were given
+
+2025-11-06 11:57:11,586 - ETL_Pipeline - INFO - main:394 - Starting ETL pipeline in full mode
+2025-11-06 11:57:11,599 - ETL_Pipeline - ERROR - main:427 - Pipeline failed: 'MySQLExtractor' object has no attribute 'extract_all_files'
+2025-11-06 11:57:11,601 - ETL_Pipeline - ERROR - main:428 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 416, in main
+    run_full_pipeline()
+    ~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 266, in run_full_pipeline
+    extract_results = run_extract_phase()
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 32, in run_extract_phase
+    results = extractor.extract_all_files()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MySQLExtractor' object has no attribute 'extract_all_files'. Did you mean: 'extract_all_csv_files'?
+
+2025-11-06 12:22:53,889 - ETL_Pipeline - INFO - main:430 - Starting ETL pipeline in full mode
+2025-11-06 12:22:53,915 - ETL_Pipeline - ERROR - main:463 - Pipeline failed: unsupported format string passed to tuple.__format__
+2025-11-06 12:22:53,917 - ETL_Pipeline - ERROR - main:464 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 452, in main
+    run_full_pipeline()
+    ~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 302, in run_full_pipeline
+    extract_results = run_extract_phase()
+  File "c:\Users\HP\python-etl-pipeline\main.py", line 37, in run_extract_phase
+    print(f"  {table.title()}: {count:,} records extracted")
+                               ^^^^^^^^^
+TypeError: unsupported format string passed to tuple.__format__
+
+2025-11-06 12:44:39,819 - ETL_Pipeline - INFO - main:568 - Starting ETL pipeline in full mode
+2025-11-06 12:44:44,992 - ETL_Pipeline - ERROR - main:605 - MAIN: Pipeline failed: Failed to connect to MySQL staging database
+2025-11-06 12:48:33,346 - ETL_Pipeline - INFO - main:568 - Starting ETL pipeline in full mode
+2025-11-06 12:50:29,969 - ETL_Pipeline - INFO - main:568 - Starting ETL pipeline in schedule mode
+2025-11-06 12:50:29,970 - CompleteETLScheduler - INFO - start:171 - 
+================================================================================
+2025-11-06 12:50:29,970 - CompleteETLScheduler - INFO - start:172 - 🎯 STARTING COMPLETE ETL SCHEDULER
+2025-11-06 12:50:29,970 - CompleteETLScheduler - INFO - start:173 - ================================================================================
+2025-11-06 12:50:29,970 - CompleteETLScheduler - INFO - start:174 - ⏰ Schedule: Every 1 minute(s)
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - start:175 - 📂 Data Directory: ./data
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - start:176 - 📍 Pipeline: CSV → Staging → Transformed → PostgreSQL
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - start:177 - 🛑 Press Ctrl+C to stop
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - start:178 - ================================================================================
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - start:184 - 
+🔄 Running initial complete ETL pipeline...
+2025-11-06 12:50:29,971 - CompleteETLScheduler - INFO - run_complete_etl_job:132 - 
+================================================================================
+2025-11-06 12:50:29,972 - CompleteETLScheduler - INFO - run_complete_etl_job:133 - 🚀 SCHEDULER: EXECUTING RUN #1
+2025-11-06 12:50:29,972 - CompleteETLScheduler - INFO - run_complete_etl_job:134 - ⏰ Started: 2025-11-06 12:50:29
+2025-11-06 12:50:29,972 - CompleteETLScheduler - INFO - run_complete_etl_job:135 - ================================================================================
+2025-11-06 12:51:20,077 - CompleteETLScheduler - INFO - run_complete_etl_job:152 - 
+================================================================================
+2025-11-06 12:51:20,077 - CompleteETLScheduler - INFO - run_complete_etl_job:153 - ✅ COMPLETE ETL PIPELINE SUCCEEDED (via Scheduler)
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - run_complete_etl_job:154 - ================================================================================
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - run_complete_etl_job:155 - ⏱️  Duration: 50.1 seconds
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - run_complete_etl_job:156 - 📊 Success Rate: 100.0% (1/1)
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - run_complete_etl_job:157 - ⏰ Next run in: 1 minute(s)
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - run_complete_etl_job:158 - ================================================================================
+
+2025-11-06 12:51:20,078 - CompleteETLScheduler - INFO - start:188 - 
+✓ Scheduler now running (every 1 min)...
+2025-11-06 12:51:30,083 - CompleteETLScheduler - INFO - run_complete_etl_job:132 - 
+================================================================================
+2025-11-06 12:51:30,084 - CompleteETLScheduler - INFO - run_complete_etl_job:133 - 🚀 SCHEDULER: EXECUTING RUN #2
+2025-11-06 12:51:30,084 - CompleteETLScheduler - INFO - run_complete_etl_job:134 - ⏰ Started: 2025-11-06 12:51:30
+2025-11-06 12:51:30,084 - CompleteETLScheduler - INFO - run_complete_etl_job:135 - ================================================================================
+2025-11-06 12:52:20,426 - CompleteETLScheduler - INFO - run_complete_etl_job:152 - 
+================================================================================
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:153 - ✅ COMPLETE ETL PIPELINE SUCCEEDED (via Scheduler)
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:154 - ================================================================================
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:155 - ⏱️  Duration: 50.3 seconds
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:156 - 📊 Success Rate: 100.0% (2/2)
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:157 - ⏰ Next run in: 1 minute(s)
+2025-11-06 12:52:20,427 - CompleteETLScheduler - INFO - run_complete_etl_job:158 - ================================================================================
+
+2025-11-06 12:52:29,819 - CompleteETLScheduler - INFO - _signal_handler:65 - 🛑 Shutdown signal received, stopping scheduler...
+2025-11-06 12:52:30,431 - CompleteETLScheduler - INFO - start:201 - 
+================================================================================
+2025-11-06 12:52:30,432 - CompleteETLScheduler - INFO - start:202 - 🏁 COMPLETE ETL SCHEDULER STOPPED
+2025-11-06 12:52:30,432 - CompleteETLScheduler - INFO - start:203 - 📊 Total Runs: 2
+2025-11-06 12:52:30,433 - CompleteETLScheduler - INFO - start:204 - ✅ Successful: 2
+2025-11-06 12:52:30,433 - CompleteETLScheduler - INFO - start:205 - ❌ Failed: 0
+2025-11-06 12:52:30,433 - CompleteETLScheduler - INFO - start:206 - ================================================================================
+

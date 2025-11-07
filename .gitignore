@@ -1,0 +1,34 @@
+This file tells Git which files to IGNORE.
+
+--- Secrets ---
+
+NEVER upload your passwords!
+
+.env
+
+--- Python Cache ---
+
+These are temporary files Python creates
+
+**/pycache/
+*.pyc
+
+--- OS Files ---
+
+Mac
+
+.DS_Store
+
+Windows
+
+Thumbs.db
+
+--- Other ---
+
+Ignore old scheduler stats file
+
+scheduler_stats.json
+
+NOTE: We are INTENTIONALLY allowing /data, /logs, and /exports
+
+to be uploaded for project portability.

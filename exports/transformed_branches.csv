@@ -1,0 +1,26 @@
+display_id,branch_id,branch_name,city,state,manager_name,region
+1,QT0001,Jain-Gour Branch,Mango,PUNJAB,Vanya Devi,North
+2,QT0002,Bahri Group Branch,Howrah,UTTAR PRADESH,Tejas Datta,North
+3,QT0003,Varughese-Sood Branch,Thane,MEGHALAYA,Yashvi Basak,East
+4,QT0004,"Viswanathan, Singh And Bhattacharyya Branch",Agra,MAHARASHTRA,Nitesh Bhat,West
+5,QT0005,Suri-Chacko Branch,Suryapet,CHHATTISGARH,Udyati Gour,East
+6,QT0006,Chandran-Bhargava Branch,Adoni,ASSAM,Yatan Dey,East
+7,QT0007,"Bumb, Shenoy And Zacharia Branch",Mysore,CHHATTISGARH,Imaran Mane,East
+8,QT0008,Bahl Plc Branch,Chandrapur,ANDHRA PRADESH,Jagvi Nigam,South
+9,QT0009,Tank-Dubey Branch,Ludhiana,MEGHALAYA,Vihaan Bajwa,East
+10,QT0010,Raghavan-Rege Branch,Durg,ODISHA,Onveer Mannan,East
+11,QT0011,Parsa-Wason Branch,Vadodara,ARUNACHAL PRADESH,Xiti Manda,East
+12,QT0012,"Chaudhari, Gara And Kunda Branch",Sambhal,TELANGANA,Urvi Contractor,South
+13,QT0013,"Natarajan, Swaminathan And Gulati Branch",Latur,TELANGANA,Baghyawati Minhas,South
+14,QT0014,"Parsa, Baral And Bath Branch",Gopalpur,KERALA,Veda Choudhury,South
+15,QT0015,"Kala, Sachar And Agrawal Branch",Bhopal,MANIPUR,Kritika Nori,East
+16,QT0016,Master And Sons Branch,Alappuzha,ODISHA,Jack Chaudhry,East
+17,QT0017,Chawla Ltd Branch,Adoni,PUNJAB,Luke Dasgupta,North
+18,QT0018,Sodhi-Balasubramanian Branch,Varanasi,CHHATTISGARH,Lavanya Batra,East
+19,QT0019,"Sangha, Bora And Oak Branch",Bhatpara,TELANGANA,Urishilla Kapur,South
+20,QT0020,"Bal, Barad And Mani Branch",Bulandshahr,ASSAM,Ekani Lad,East
+21,QT0021,Gandhi Plc Branch,Mumbai,GOA,Aarnav Sarma,West
+22,QT0022,Virk Inc Branch,Aligarh,KERALA,Jatin Roy,South
+23,QT0023,Ramachandran-Prabhu Branch,Ambarnath,UTTARAKHAND,Vivaan Narayanan,North
+24,QT0024,Dass-Dara Branch,Udupi,BIHAR,Ishaan Ganesan,East
+25,QT0025,Dube Group Branch,Ambarnath,NA,Idika Seth,NA

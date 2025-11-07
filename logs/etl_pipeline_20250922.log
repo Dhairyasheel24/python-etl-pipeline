@@ -1,0 +1,1556 @@
+2025-09-22 09:26:08,965 - MySQLExtractor - INFO - connect:98 - Successfully connected to MySQL database: stagging
+2025-09-22 09:26:08,995 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_branches
+2025-09-22 09:26:08,997 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_customers
+2025-09-22 09:26:08,999 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_loans
+2025-09-22 09:26:09,001 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_transactions
+2025-09-22 09:26:09,002 - MySQLExtractor - INFO - create_staging_tables:197 - Staging tables created successfully
+2025-09-22 09:26:09,003 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\branches.csv
+2025-09-22 09:26:09,038 - MySQLExtractor - INFO - load_csv_to_staging:389 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-22 09:26:09,079 - MySQLExtractor - INFO - load_csv_to_staging:468 - Updated 25 existing records in staging_branches
+2025-09-22 09:26:09,086 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 09:26:09,087 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 26
+2025-09-22 09:26:09,087 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:26:09,087 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 25
+2025-09-22 09:26:09,088 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 96.2%
+2025-09-22 09:26:09,089 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\customers.csv
+2025-09-22 09:26:09,145 - MySQLExtractor - INFO - load_csv_to_staging:389 - Loaded CSV file: ./data\customers.csv (5018 rows)
+2025-09-22 09:27:14,334 - MySQLExtractor - INFO - load_csv_to_staging:468 - Updated 5018 existing records in staging_customers
+2025-09-22 09:27:14,351 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 09:27:14,352 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 5018
+2025-09-22 09:27:14,352 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:27:14,352 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 5018
+2025-09-22 09:27:14,352 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 100.0%
+2025-09-22 09:27:14,354 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\loans.csv
+2025-09-22 09:27:14,387 - MySQLExtractor - INFO - load_csv_to_staging:389 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-22 09:27:24,101 - MySQLExtractor - INFO - load_csv_to_staging:468 - Updated 2006 existing records in staging_loans
+2025-09-22 09:27:24,112 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 09:27:24,113 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 2007
+2025-09-22 09:27:24,113 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:27:24,113 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 2006
+2025-09-22 09:27:24,113 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 100.0%
+2025-09-22 09:27:24,115 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\transactions.csv
+2025-09-22 09:27:24,250 - MySQLExtractor - INFO - load_csv_to_staging:389 - Loaded CSV file: ./data\transactions.csv (100004 rows)
+2025-09-22 09:36:55,197 - MySQLExtractor - INFO - connect:98 - Successfully connected to MySQL database: stagging
+2025-09-22 09:36:55,203 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_branches
+2025-09-22 09:36:55,206 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_customers
+2025-09-22 09:36:55,208 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_loans
+2025-09-22 09:36:55,209 - MySQLExtractor - INFO - create_staging_tables:192 - Created/verified staging table: staging_transactions
+2025-09-22 09:36:55,210 - MySQLExtractor - INFO - create_staging_tables:197 - Staging tables created successfully
+2025-09-22 09:36:55,211 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\branches.csv
+2025-09-22 09:36:55,217 - MySQLExtractor - INFO - load_csv_to_staging:377 - Skipping already processed file: ./data\branches.csv
+2025-09-22 09:36:55,217 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 09:36:55,217 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:36:55,218 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:36:55,219 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:36:55,221 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\customers.csv
+2025-09-22 09:36:55,228 - MySQLExtractor - INFO - load_csv_to_staging:377 - Skipping already processed file: ./data\customers.csv
+2025-09-22 09:36:55,228 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 09:36:55,229 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:36:55,229 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:36:55,229 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:36:55,230 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\loans.csv
+2025-09-22 09:36:55,235 - MySQLExtractor - INFO - load_csv_to_staging:377 - Skipping already processed file: ./data\loans.csv
+2025-09-22 09:36:55,236 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 09:36:55,236 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:36:55,236 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:36:55,237 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:36:55,238 - MySQLExtractor - INFO - extract_all_csv_files:500 - Processing: ./data\transactions.csv
+2025-09-22 09:36:55,390 - MySQLExtractor - INFO - load_csv_to_staging:389 - Loaded CSV file: ./data\transactions.csv (100004 rows)
+2025-09-22 09:36:58,420 - MySQLExtractor - INFO - close:531 - Database connection closed
+2025-09-22 09:46:13,489 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 09:46:13,529 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 09:46:13,533 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 09:46:13,536 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 09:46:13,540 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 09:46:13,541 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 09:46:13,543 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 09:46:13,562 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 09:46:13,563 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 09:46:13,563 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:46:13,563 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:46:13,563 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:46:13,564 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 09:46:13,571 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 09:46:13,571 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 09:46:13,571 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:46:13,572 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:46:13,572 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:46:13,573 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 09:46:13,577 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 09:46:13,577 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 09:46:13,578 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 09:46:13,578 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:46:13,579 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:46:13,580 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 09:46:13,583 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 09:46:18,750 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 09:46:18,801 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 09:46:18,802 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 09:46:18,802 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 09:46:18,803 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 09:46:18,803 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 09:46:18,803 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 09:46:18,857 - MySQLExtractor - ERROR - get_file_tracking_summary:627 - Failed to get file tracking summary: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 09:46:18,859 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 09:56:05,655 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 09:56:05,656 - MySQLExtractor - INFO - close:557 - Database connection closed
+2025-09-22 09:59:52,789 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 09:59:52,799 - MySQLExtractor - INFO - close:553 - Database connection closed
+2025-09-22 10:00:16,461 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:00:16,475 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:00:16,481 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:00:16,483 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:00:16,486 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:00:16,486 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:00:16,487 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:00:16,491 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:00:16,491 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:00:16,491 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:00:16,492 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:00:16,492 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:00:16,493 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:00:16,497 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:00:16,498 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:00:16,498 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:00:16,498 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:00:16,498 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:00:16,499 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:00:16,502 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:00:16,503 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:00:16,503 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:00:16,503 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:00:16,504 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:00:16,505 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:00:16,508 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:00:22,046 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:00:22,087 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:00:22,088 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:00:22,088 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:00:22,088 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:00:22,089 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:00:22,089 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:00:22,130 - MySQLExtractor - ERROR - get_file_tracking_summary:627 - Failed to get file tracking summary: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:00:22,131 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:05:43,504 - ETLScheduler - INFO - start:129 - Starting ETL Scheduler - running every 5 minute(s)
+2025-09-22 10:05:43,504 - ETLScheduler - INFO - start:130 - Press Ctrl+C to stop the scheduler
+2025-09-22 10:05:43,505 - ETLScheduler - INFO - start:136 - Running initial ETL job...
+2025-09-22 10:05:43,505 - ETLScheduler - INFO - run_etl_job:49 - ============================================================
+2025-09-22 10:05:43,505 - ETLScheduler - INFO - run_etl_job:50 - ETL Scheduler - Run #1
+2025-09-22 10:05:43,506 - ETLScheduler - INFO - run_etl_job:51 - Started at: 2025-09-22 10:05:43
+2025-09-22 10:05:43,506 - ETLScheduler - INFO - run_etl_job:52 - ============================================================
+2025-09-22 10:05:43,507 - ETLScheduler - INFO - run_etl_job:58 - Step 1: Connecting to MySQL database...
+2025-09-22 10:05:43,744 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:05:43,745 - ETLScheduler - INFO - run_etl_job:64 - Step 2: Creating/verifying staging tables...
+2025-09-22 10:05:43,753 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:05:43,755 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:05:43,757 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:05:43,759 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:05:43,760 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:05:43,760 - ETLScheduler - INFO - run_etl_job:70 - Step 3: Extracting CSV files to staging tables...
+2025-09-22 10:05:43,761 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:05:43,766 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:05:43,766 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:05:43,767 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:05:43,767 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:05:43,767 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:05:43,768 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:05:43,775 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:05:43,775 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:05:43,776 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:05:43,776 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:05:43,776 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:05:43,777 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:05:43,781 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:05:43,782 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:05:43,782 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:05:43,782 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:05:43,783 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:05:43,784 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:05:43,787 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:05:49,032 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:05:49,074 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:05:49,074 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:05:49,075 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:05:49,075 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:05:49,075 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:05:49,075 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:05:49,076 - ETLScheduler - INFO - run_etl_job:79 - Step 4: Extraction Summary
+2025-09-22 10:05:49,076 - ETLScheduler - INFO - run_etl_job:80 - ----------------------------------------
+2025-09-22 10:05:49,080 - ETLScheduler - INFO - run_etl_job:93 - branches: 25 total records (+0 new, ~0 updated)
+2025-09-22 10:05:49,083 - ETLScheduler - INFO - run_etl_job:93 - customers: 5019 total records (+0 new, ~0 updated)
+2025-09-22 10:05:49,087 - ETLScheduler - INFO - run_etl_job:93 - loans: 2006 total records (+0 new, ~0 updated)
+2025-09-22 10:05:49,109 - ETLScheduler - INFO - run_etl_job:93 - transactions: 100004 total records (+0 new, ~0 updated)
+2025-09-22 10:05:49,109 - ETLScheduler - INFO - run_etl_job:95 - ----------------------------------------
+2025-09-22 10:05:49,109 - ETLScheduler - INFO - run_etl_job:96 - Overall Statistics:
+2025-09-22 10:05:49,110 - ETLScheduler - INFO - run_etl_job:97 -   Total CSV rows processed: 100004
+2025-09-22 10:05:49,110 - ETLScheduler - INFO - run_etl_job:98 -   New records inserted: 0
+2025-09-22 10:05:49,110 - ETLScheduler - INFO - run_etl_job:99 -   Existing records updated: 0
+2025-09-22 10:05:49,111 - ETLScheduler - INFO - run_etl_job:103 -   Success rate: 0.0%
+2025-09-22 10:05:49,111 - ETLScheduler - INFO - run_etl_job:106 -   Run duration: 5.6 seconds
+2025-09-22 10:05:49,112 - ETLScheduler - INFO - run_etl_job:111 - ============================================================
+2025-09-22 10:05:49,112 - ETLScheduler - INFO - run_etl_job:112 - ETL Run Completed Successfully
+2025-09-22 10:05:49,113 - ETLScheduler - INFO - run_etl_job:113 - Success rate: 100.0% (1/1)
+2025-09-22 10:05:49,113 - ETLScheduler - INFO - run_etl_job:114 - ============================================================
+2025-09-22 10:05:49,115 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:06:02,566 - ETLScheduler - INFO - _signal_handler:41 - Shutdown signal received, stopping scheduler...
+2025-09-22 10:06:03,148 - ETLScheduler - INFO - start:151 - ETL Scheduler stopped
+2025-09-22 10:06:03,153 - ETLScheduler - INFO - start:129 - Starting ETL Scheduler - running every 5 minute(s)
+2025-09-22 10:06:03,154 - ETLScheduler - INFO - start:130 - Press Ctrl+C to stop the scheduler
+2025-09-22 10:06:03,155 - ETLScheduler - INFO - start:136 - Running initial ETL job...
+2025-09-22 10:06:03,158 - ETLScheduler - INFO - run_etl_job:49 - ============================================================
+2025-09-22 10:06:03,160 - ETLScheduler - INFO - run_etl_job:50 - ETL Scheduler - Run #1
+2025-09-22 10:06:03,161 - ETLScheduler - INFO - run_etl_job:51 - Started at: 2025-09-22 10:06:03
+2025-09-22 10:06:03,163 - ETLScheduler - INFO - run_etl_job:52 - ============================================================
+2025-09-22 10:06:03,166 - ETLScheduler - INFO - run_etl_job:58 - Step 1: Connecting to MySQL database...
+2025-09-22 10:06:03,265 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:06:03,266 - ETLScheduler - INFO - run_etl_job:64 - Step 2: Creating/verifying staging tables...
+2025-09-22 10:06:03,272 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:06:03,274 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:06:03,276 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:06:03,278 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:06:03,278 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:06:03,279 - ETLScheduler - INFO - run_etl_job:70 - Step 3: Extracting CSV files to staging tables...
+2025-09-22 10:06:03,280 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:06:03,284 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:06:03,284 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:06:03,285 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:06:03,285 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:06:03,285 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:06:03,286 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:06:03,291 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:06:03,291 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:06:03,292 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:06:03,292 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:06:03,292 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:06:03,293 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:06:03,297 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:06:03,298 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:06:03,298 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:06:03,299 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:06:03,299 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:06:03,300 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:06:03,303 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:06:04,741 - ETLScheduler - INFO - _signal_handler:41 - Shutdown signal received, stopping scheduler...
+2025-09-22 10:06:08,301 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:06:08,338 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:06:08,339 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:06:08,339 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:06:08,339 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:06:08,340 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:06:08,340 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:06:08,340 - ETLScheduler - INFO - run_etl_job:79 - Step 4: Extraction Summary
+2025-09-22 10:06:08,341 - ETLScheduler - INFO - run_etl_job:80 - ----------------------------------------
+2025-09-22 10:06:08,344 - ETLScheduler - INFO - run_etl_job:93 - branches: 25 total records (+0 new, ~0 updated)
+2025-09-22 10:06:08,347 - ETLScheduler - INFO - run_etl_job:93 - customers: 5019 total records (+0 new, ~0 updated)
+2025-09-22 10:06:08,357 - ETLScheduler - INFO - run_etl_job:93 - loans: 2006 total records (+0 new, ~0 updated)
+2025-09-22 10:06:08,369 - ETLScheduler - INFO - run_etl_job:93 - transactions: 100004 total records (+0 new, ~0 updated)
+2025-09-22 10:06:08,370 - ETLScheduler - INFO - run_etl_job:95 - ----------------------------------------
+2025-09-22 10:06:08,370 - ETLScheduler - INFO - run_etl_job:96 - Overall Statistics:
+2025-09-22 10:06:08,371 - ETLScheduler - INFO - run_etl_job:97 -   Total CSV rows processed: 100004
+2025-09-22 10:06:08,371 - ETLScheduler - INFO - run_etl_job:98 -   New records inserted: 0
+2025-09-22 10:06:08,371 - ETLScheduler - INFO - run_etl_job:99 -   Existing records updated: 0
+2025-09-22 10:06:08,372 - ETLScheduler - INFO - run_etl_job:103 -   Success rate: 0.0%
+2025-09-22 10:06:08,372 - ETLScheduler - INFO - run_etl_job:106 -   Run duration: 5.2 seconds
+2025-09-22 10:06:08,372 - ETLScheduler - INFO - run_etl_job:111 - ============================================================
+2025-09-22 10:06:08,373 - ETLScheduler - INFO - run_etl_job:112 - ETL Run Completed Successfully
+2025-09-22 10:06:08,373 - ETLScheduler - INFO - run_etl_job:113 - Success rate: 100.0% (1/1)
+2025-09-22 10:06:08,373 - ETLScheduler - INFO - run_etl_job:114 - ============================================================
+2025-09-22 10:06:08,374 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:06:08,375 - ETLScheduler - INFO - start:151 - ETL Scheduler stopped
+2025-09-22 10:07:17,306 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:07:17,307 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:07:17,307 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:07:17,307 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:07:17,558 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:07:17,558 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:07:17,563 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:07:17,565 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:07:17,567 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:07:17,569 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:07:17,570 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:07:17,570 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:07:17,572 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:07:17,575 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:07:17,575 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:07:17,576 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:07:17,576 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:07:17,577 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:07:17,578 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:07:17,585 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:07:17,585 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:07:17,585 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:07:17,586 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:07:17,586 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:07:17,587 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:07:17,590 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:07:17,590 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:07:17,591 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:07:17,591 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:07:17,592 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:07:17,593 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:07:17,595 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:07:23,301 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:07:23,343 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:07:23,343 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:07:23,343 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:07:23,344 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:07:23,344 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:07:23,344 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:07:23,345 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:07:23,345 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:07:23,355 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:07:23,359 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5019 total records (+0 new)
+2025-09-22 10:07:23,363 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:07:23,376 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:07:23,377 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:07:23,377 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:07:23,378 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 100004
+2025-09-22 10:07:23,378 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:07:23,378 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:07:23,379 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-22 10:07:23,379 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:07:23,379 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:07:23,380 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:08:55,790 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:08:55,791 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:08:55,791 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:08:55,792 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:08:55,792 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:08:55,792 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:08:55,793 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:08:55,793 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:08:55,793 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:08:55,794 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:08:55,794 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:08:55
+2025-09-22 10:08:55,794 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:08:55,796 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:08:55,799 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:08:55,801 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:08:55,827 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:08:55,830 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:08:55,830 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:08:55,830 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:08:55,831 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:08:56,107 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:08:56,107 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:08:56,112 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:08:56,114 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:08:56,116 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:08:56,118 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:08:56,119 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:08:56,119 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:08:56,120 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:08:56,124 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:08:56,125 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:08:56,125 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:08:56,125 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:08:56,126 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:08:56,126 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:08:56,132 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:08:56,132 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:08:56,133 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:08:56,133 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:08:56,133 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:08:56,134 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:08:56,138 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:08:56,138 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:08:56,138 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:08:56,139 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:08:56,139 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:08:56,140 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:08:56,142 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:09:01,641 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:09:01,683 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:09:01,683 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:09:01,683 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:09:01,684 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:09:01,684 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:09:01,684 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:09:01,685 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:09:01,685 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:09:01,688 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:09:01,699 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5019 total records (+0 new)
+2025-09-22 10:09:01,703 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:09:01,715 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:09:01,716 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:09:01,716 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:09:01,716 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 100004
+2025-09-22 10:09:01,716 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:09:01,717 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:09:01,717 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-22 10:09:01,717 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:09:01,718 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:09:01,718 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:09:01,718 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:09:01,719 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:09:01,719 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 5.9 seconds
+2025-09-22 10:09:01,719 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:09:01,720 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:09:01,721 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:09:07,896 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:09:07,896 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:09:07,897 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:09:07,897 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:09:07,897 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:09:07,897 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:09:07,898 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:09:07,898 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:09:07,898 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:09:07,898 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:09:07,899 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:09:07
+2025-09-22 10:09:07,899 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:09:07,901 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:09:07,905 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:09:07,906 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:09:07,929 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:09:07,931 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:09:07,931 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:09:07,932 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:09:07,932 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:09:08,081 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:09:08,081 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:09:08,086 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:09:08,089 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:09:08,091 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:09:08,093 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:09:08,093 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:09:08,094 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:09:08,095 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:09:08,098 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:09:08,098 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:09:08,099 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:09:08,099 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:09:08,099 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:09:08,100 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:09:08,105 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:09:08,106 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:09:08,106 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:09:08,106 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:09:08,107 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:09:08,107 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:09:08,110 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:09:08,110 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:09:08,110 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:09:08,111 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:09:08,111 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:09:08,112 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:09:08,114 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:09:13,322 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:09:13,364 - MySQLExtractor - ERROR - _mark_file_processed:266 - Failed to mark file as processed: 1054 (42S22): Unknown column 'file_size_mb' in 'field list'
+2025-09-22 10:09:13,364 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:09:13,364 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:09:13,365 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:09:13,365 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:09:13,365 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:09:13,366 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:09:13,366 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:09:13,369 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:09:13,373 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5019 total records (+0 new)
+2025-09-22 10:09:13,377 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:09:13,389 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:09:13,389 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:09:13,389 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:09:13,390 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 100004
+2025-09-22 10:09:13,390 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:09:13,390 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:09:13,391 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-22 10:09:13,391 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:09:13,391 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:09:13,392 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:09:13,392 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:09:13,392 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:09:13,392 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 5.5 seconds
+2025-09-22 10:09:13,393 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:09:13,393 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:09:13,395 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:14:08,520 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:14:08,521 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #2
+2025-09-22 10:14:08,521 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:14:08
+2025-09-22 10:14:08,522 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:14:08,551 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:14:08,553 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:14:33,407 - ETLScheduler - INFO - _signal_handler:41 - Shutdown signal received, stopping scheduler...
+2025-09-22 10:14:33,563 - ETLScheduler - INFO - start:178 - ETL Scheduler stopped
+2025-09-22 10:14:41,248 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:14:41,254 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:14:41,256 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:14:41,258 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:14:41,260 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:14:41,261 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:14:41,262 - MySQLExtractor - INFO - extract_all_csv_files:548 - Processing: ./data\branches.csv
+2025-09-22 10:14:41,266 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:14:41,267 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:14:41,267 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:14:41,267 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:14:41,267 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:14:41,268 - MySQLExtractor - INFO - extract_all_csv_files:548 - Processing: ./data\customers.csv
+2025-09-22 10:14:41,274 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:14:41,274 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:14:41,274 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:14:41,275 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:14:41,275 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:14:41,276 - MySQLExtractor - INFO - extract_all_csv_files:548 - Processing: ./data\loans.csv
+2025-09-22 10:14:41,279 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:14:41,280 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:14:41,280 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:14:41,280 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:14:41,281 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:14:41,282 - MySQLExtractor - INFO - extract_all_csv_files:548 - Processing: ./data\transactions.csv
+2025-09-22 10:14:41,285 - MySQLExtractor - INFO - load_csv_to_staging:506 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:14:46,270 - MySQLExtractor - INFO - _process_small_file:485 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:14:46,284 - MySQLExtractor - ERROR - load_csv_to_staging:522 - Failed to load ./data\transactions.csv: 'MySQLExtractor' object has no attribute '_mark_file_processed'
+2025-09-22 10:14:46,286 - MySQLExtractor - ERROR - load_csv_to_staging:524 - Traceback (most recent call last):
+  File "c:\Users\HP\python-etl-pipeline\src\extract.py", line 517, in load_csv_to_staging
+    self._mark_file_processed(csv_file_path, total_rows)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MySQLExtractor' object has no attribute '_mark_file_processed'. Did you mean: '_is_file_processed'?
+
+2025-09-22 10:14:46,287 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:14:46,287 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:14:46,288 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:14:46,288 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:14:46,330 - MySQLExtractor - INFO - close:610 - Database connection closed
+2025-09-22 10:16:10,851 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:16:10,856 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:16:10,857 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:16:10,860 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:16:10,862 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:16:10,863 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:16:10,864 - MySQLExtractor - INFO - extract_all_csv_files:538 - Processing: ./data\branches.csv
+2025-09-22 10:16:10,868 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:16:10,868 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:16:10,868 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:10,868 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:10,869 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:10,870 - MySQLExtractor - INFO - extract_all_csv_files:538 - Processing: ./data\customers.csv
+2025-09-22 10:16:10,880 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:16:10,886 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:16:10,887 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:10,888 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:10,889 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:10,890 - MySQLExtractor - INFO - extract_all_csv_files:538 - Processing: ./data\loans.csv
+2025-09-22 10:16:10,893 - MySQLExtractor - INFO - load_csv_to_staging:500 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:16:10,894 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:16:10,894 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:10,894 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:10,895 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:10,896 - MySQLExtractor - INFO - extract_all_csv_files:538 - Processing: ./data\transactions.csv
+2025-09-22 10:16:10,899 - MySQLExtractor - INFO - load_csv_to_staging:506 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:16:10,900 - MySQLExtractor - INFO - close:600 - Database connection closed
+2025-09-22 10:16:40,996 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:16:41,008 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:16:41,010 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:16:41,011 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:16:41,013 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:16:41,014 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:16:41,015 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:16:41,019 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:16:41,019 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:16:41,019 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:41,019 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:41,020 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:41,021 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:16:41,026 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:16:41,026 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:16:41,027 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:41,027 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:41,028 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:41,029 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:16:41,032 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:16:41,033 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:16:41,034 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:16:41,034 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:41,034 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:41,035 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:16:41,038 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:16:46,277 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:16:46,324 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:16:46,325 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:16:46,325 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:16:46,325 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:16:46,325 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:16:46,355 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:18:02,616 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:18:02,616 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:18:02,617 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:18:02,617 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:18:02,617 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:18:02,618 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:18:02,618 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:18:02,618 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:18:02,618 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:18:02,618 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:18:02,619 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:18:02
+2025-09-22 10:18:02,619 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:18:02,621 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:18:02,625 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:18:02,627 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:18:02,655 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:18:02,656 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:18:02,657 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:18:02,657 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:18:02,658 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:18:02,838 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:18:02,838 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:18:02,873 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:18:02,875 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:18:02,877 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:18:02,879 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:18:02,880 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:18:02,880 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:18:02,881 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:18:02,887 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: branches.csv (0.0MB)
+2025-09-22 10:18:02,908 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 26 CSV rows
+2025-09-22 10:18:02,913 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:18:02,913 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 26
+2025-09-22 10:18:02,914 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:18:02,914 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:18:02,914 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:18:02,915 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:18:02,917 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: customers.csv (0.6MB)
+2025-09-22 10:18:03,264 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 5018 CSV rows
+2025-09-22 10:18:03,272 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:18:03,272 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 5018
+2025-09-22 10:18:03,273 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:18:03,273 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:18:03,274 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:18:03,275 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:18:03,277 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: loans.csv (0.1MB)
+2025-09-22 10:18:03,440 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 2007 CSV rows
+2025-09-22 10:18:03,446 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:18:03,446 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 2007
+2025-09-22 10:18:03,447 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:18:03,447 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:18:03,448 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:18:03,448 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:18:03,451 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: transactions.csv (4.8MB)
+2025-09-22 10:18:08,465 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 0 new records from 100004 CSV rows
+2025-09-22 10:18:08,508 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:18:08,508 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 10:18:08,508 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:18:08,509 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:18:08,509 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 10:18:08,509 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:18:08,509 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:18:08,512 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:18:08,515 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5019 total records (+0 new)
+2025-09-22 10:18:08,519 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:18:08,535 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:18:08,535 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:18:08,535 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:18:08,536 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 107055
+2025-09-22 10:18:08,536 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:18:08,536 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:18:08,536 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-22 10:18:08,537 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:18:08,537 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:18:08,537 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:18:08,538 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:18:08,538 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:18:08,538 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 5.9 seconds
+2025-09-22 10:18:08,538 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:18:08,540 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:18:08,543 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:21:53,076 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:21:53,076 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:21:53,076 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:21:53,077 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:21:53,077 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:21:53,077 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:21:53,077 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:21:53,078 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:21:53,078 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:21:53,078 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:21:53,078 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:21:53
+2025-09-22 10:21:53,079 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:21:53,080 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:21:53,085 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:21:53,087 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:21:53,113 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:21:53,114 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:21:53,115 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:21:53,115 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:21:53,115 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:21:53,374 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:21:53,374 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:21:53,379 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:21:53,381 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:21:53,383 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:21:53,385 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:21:53,386 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:21:53,386 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:21:53,387 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:21:53,391 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:21:53,392 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:21:53,392 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:21:53,392 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:21:53,393 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:21:53,393 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:21:53,399 - MySQLExtractor - INFO - load_csv_to_staging:530 - Processing file: customers.csv (0.6MB)
+2025-09-22 10:21:53,772 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 3 new records from 5021 CSV rows
+2025-09-22 10:21:53,781 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:21:53,781 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 5021
+2025-09-22 10:21:53,782 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 3
+2025-09-22 10:21:53,782 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:21:53,782 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.1%
+2025-09-22 10:21:53,783 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:21:53,786 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:21:53,786 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:21:53,787 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:21:53,787 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:21:53,787 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:21:53,788 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:21:53,811 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:21:53,811 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:21:53,812 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:21:53,812 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:21:53,813 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:21:53,813 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:21:53,813 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:21:53,816 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:21:53,820 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5022 total records (+3 new)
+2025-09-22 10:21:53,823 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:21:53,834 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:21:53,835 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:21:53,835 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:21:53,836 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 5021
+2025-09-22 10:21:53,836 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 3
+2025-09-22 10:21:53,836 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:21:53,836 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.1% (only new records inserted)
+2025-09-22 10:21:53,837 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:21:53,837 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:21:53,837 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:21:53,837 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:21:53,838 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:21:53,838 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 0.8 seconds
+2025-09-22 10:21:53,838 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:21:53,838 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:21:53,840 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:23:33,245 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:23:33,246 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:23:33,246 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:23:33,246 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:23:33,246 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:23:33,247 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:23:33,247 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:23:33,247 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:23:33,247 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:23:33,248 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:23:33,248 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:23:33
+2025-09-22 10:23:33,248 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:23:33,249 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:23:33,253 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:23:33,254 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:23:33,277 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:23:33,279 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:23:33,279 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:23:33,280 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:23:33,280 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:23:33,573 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:23:33,573 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:23:33,580 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:23:33,582 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:23:33,584 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:23:33,587 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:23:33,587 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:23:33,588 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:23:33,589 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:23:33,592 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:23:33,593 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:23:33,593 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:23:33,593 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:23:33,594 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:23:33,594 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:23:33,599 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:23:33,599 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:23:33,600 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:23:33,600 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:23:33,601 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:23:33,601 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:23:33,604 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:23:33,605 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:23:33,605 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:23:33,605 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:23:33,606 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:23:33,607 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:23:33,632 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:23:33,632 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:23:33,633 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:23:33,633 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:23:33,633 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:23:33,634 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:23:33,634 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:23:33,638 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:23:33,641 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5022 total records (+0 new)
+2025-09-22 10:23:33,645 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:23:33,655 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:23:33,656 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:23:33,656 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:23:33,656 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 0
+2025-09-22 10:23:33,656 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:23:33,657 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:23:33,657 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:23:33,657 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:23:33,658 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:23:33,658 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:23:33,658 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:23:33,658 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 0.4 seconds
+2025-09-22 10:23:33,659 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:23:33,659 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:23:33,660 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:28:33,792 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:28:33,794 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #2
+2025-09-22 10:28:33,795 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:28:33
+2025-09-22 10:28:33,795 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:28:33,831 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:28:33,832 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:33:33,955 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:33:33,956 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #3
+2025-09-22 10:33:33,956 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:33:33
+2025-09-22 10:33:33,957 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:33:33,993 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:33:33,994 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:33:53,669 - ETLScheduler - INFO - start:129 - Starting ETL Scheduler - running every 1 minute(s)
+2025-09-22 10:33:53,669 - ETLScheduler - INFO - start:130 - Press Ctrl+C to stop the scheduler
+2025-09-22 10:33:53,670 - ETLScheduler - INFO - start:136 - Running initial ETL job...
+2025-09-22 10:33:53,670 - ETLScheduler - INFO - run_etl_job:49 - ============================================================
+2025-09-22 10:33:53,670 - ETLScheduler - INFO - run_etl_job:50 - ETL Scheduler - Run #1
+2025-09-22 10:33:53,671 - ETLScheduler - INFO - run_etl_job:51 - Started at: 2025-09-22 10:33:53
+2025-09-22 10:33:53,671 - ETLScheduler - INFO - run_etl_job:52 - ============================================================
+2025-09-22 10:33:53,672 - ETLScheduler - INFO - run_etl_job:58 - Step 1: Connecting to MySQL database...
+2025-09-22 10:33:53,845 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:33:53,845 - ETLScheduler - INFO - run_etl_job:64 - Step 2: Creating/verifying staging tables...
+2025-09-22 10:33:53,852 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:33:53,854 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:33:53,856 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:33:53,858 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:33:53,859 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:33:53,859 - ETLScheduler - INFO - run_etl_job:70 - Step 3: Extracting CSV files to staging tables...
+2025-09-22 10:33:53,860 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:33:53,865 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:33:53,865 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:33:53,865 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:33:53,866 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:33:53,866 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:33:53,867 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:33:53,872 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:33:53,872 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:33:53,873 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:33:53,873 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:33:53,873 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:33:53,874 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:33:53,877 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:33:53,878 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:33:53,878 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:33:53,878 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:33:53,879 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:33:53,880 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:33:53,903 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:33:53,904 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:33:53,904 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:33:53,904 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:33:53,905 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:33:53,905 - ETLScheduler - INFO - run_etl_job:79 - Step 4: Extraction Summary
+2025-09-22 10:33:53,905 - ETLScheduler - INFO - run_etl_job:80 - ----------------------------------------
+2025-09-22 10:33:53,909 - ETLScheduler - INFO - run_etl_job:93 - branches: 25 total records (+0 new, ~0 updated)
+2025-09-22 10:33:53,913 - ETLScheduler - INFO - run_etl_job:93 - customers: 5022 total records (+0 new, ~0 updated)
+2025-09-22 10:33:53,917 - ETLScheduler - INFO - run_etl_job:93 - loans: 2006 total records (+0 new, ~0 updated)
+2025-09-22 10:33:53,927 - ETLScheduler - INFO - run_etl_job:93 - transactions: 100004 total records (+0 new, ~0 updated)
+2025-09-22 10:33:53,928 - ETLScheduler - INFO - run_etl_job:95 - ----------------------------------------
+2025-09-22 10:33:53,928 - ETLScheduler - INFO - run_etl_job:96 - Overall Statistics:
+2025-09-22 10:33:53,928 - ETLScheduler - INFO - run_etl_job:97 -   Total CSV rows processed: 0
+2025-09-22 10:33:53,929 - ETLScheduler - INFO - run_etl_job:98 -   New records inserted: 0
+2025-09-22 10:33:53,929 - ETLScheduler - INFO - run_etl_job:99 -   Existing records updated: 0
+2025-09-22 10:33:53,930 - ETLScheduler - INFO - run_etl_job:106 -   Run duration: 0.3 seconds
+2025-09-22 10:33:53,930 - ETLScheduler - INFO - run_etl_job:111 - ============================================================
+2025-09-22 10:33:53,930 - ETLScheduler - INFO - run_etl_job:112 - ETL Run Completed Successfully
+2025-09-22 10:33:53,931 - ETLScheduler - INFO - run_etl_job:113 - Success rate: 100.0% (1/1)
+2025-09-22 10:33:53,931 - ETLScheduler - INFO - run_etl_job:114 - ============================================================
+2025-09-22 10:33:53,932 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:34:53,957 - ETLScheduler - INFO - run_etl_job:49 - ============================================================
+2025-09-22 10:34:53,958 - ETLScheduler - INFO - run_etl_job:50 - ETL Scheduler - Run #2
+2025-09-22 10:34:53,958 - ETLScheduler - INFO - run_etl_job:51 - Started at: 2025-09-22 10:34:53
+2025-09-22 10:34:53,959 - ETLScheduler - INFO - run_etl_job:52 - ============================================================
+2025-09-22 10:34:53,967 - ETLScheduler - INFO - run_etl_job:58 - Step 1: Connecting to MySQL database...
+2025-09-22 10:34:54,060 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:34:54,061 - ETLScheduler - INFO - run_etl_job:64 - Step 2: Creating/verifying staging tables...
+2025-09-22 10:34:54,066 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:34:54,068 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:34:54,070 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:34:54,072 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:34:54,072 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:34:54,073 - ETLScheduler - INFO - run_etl_job:70 - Step 3: Extracting CSV files to staging tables...
+2025-09-22 10:34:54,074 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:34:54,077 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:34:54,078 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:34:54,078 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:34:54,078 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:34:54,078 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:34:54,079 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:34:54,084 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:34:54,085 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:34:54,085 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:34:54,085 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:34:54,085 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:34:54,086 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:34:54,089 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:34:54,089 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:34:54,090 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:34:54,090 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:34:54,090 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:34:54,091 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:34:54,114 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:34:54,115 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:34:54,115 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:34:54,115 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:34:54,116 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:34:54,116 - ETLScheduler - INFO - run_etl_job:79 - Step 4: Extraction Summary
+2025-09-22 10:34:54,116 - ETLScheduler - INFO - run_etl_job:80 - ----------------------------------------
+2025-09-22 10:34:54,120 - ETLScheduler - INFO - run_etl_job:93 - branches: 25 total records (+0 new, ~0 updated)
+2025-09-22 10:34:54,124 - ETLScheduler - INFO - run_etl_job:93 - customers: 5022 total records (+0 new, ~0 updated)
+2025-09-22 10:34:54,127 - ETLScheduler - INFO - run_etl_job:93 - loans: 2006 total records (+0 new, ~0 updated)
+2025-09-22 10:34:54,137 - ETLScheduler - INFO - run_etl_job:93 - transactions: 100004 total records (+0 new, ~0 updated)
+2025-09-22 10:34:54,138 - ETLScheduler - INFO - run_etl_job:95 - ----------------------------------------
+2025-09-22 10:34:54,138 - ETLScheduler - INFO - run_etl_job:96 - Overall Statistics:
+2025-09-22 10:34:54,138 - ETLScheduler - INFO - run_etl_job:97 -   Total CSV rows processed: 0
+2025-09-22 10:34:54,139 - ETLScheduler - INFO - run_etl_job:98 -   New records inserted: 0
+2025-09-22 10:34:54,139 - ETLScheduler - INFO - run_etl_job:99 -   Existing records updated: 0
+2025-09-22 10:34:54,139 - ETLScheduler - INFO - run_etl_job:106 -   Run duration: 0.2 seconds
+2025-09-22 10:34:54,140 - ETLScheduler - INFO - run_etl_job:111 - ============================================================
+2025-09-22 10:34:54,140 - ETLScheduler - INFO - run_etl_job:112 - ETL Run Completed Successfully
+2025-09-22 10:34:54,140 - ETLScheduler - INFO - run_etl_job:113 - Success rate: 100.0% (2/2)
+2025-09-22 10:34:54,141 - ETLScheduler - INFO - run_etl_job:114 - ============================================================
+2025-09-22 10:34:54,142 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:36:30,780 - ETLScheduler - INFO - start:129 - Starting ETL Scheduler - running every 5 minute(s)
+2025-09-22 10:36:30,780 - ETLScheduler - INFO - start:130 - Press Ctrl+C to stop the scheduler
+2025-09-22 10:36:30,781 - ETLScheduler - INFO - start:136 - Running initial ETL job...
+2025-09-22 10:36:30,781 - ETLScheduler - INFO - run_etl_job:49 - ============================================================
+2025-09-22 10:36:30,781 - ETLScheduler - INFO - run_etl_job:50 - ETL Scheduler - Run #1
+2025-09-22 10:36:30,782 - ETLScheduler - INFO - run_etl_job:51 - Started at: 2025-09-22 10:36:30
+2025-09-22 10:36:30,782 - ETLScheduler - INFO - run_etl_job:52 - ============================================================
+2025-09-22 10:36:30,782 - ETLScheduler - INFO - run_etl_job:58 - Step 1: Connecting to MySQL database...
+2025-09-22 10:36:30,940 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:36:30,940 - ETLScheduler - INFO - run_etl_job:64 - Step 2: Creating/verifying staging tables...
+2025-09-22 10:36:30,946 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:36:30,947 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:36:30,949 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:36:30,951 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:36:30,952 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:36:30,952 - ETLScheduler - INFO - run_etl_job:70 - Step 3: Extracting CSV files to staging tables...
+2025-09-22 10:36:30,953 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:36:30,957 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:36:30,958 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:36:30,958 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:30,958 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:30,959 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:30,960 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:36:30,965 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:36:30,965 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:36:30,966 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:30,966 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:30,967 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:30,967 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:36:30,971 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:36:30,971 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:36:30,971 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:30,972 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:30,972 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:30,973 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:36:30,999 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:36:30,999 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:36:30,999 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:31,000 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:31,000 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:31,000 - ETLScheduler - INFO - run_etl_job:79 - Step 4: Extraction Summary
+2025-09-22 10:36:31,001 - ETLScheduler - INFO - run_etl_job:80 - ----------------------------------------
+2025-09-22 10:36:31,004 - ETLScheduler - INFO - run_etl_job:93 - branches: 25 total records (+0 new, ~0 updated)
+2025-09-22 10:36:31,008 - ETLScheduler - INFO - run_etl_job:93 - customers: 5022 total records (+0 new, ~0 updated)
+2025-09-22 10:36:31,011 - ETLScheduler - INFO - run_etl_job:93 - loans: 2006 total records (+0 new, ~0 updated)
+2025-09-22 10:36:31,024 - ETLScheduler - INFO - run_etl_job:93 - transactions: 100004 total records (+0 new, ~0 updated)
+2025-09-22 10:36:31,025 - ETLScheduler - INFO - run_etl_job:95 - ----------------------------------------
+2025-09-22 10:36:31,025 - ETLScheduler - INFO - run_etl_job:96 - Overall Statistics:
+2025-09-22 10:36:31,025 - ETLScheduler - INFO - run_etl_job:97 -   Total CSV rows processed: 0
+2025-09-22 10:36:31,025 - ETLScheduler - INFO - run_etl_job:98 -   New records inserted: 0
+2025-09-22 10:36:31,026 - ETLScheduler - INFO - run_etl_job:99 -   Existing records updated: 0
+2025-09-22 10:36:31,026 - ETLScheduler - INFO - run_etl_job:106 -   Run duration: 0.2 seconds
+2025-09-22 10:36:31,026 - ETLScheduler - INFO - run_etl_job:111 - ============================================================
+2025-09-22 10:36:31,027 - ETLScheduler - INFO - run_etl_job:112 - ETL Run Completed Successfully
+2025-09-22 10:36:31,027 - ETLScheduler - INFO - run_etl_job:113 - Success rate: 100.0% (1/1)
+2025-09-22 10:36:31,027 - ETLScheduler - INFO - run_etl_job:114 - ============================================================
+2025-09-22 10:36:31,028 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 10:36:45,275 - ETLScheduler - INFO - start:149 - ============================================================
+2025-09-22 10:36:45,276 - ETLScheduler - INFO - start:150 - STARTING ETL SCHEDULER
+2025-09-22 10:36:45,276 - ETLScheduler - INFO - start:151 - ============================================================
+2025-09-22 10:36:45,277 - ETLScheduler - INFO - start:152 - Schedule: Every 5 minute(s)
+2025-09-22 10:36:45,277 - ETLScheduler - INFO - start:153 - Data directory: ./data
+2025-09-22 10:36:45,277 - ETLScheduler - INFO - start:154 - Monitoring for CSV file changes...
+2025-09-22 10:36:45,277 - ETLScheduler - INFO - start:155 - Press Ctrl+C to stop
+2025-09-22 10:36:45,277 - ETLScheduler - INFO - start:161 - 
+Running initial ETL job...
+2025-09-22 10:36:45,278 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:36:45,278 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #1
+2025-09-22 10:36:45,278 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:36:45
+2025-09-22 10:36:45,279 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:36:45,280 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: branches.csv
+2025-09-22 10:36:45,284 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: customers.csv
+2025-09-22 10:36:45,286 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: loans.csv
+2025-09-22 10:36:45,311 - ETLScheduler - INFO - _check_for_file_changes:82 - New CSV file detected: transactions.csv
+2025-09-22 10:36:45,313 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 10:36:45,314 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 10:36:45,314 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 10:36:45,314 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 10:36:45,470 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 10:36:45,470 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 10:36:45,475 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 10:36:45,476 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 10:36:45,478 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 10:36:45,480 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 10:36:45,481 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 10:36:45,482 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 10:36:45,483 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 10:36:45,487 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 10:36:45,487 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 10:36:45,487 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:45,488 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:45,488 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:45,489 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 10:36:45,494 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 10:36:45,494 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 10:36:45,495 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:45,495 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:45,495 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:45,496 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 10:36:45,499 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 10:36:45,500 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 10:36:45,500 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:45,500 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:45,501 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:45,501 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 10:36:45,525 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 10:36:45,526 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 10:36:45,526 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 10:36:45,526 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 10:36:45,527 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 10:36:45,527 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 10:36:45,527 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 10:36:45,531 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 10:36:45,535 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5022 total records (+0 new)
+2025-09-22 10:36:45,539 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 10:36:45,549 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 10:36:45,550 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 10:36:45,550 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 10:36:45,551 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 0
+2025-09-22 10:36:45,551 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 10:36:45,551 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 10:36:45,551 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 10:36:45,552 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 10:36:45,552 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 10:36:45,552 - ETLScheduler - INFO - run_etl_job:131 - ============================================================
+2025-09-22 10:36:45,553 - ETLScheduler - INFO - run_etl_job:132 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 10:36:45,553 - ETLScheduler - INFO - run_etl_job:133 - Run duration: 0.3 seconds
+2025-09-22 10:36:45,553 - ETLScheduler - INFO - run_etl_job:134 - Success rate: 100.0% (1/1)
+2025-09-22 10:36:45,553 - ETLScheduler - INFO - run_etl_job:135 - ============================================================
+2025-09-22 10:36:45,555 - ETLScheduler - INFO - start:165 - 
+Scheduler is now running (every 5 min)...
+2025-09-22 10:41:45,689 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:41:45,690 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #2
+2025-09-22 10:41:45,691 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:41:45
+2025-09-22 10:41:45,691 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:41:45,725 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:41:45,725 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:46:45,850 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:46:45,850 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #3
+2025-09-22 10:46:45,851 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:46:45
+2025-09-22 10:46:45,851 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:46:45,885 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:46:45,885 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:51:46,021 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:51:46,022 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #4
+2025-09-22 10:51:46,022 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:51:46
+2025-09-22 10:51:46,022 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:51:46,052 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:51:46,053 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 10:56:46,180 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 10:56:46,181 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #5
+2025-09-22 10:56:46,181 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 10:56:46
+2025-09-22 10:56:46,182 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 10:56:46,210 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 10:56:46,210 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:01:46,339 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:01:46,340 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #6
+2025-09-22 11:01:46,340 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:01:46
+2025-09-22 11:01:46,341 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:01:46,375 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:01:46,379 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:06:46,508 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:06:46,509 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #7
+2025-09-22 11:06:46,510 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:06:46
+2025-09-22 11:06:46,510 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:06:46,542 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:06:46,542 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:11:46,676 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:11:46,676 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #8
+2025-09-22 11:11:46,677 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:11:46
+2025-09-22 11:11:46,677 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:11:46,709 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:11:46,710 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:16:46,839 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:16:46,840 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #9
+2025-09-22 11:16:46,840 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:16:46
+2025-09-22 11:16:46,841 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:16:46,869 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:16:46,870 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:21:47,003 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:21:47,004 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #10
+2025-09-22 11:21:47,004 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:21:47
+2025-09-22 11:21:47,005 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:21:47,037 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:21:47,038 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:26:47,163 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:26:47,164 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #11
+2025-09-22 11:26:47,165 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:26:47
+2025-09-22 11:26:47,165 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:26:47,207 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:26:47,207 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:31:47,336 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:31:47,337 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #12
+2025-09-22 11:31:47,338 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:31:47
+2025-09-22 11:31:47,338 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:31:47,366 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:31:47,367 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:36:47,495 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:36:47,495 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #13
+2025-09-22 11:36:47,496 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:36:47
+2025-09-22 11:36:47,496 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:36:47,525 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:36:47,526 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:41:47,653 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:41:47,653 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #14
+2025-09-22 11:41:47,654 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:41:47
+2025-09-22 11:41:47,654 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:41:47,686 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:41:47,686 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:46:47,817 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:46:47,817 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #15
+2025-09-22 11:46:47,818 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:46:47
+2025-09-22 11:46:47,818 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:46:47,862 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:46:47,863 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:51:47,980 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:51:47,981 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #16
+2025-09-22 11:51:47,981 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:51:47
+2025-09-22 11:51:47,981 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:51:48,012 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:51:48,012 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 11:56:48,144 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 11:56:48,145 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #17
+2025-09-22 11:56:48,145 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 11:56:48
+2025-09-22 11:56:48,145 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 11:56:48,178 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 11:56:48,179 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:01:48,309 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:01:48,309 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #18
+2025-09-22 12:01:48,310 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:01:48
+2025-09-22 12:01:48,310 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:01:48,338 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:01:48,339 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:06:48,471 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:06:48,471 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #19
+2025-09-22 12:06:48,472 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:06:48
+2025-09-22 12:06:48,472 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:06:48,504 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:06:48,504 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:11:48,627 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:11:48,628 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #20
+2025-09-22 12:11:48,629 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:11:48
+2025-09-22 12:11:48,629 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:11:48,660 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:11:48,661 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:16:48,825 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:16:48,825 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #21
+2025-09-22 12:16:48,826 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:16:48
+2025-09-22 12:16:48,826 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:16:48,858 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:16:48,859 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:21:48,997 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:21:48,998 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #22
+2025-09-22 12:21:48,998 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:21:48
+2025-09-22 12:21:48,998 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:21:49,026 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:21:49,026 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:26:49,155 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:26:49,156 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #23
+2025-09-22 12:26:49,156 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:26:49
+2025-09-22 12:26:49,156 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:26:49,185 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:26:49,185 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:31:49,313 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:31:49,314 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #24
+2025-09-22 12:31:49,314 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:31:49
+2025-09-22 12:31:49,315 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:31:49,345 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:31:49,345 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:36:49,472 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:36:49,473 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #25
+2025-09-22 12:36:49,473 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:36:49
+2025-09-22 12:36:49,473 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:36:49,526 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:36:49,526 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:54:53,024 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:54:53,025 - ETLScheduler - INFO - run_etl_job:110 - ETL Scheduler - Run #26
+2025-09-22 12:54:53,025 - ETLScheduler - INFO - run_etl_job:111 - Started at: 2025-09-22 12:54:53
+2025-09-22 12:54:53,025 - ETLScheduler - INFO - run_etl_job:112 - ============================================================
+2025-09-22 12:54:53,190 - ETLScheduler - INFO - _check_for_file_changes:96 - No CSV file changes detected
+2025-09-22 12:54:53,192 - ETLScheduler - INFO - run_etl_job:117 - No changes detected - skipping ETL run
+2025-09-22 12:56:18,242 - ETLScheduler - INFO - _signal_handler:41 - Shutdown signal received, stopping scheduler...
+2025-09-22 12:56:19,231 - ETLScheduler - INFO - start:178 - ETL Scheduler stopped
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:146 - ============================================================
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:147 - STARTING ETL SCHEDULER
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:148 - ============================================================
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:149 - Schedule: Every 1 minute(s)
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:150 - Data directory: ./data
+2025-09-22 12:56:56,104 - ETLScheduler - INFO - start:151 - Monitoring for CSV file changes...
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - start:152 - Press Ctrl+C to stop
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - start:158 - 
+Running initial ETL job...
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #1
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 12:56:56
+2025-09-22 12:56:56,105 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:56:56,114 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: branches.csv
+2025-09-22 12:56:56,126 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: customers.csv
+2025-09-22 12:56:56,137 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: loans.csv
+2025-09-22 12:56:56,157 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: transactions.csv
+2025-09-22 12:56:56,158 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 12:56:56,158 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 12:56:56,158 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 12:56:56,158 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 12:56:56,306 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 12:56:56,306 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 12:56:56,329 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 12:56:56,330 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 12:56:56,331 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 12:56:56,332 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 12:56:56,333 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 12:56:56,333 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 12:56:56,333 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 12:56:56,340 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 12:56:56,340 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 12:56:56,341 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 12:56:56,341 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 12:56:56,341 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 12:56:56,341 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 12:56:56,343 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 12:56:56,344 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 12:56:56,344 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 12:56:56,344 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 12:56:56,344 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 12:56:56,344 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 12:56:56,346 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 12:56:56,346 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 12:56:56,346 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 12:56:56,346 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 12:56:56,347 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 12:56:56,347 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 12:56:56,357 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 12:56:56,357 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 12:56:56,357 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 12:56:56,357 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 12:56:56,358 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 12:56:56,358 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 12:56:56,358 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 12:56:56,362 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 12:56:56,366 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5022 total records (+0 new)
+2025-09-22 12:56:56,368 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 12:56:56,382 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 12:56:56,382 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 0
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 12:56:56,383 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 12:56:56,383 - ETLScheduler - INFO - run_etl_job:128 - ============================================================
+2025-09-22 12:56:56,384 - ETLScheduler - INFO - run_etl_job:129 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 12:56:56,384 - ETLScheduler - INFO - run_etl_job:130 - Run duration: 0.3 seconds
+2025-09-22 12:56:56,384 - ETLScheduler - INFO - run_etl_job:131 - Success rate: 100.0% (1/1)
+2025-09-22 12:56:56,384 - ETLScheduler - INFO - run_etl_job:132 - ============================================================
+2025-09-22 12:56:56,385 - ETLScheduler - INFO - start:162 - 
+Scheduler is now running (every 1 min)...
+2025-09-22 12:57:56,404 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 12:57:56,405 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #2
+2025-09-22 12:57:56,405 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 12:57:56
+2025-09-22 12:57:56,405 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:57:56,417 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 12:57:56,417 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 12:58:56,438 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 12:58:56,439 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #3
+2025-09-22 12:58:56,439 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 12:58:56
+2025-09-22 12:58:56,439 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:58:56,455 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 12:58:56,455 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 12:59:56,477 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 12:59:56,477 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #4
+2025-09-22 12:59:56,477 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 12:59:56
+2025-09-22 12:59:56,477 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 12:59:56,489 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 12:59:56,489 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 13:03:55,378 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 13:03:55,378 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 13:03:55,378 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 13:03:55,378 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 13:03:55,511 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 13:03:55,511 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 13:03:55,515 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 13:03:55,516 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 13:03:55,516 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 13:03:55,517 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 13:03:55,517 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 13:03:55,517 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 13:03:55,518 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 13:03:55,519 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 13:03:55,519 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 13:03:55,520 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:03:55,520 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:03:55,520 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:03:55,520 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 13:03:55,522 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 13:03:55,522 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 13:03:55,523 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:03:55,523 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:03:55,523 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:03:55,523 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:03:55,525 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 13:03:55,536 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 13:03:55,536 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 13:03:55,536 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:03:55,536 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:03:55,536 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:03:55,536 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 13:03:55,536 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 13:03:55,538 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 13:03:55,539 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5022 total records (+0 new)
+2025-09-22 13:03:55,541 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 0
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-22 13:03:55,546 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 13:03:55,547 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 13:03:55,547 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 13:03:55,547 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 13:04:08,757 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 13:04:08,759 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 13:04:08,760 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 13:04:08,761 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 13:04:08,761 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 13:04:08,762 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 13:04:08,762 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 13:04:08,764 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 13:04:08,764 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 13:04:08,764 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:04:08,764 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:04:08,764 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:04:08,765 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 13:04:08,767 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 13:04:08,767 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 13:04:08,767 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:04:08,767 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:04:08,767 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:04:08,768 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 13:04:08,769 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 13:04:08,769 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 13:04:08,770 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:04:08,770 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:04:08,770 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:04:08,770 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 13:04:08,781 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 13:04:08,781 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 13:04:08,781 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 13:04:08,782 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 13:04:08,782 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 13:04:08,800 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 17:35:15,308 - MySQLExtractor - ERROR - connect:104 - Failed to connect to MySQL: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-09-22 17:36:31,901 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 17:36:31,919 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 17:36:31,924 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 17:36:31,928 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 17:36:31,933 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 17:36:31,934 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 17:36:31,935 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\branches.csv
+2025-09-22 17:36:31,969 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\branches.csv
+2025-09-22 17:36:31,970 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 17:36:31,970 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 17:36:31,970 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:36:31,971 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:36:31,972 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\customers.csv
+2025-09-22 17:36:31,997 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\customers.csv
+2025-09-22 17:36:31,997 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 17:36:31,997 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 17:36:31,997 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:36:31,998 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:36:31,999 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\loans.csv
+2025-09-22 17:36:32,021 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\loans.csv
+2025-09-22 17:36:32,021 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 17:36:32,021 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 17:36:32,022 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:36:32,022 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:36:32,023 - MySQLExtractor - INFO - extract_all_csv_files:572 - Processing: ./data\transactions.csv
+2025-09-22 17:36:32,067 - MySQLExtractor - INFO - load_csv_to_staging:524 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 17:36:32,067 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 17:36:32,068 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 0
+2025-09-22 17:36:32,068 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:36:32,068 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:36:32,173 - MySQLExtractor - INFO - close:634 - Database connection closed
+2025-09-22 17:41:42,012 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 17:41:42,018 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 17:41:42,021 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 17:41:42,023 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 17:41:42,025 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 17:41:42,025 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 17:41:42,027 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\branches.csv
+2025-09-22 17:41:42,031 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\branches.csv
+2025-09-22 17:41:42,032 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 17:41:42,032 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 26
+2025-09-22 17:41:42,032 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:41:42,032 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:41:42,033 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:41:42,034 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\customers.csv
+2025-09-22 17:41:42,047 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\customers.csv
+2025-09-22 17:41:42,048 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 17:41:42,048 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 5021
+2025-09-22 17:41:42,048 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:41:42,049 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:41:42,049 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:41:42,050 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\loans.csv
+2025-09-22 17:41:42,055 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\loans.csv
+2025-09-22 17:41:42,055 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 17:41:42,055 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 2007
+2025-09-22 17:41:42,056 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:41:42,056 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:41:42,057 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:41:42,058 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\transactions.csv
+2025-09-22 17:41:42,129 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 17:41:42,130 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 17:41:42,130 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 17:41:42,130 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:41:42,130 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:41:42,131 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:41:42,159 - MySQLExtractor - INFO - close:641 - Database connection closed
+2025-09-22 17:44:19,505 - ETLScheduler - INFO - start:146 - ============================================================
+2025-09-22 17:44:19,505 - ETLScheduler - INFO - start:147 - STARTING ETL SCHEDULER
+2025-09-22 17:44:19,505 - ETLScheduler - INFO - start:148 - ============================================================
+2025-09-22 17:44:19,506 - ETLScheduler - INFO - start:149 - Schedule: Every 1 minute(s)
+2025-09-22 17:44:19,506 - ETLScheduler - INFO - start:150 - Data directory: ./data
+2025-09-22 17:44:19,506 - ETLScheduler - INFO - start:151 - Monitoring for CSV file changes...
+2025-09-22 17:44:19,506 - ETLScheduler - INFO - start:152 - Press Ctrl+C to stop
+2025-09-22 17:44:19,507 - ETLScheduler - INFO - start:158 - 
+Running initial ETL job...
+2025-09-22 17:44:19,507 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 17:44:19,507 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #1
+2025-09-22 17:44:19,508 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 17:44:19
+2025-09-22 17:44:19,508 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 17:44:19,510 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: branches.csv
+2025-09-22 17:44:19,514 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: customers.csv
+2025-09-22 17:44:19,515 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: loans.csv
+2025-09-22 17:44:19,539 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: transactions.csv
+2025-09-22 17:44:19,541 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-22 17:44:19,542 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-22 17:44:19,542 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-22 17:44:19,543 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-22 17:44:19,725 - MySQLExtractor - INFO - connect:100 - Successfully connected to MySQL database: stagging
+2025-09-22 17:44:19,725 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-22 17:44:19,729 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_branches
+2025-09-22 17:44:19,730 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_customers
+2025-09-22 17:44:19,732 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_loans
+2025-09-22 17:44:19,734 - MySQLExtractor - INFO - create_staging_tables:195 - Created/verified staging table: staging_transactions
+2025-09-22 17:44:19,734 - MySQLExtractor - INFO - create_staging_tables:200 - Staging tables created successfully
+2025-09-22 17:44:19,735 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-22 17:44:19,736 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\branches.csv
+2025-09-22 17:44:19,739 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\branches.csv
+2025-09-22 17:44:19,739 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for branches:
+2025-09-22 17:44:19,739 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 26
+2025-09-22 17:44:19,740 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:44:19,740 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:44:19,740 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:44:19,741 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\customers.csv
+2025-09-22 17:44:19,750 - MySQLExtractor - INFO - load_csv_to_staging:537 - Processing file: customers.csv (0.6MB)
+2025-09-22 17:44:20,188 - MySQLExtractor - INFO - _process_small_file:509 - Small file processing: 3 new records from 5024 CSV rows
+2025-09-22 17:44:20,198 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for customers:
+2025-09-22 17:44:20,198 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 5024
+2025-09-22 17:44:20,198 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 3
+2025-09-22 17:44:20,199 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:44:20,199 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.1%
+2025-09-22 17:44:20,200 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\loans.csv
+2025-09-22 17:44:20,205 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\loans.csv
+2025-09-22 17:44:20,205 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for loans:
+2025-09-22 17:44:20,206 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 2007
+2025-09-22 17:44:20,206 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:44:20,207 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:44:20,207 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:44:20,208 - MySQLExtractor - INFO - extract_all_csv_files:579 - Processing: ./data\transactions.csv
+2025-09-22 17:44:20,277 - MySQLExtractor - INFO - load_csv_to_staging:530 - Skipping already processed file: ./data\transactions.csv
+2025-09-22 17:44:20,278 - MySQLExtractor - INFO - log_extraction_stats:84 - Extraction completed for transactions:
+2025-09-22 17:44:20,278 - MySQLExtractor - INFO - log_extraction_stats:85 -   Total rows in CSV: 100004
+2025-09-22 17:44:20,278 - MySQLExtractor - INFO - log_extraction_stats:86 -   New rows inserted: 0
+2025-09-22 17:44:20,278 - MySQLExtractor - INFO - log_extraction_stats:87 -   Rows updated: 0
+2025-09-22 17:44:20,279 - MySQLExtractor - INFO - log_extraction_stats:90 -   Success rate: 0.0%
+2025-09-22 17:44:20,279 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-22 17:44:20,280 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-22 17:44:20,283 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-22 17:44:20,286 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5025 total records (+3 new)
+2025-09-22 17:44:20,289 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-22 17:44:20,303 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-22 17:44:20,303 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-22 17:44:20,304 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-22 17:44:20,304 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 107061
+2025-09-22 17:44:20,304 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 3
+2025-09-22 17:44:20,305 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-22 17:44:20,305 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-22 17:44:20,305 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-22 17:44:20,305 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-22 17:44:20,306 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-22 17:44:20,306 - ETLScheduler - INFO - run_etl_job:128 - ============================================================
+2025-09-22 17:44:20,306 - ETLScheduler - INFO - run_etl_job:129 - SCHEDULED ETL RUN COMPLETED
+2025-09-22 17:44:20,307 - ETLScheduler - INFO - run_etl_job:130 - Run duration: 0.8 seconds
+2025-09-22 17:44:20,307 - ETLScheduler - INFO - run_etl_job:131 - Success rate: 100.0% (1/1)
+2025-09-22 17:44:20,307 - ETLScheduler - INFO - run_etl_job:132 - ============================================================
+2025-09-22 17:44:20,309 - ETLScheduler - INFO - start:162 - 
+Scheduler is now running (every 1 min)...
+2025-09-22 17:45:20,333 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 17:45:20,334 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #2
+2025-09-22 17:45:20,334 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 17:45:20
+2025-09-22 17:45:20,334 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 17:45:20,464 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 17:45:20,465 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 17:46:20,487 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 17:46:20,488 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #3
+2025-09-22 17:46:20,488 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 17:46:20
+2025-09-22 17:46:20,489 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 17:46:20,524 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 17:46:20,525 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 17:47:20,549 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-22 17:47:20,549 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #4
+2025-09-22 17:47:20,550 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-22 17:47:20
+2025-09-22 17:47:20,550 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-22 17:47:20,580 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-22 17:47:20,580 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-22 17:48:18,746 - ETLScheduler - INFO - _signal_handler:38 - Shutdown signal received, stopping scheduler...
+2025-09-22 17:48:19,604 - ETLScheduler - INFO - start:175 - ETL Scheduler stopped

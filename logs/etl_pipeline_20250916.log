@@ -1,0 +1,940 @@
+2025-09-16 17:09:34,002 - MySQLExtractor - ERROR - connect:48 - Failed to connect to MySQL database: (mysql.connector.errors.DatabaseError) 2005 (HY000): Unknown MySQL server host '1234@127.0.0.1' (11003)
+(Background on this error at: https://sqlalche.me/e/20/4xp6)
+2025-09-16 17:09:34,003 - MySQLExtractor - INFO - close:239 - Database connections closed
+2025-09-16 17:19:15,915 - ETLPipeline - INFO - show_staging_status:135 - Current Staging Tables Status:
+2025-09-16 17:19:15,916 - ETLPipeline - INFO - show_staging_status:136 - ------------------------------
+2025-09-16 17:26:31,654 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 17:26:31,655 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 17:26:31,656 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 17:26:31,656 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 17:37:34,944 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 17:37:34,945 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 17:37:34,945 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 17:37:34,945 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:01:51,775 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:01:51,776 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:01:51,776 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:01:51,777 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:01:51,891 - MySQLExtractor - ERROR - connect:54 - Failed to connect to MySQL database: (pymysql.err.OperationalError) (1049, "Unknown database 'bankdb'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 18:01:51,891 - ETLPipeline - ERROR - run_extraction_phase:39 - Failed to connect to database
+2025-09-16 18:05:54,236 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:05:54,237 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:05:54,237 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:05:54,237 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:05:54,337 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:05:54,337 - ETLPipeline - INFO - run_extraction_phase:43 - Step 2: Creating staging tables...
+2025-09-16 18:05:54,340 - MySQLExtractor - ERROR - create_staging_tables:88 - Failed to create staging tables: (pymysql.err.OperationalError) (1049, "Unknown database 'bankdb'")
+[SQL: USE bankdb]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 18:05:54,341 - ETLPipeline - ERROR - run_extraction_phase:45 - Failed to create staging tables
+2025-09-16 18:06:36,231 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:06:36,232 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:06:36,232 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:06:36,232 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:06:36,326 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:06:36,326 - ETLPipeline - INFO - run_extraction_phase:43 - Step 2: Creating staging tables...
+2025-09-16 18:06:36,367 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:06:36,368 - ETLPipeline - INFO - run_extraction_phase:49 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:06:36,369 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\branches.csv
+2025-09-16 18:06:36,382 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:06:36,757 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 26 new records into staging_branches
+2025-09-16 18:06:36,758 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:06:36,758 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:06:36,758 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:06:36,759 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:06:36,759 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:06:36,760 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\customers.csv
+2025-09-16 18:06:36,801 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:06:37,176 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 5014 new records into staging_customers
+2025-09-16 18:06:37,178 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:06:37,178 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:06:37,179 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:06:37,179 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:06:37,179 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:06:37,180 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\loans.csv
+2025-09-16 18:06:37,189 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:06:37,314 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 2007 new records into staging_loans
+2025-09-16 18:06:37,314 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:06:37,315 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:06:37,315 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:06:37,315 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:06:37,316 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:06:37,317 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\transactions.csv
+2025-09-16 18:06:37,452 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\transactions.csv (100000 rows)
+2025-09-16 18:06:41,604 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 100000 new records into staging_transactions
+2025-09-16 18:06:41,611 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:06:41,612 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100000
+2025-09-16 18:06:41,612 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100000
+2025-09-16 18:06:41,612 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:06:41,613 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:06:41,613 - ETLPipeline - INFO - run_extraction_phase:57 - Step 4: Extraction Summary
+2025-09-16 18:06:41,613 - ETLPipeline - INFO - run_extraction_phase:58 - ----------------------------------------
+2025-09-16 18:06:41,639 - ETLPipeline - INFO - run_extraction_phase:71 - branches: 26 total records in staging table
+2025-09-16 18:06:41,644 - ETLPipeline - INFO - run_extraction_phase:71 - customers: 5014 total records in staging table
+2025-09-16 18:06:41,647 - ETLPipeline - INFO - run_extraction_phase:71 - loans: 2007 total records in staging table
+2025-09-16 18:06:41,661 - ETLPipeline - INFO - run_extraction_phase:71 - transactions: 100000 total records in staging table
+2025-09-16 18:06:41,661 - ETLPipeline - INFO - run_extraction_phase:73 - ----------------------------------------
+2025-09-16 18:06:41,661 - ETLPipeline - INFO - run_extraction_phase:74 - Overall Statistics:
+2025-09-16 18:06:41,661 - ETLPipeline - INFO - run_extraction_phase:75 -   Total CSV rows processed: 107047
+2025-09-16 18:06:41,662 - ETLPipeline - INFO - run_extraction_phase:76 -   New records inserted: 107047
+2025-09-16 18:06:41,662 - ETLPipeline - INFO - run_extraction_phase:77 -   Duplicates skipped: 0
+2025-09-16 18:06:41,662 - ETLPipeline - INFO - run_extraction_phase:81 -   Success rate: 100.0%
+2025-09-16 18:06:41,662 - ETLPipeline - INFO - run_extraction_phase:83 - ==================================================
+2025-09-16 18:06:41,663 - ETLPipeline - INFO - run_extraction_phase:84 - Extraction Phase Completed Successfully
+2025-09-16 18:06:41,663 - ETLPipeline - INFO - run_extraction_phase:85 - ==================================================
+2025-09-16 18:07:57,198 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:07:57,199 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:07:57,199 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:07:57,199 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:07:57,309 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:07:57,309 - ETLPipeline - INFO - run_extraction_phase:43 - Step 2: Creating staging tables...
+2025-09-16 18:07:57,365 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:07:57,365 - ETLPipeline - INFO - run_extraction_phase:49 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:07:57,366 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\branches.csv
+2025-09-16 18:07:57,374 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:07:57,418 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 26 new records into staging_branches
+2025-09-16 18:07:57,418 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:07:57,418 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:07:57,419 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:07:57,419 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:07:57,419 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:07:57,420 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\customers.csv
+2025-09-16 18:07:57,452 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:07:57,800 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 5014 new records into staging_customers
+2025-09-16 18:07:57,802 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:07:57,802 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:07:57,802 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:07:57,803 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:07:57,803 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:07:57,804 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\loans.csv
+2025-09-16 18:07:57,812 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:07:57,942 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 2007 new records into staging_loans
+2025-09-16 18:07:57,943 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:07:57,944 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:07:57,944 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:07:57,944 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:07:57,945 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:07:57,946 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\transactions.csv
+2025-09-16 18:07:58,108 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\transactions.csv (100000 rows)
+2025-09-16 18:07:59,261 - MySQLExtractor - INFO - load_csv_to_staging:163 - No new records to insert into staging_transactions
+2025-09-16 18:07:59,274 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:07:59,274 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100000
+2025-09-16 18:07:59,274 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 18:07:59,275 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 100000
+2025-09-16 18:07:59,275 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 18:07:59,275 - ETLPipeline - INFO - run_extraction_phase:57 - Step 4: Extraction Summary
+2025-09-16 18:07:59,276 - ETLPipeline - INFO - run_extraction_phase:58 - ----------------------------------------
+2025-09-16 18:07:59,279 - ETLPipeline - INFO - run_extraction_phase:71 - branches: 26 total records in staging table
+2025-09-16 18:07:59,282 - ETLPipeline - INFO - run_extraction_phase:71 - customers: 5014 total records in staging table
+2025-09-16 18:07:59,285 - ETLPipeline - INFO - run_extraction_phase:71 - loans: 2007 total records in staging table
+2025-09-16 18:07:59,300 - ETLPipeline - INFO - run_extraction_phase:71 - transactions: 100000 total records in staging table
+2025-09-16 18:07:59,300 - ETLPipeline - INFO - run_extraction_phase:73 - ----------------------------------------
+2025-09-16 18:07:59,300 - ETLPipeline - INFO - run_extraction_phase:74 - Overall Statistics:
+2025-09-16 18:07:59,301 - ETLPipeline - INFO - run_extraction_phase:75 -   Total CSV rows processed: 107047
+2025-09-16 18:07:59,301 - ETLPipeline - INFO - run_extraction_phase:76 -   New records inserted: 7047
+2025-09-16 18:07:59,301 - ETLPipeline - INFO - run_extraction_phase:77 -   Duplicates skipped: 100000
+2025-09-16 18:07:59,302 - ETLPipeline - INFO - run_extraction_phase:81 -   Success rate: 6.6%
+2025-09-16 18:07:59,302 - ETLPipeline - INFO - run_extraction_phase:83 - ==================================================
+2025-09-16 18:07:59,302 - ETLPipeline - INFO - run_extraction_phase:84 - Extraction Phase Completed Successfully
+2025-09-16 18:07:59,302 - ETLPipeline - INFO - run_extraction_phase:85 - ==================================================
+2025-09-16 18:14:08,842 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:14:08,842 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:14:08,843 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:14:08,843 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:14:08,955 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:14:08,955 - ETLPipeline - INFO - run_extraction_phase:43 - Step 2: Creating staging tables...
+2025-09-16 18:14:09,002 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:14:09,003 - ETLPipeline - INFO - run_extraction_phase:49 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:14:09,004 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\branches.csv
+2025-09-16 18:14:09,014 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:14:09,059 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 26 new records into staging_branches
+2025-09-16 18:14:09,060 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:14:09,060 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:14:09,060 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:14:09,061 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:14:09,061 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:14:09,062 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\customers.csv
+2025-09-16 18:14:09,111 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:14:09,483 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 5014 new records into staging_customers
+2025-09-16 18:14:09,485 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:14:09,485 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:14:09,486 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:14:09,486 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:14:09,486 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:14:09,487 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\loans.csv
+2025-09-16 18:14:09,496 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:14:09,639 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 2007 new records into staging_loans
+2025-09-16 18:14:09,639 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:14:09,640 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:14:09,640 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:14:09,641 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:14:09,641 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:14:09,642 - MySQLExtractor - INFO - extract_all_csv_files:202 - Processing: ./data\transactions.csv
+2025-09-16 18:14:09,813 - MySQLExtractor - INFO - load_csv_to_staging:111 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:14:11,076 - MySQLExtractor - INFO - load_csv_to_staging:161 - Inserted 1 new records into staging_transactions
+2025-09-16 18:14:11,091 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:14:11,091 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:14:11,092 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 1
+2025-09-16 18:14:11,092 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 100000
+2025-09-16 18:14:11,092 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 18:14:11,093 - ETLPipeline - INFO - run_extraction_phase:57 - Step 4: Extraction Summary
+2025-09-16 18:14:11,093 - ETLPipeline - INFO - run_extraction_phase:58 - ----------------------------------------
+2025-09-16 18:14:11,097 - ETLPipeline - INFO - run_extraction_phase:71 - branches: 26 total records in staging table
+2025-09-16 18:14:11,100 - ETLPipeline - INFO - run_extraction_phase:71 - customers: 5014 total records in staging table
+2025-09-16 18:14:11,104 - ETLPipeline - INFO - run_extraction_phase:71 - loans: 2007 total records in staging table
+2025-09-16 18:14:11,116 - ETLPipeline - INFO - run_extraction_phase:71 - transactions: 100001 total records in staging table
+2025-09-16 18:14:11,116 - ETLPipeline - INFO - run_extraction_phase:73 - ----------------------------------------
+2025-09-16 18:14:11,117 - ETLPipeline - INFO - run_extraction_phase:74 - Overall Statistics:
+2025-09-16 18:14:11,117 - ETLPipeline - INFO - run_extraction_phase:75 -   Total CSV rows processed: 107048
+2025-09-16 18:14:11,118 - ETLPipeline - INFO - run_extraction_phase:76 -   New records inserted: 7048
+2025-09-16 18:14:11,118 - ETLPipeline - INFO - run_extraction_phase:77 -   Duplicates skipped: 100000
+2025-09-16 18:14:11,118 - ETLPipeline - INFO - run_extraction_phase:81 -   Success rate: 6.6%
+2025-09-16 18:14:11,118 - ETLPipeline - INFO - run_extraction_phase:83 - ==================================================
+2025-09-16 18:14:11,119 - ETLPipeline - INFO - run_extraction_phase:84 - Extraction Phase Completed Successfully
+2025-09-16 18:14:11,119 - ETLPipeline - INFO - run_extraction_phase:85 - ==================================================
+2025-09-16 18:23:52,189 - ETLPipeline - INFO - run_extraction_phase:31 - ==================================================
+2025-09-16 18:23:52,190 - ETLPipeline - INFO - run_extraction_phase:32 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:23:52,190 - ETLPipeline - INFO - run_extraction_phase:33 - ==================================================
+2025-09-16 18:23:52,190 - ETLPipeline - INFO - run_extraction_phase:37 - Step 1: Connecting to MySQL database...
+2025-09-16 18:23:52,292 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:23:52,293 - ETLPipeline - INFO - run_extraction_phase:43 - Step 2: Creating staging tables...
+2025-09-16 18:23:52,338 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:23:52,339 - ETLPipeline - INFO - run_extraction_phase:49 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:23:52,340 - MySQLExtractor - INFO - extract_all_csv_files:348 - Processing: ./data\branches.csv
+2025-09-16 18:23:52,349 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:23:52,390 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 26 new records into staging_branches
+2025-09-16 18:23:52,391 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:23:52,391 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:23:52,391 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:23:52,391 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:23:52,392 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:23:52,393 - MySQLExtractor - INFO - extract_all_csv_files:348 - Processing: ./data\customers.csv
+2025-09-16 18:23:52,425 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:23:52,760 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 5014 new records into staging_customers
+2025-09-16 18:23:52,761 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:23:52,761 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:23:52,762 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:23:52,762 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:23:52,762 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:23:52,763 - MySQLExtractor - INFO - extract_all_csv_files:348 - Processing: ./data\loans.csv
+2025-09-16 18:23:52,772 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:23:52,893 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 2007 new records into staging_loans
+2025-09-16 18:23:52,894 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:23:52,894 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:23:52,895 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:23:52,895 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:23:52,895 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:23:52,896 - MySQLExtractor - INFO - extract_all_csv_files:348 - Processing: ./data\transactions.csv
+2025-09-16 18:23:53,022 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:23:55,338 - MySQLExtractor - ERROR - _update_existing_records:314 - Failed to update existing records: (pymysql.err.OperationalError) (1054, "Unknown column 'updated_at' in 'field list'")
+[SQL: 
+                            UPDATE staging_transactions 
+                            SET customer_id = %(customer_id)s, transaction_date = %(transaction_date)s, transaction_type = %(transaction_type)s, amount = %(amount)s, balance_after = %(balance_after)s, fraud_flag = %(fraud_flag)s, updated_at = CURRENT_TIMESTAMP 
+                            WHERE transaction_id = %(transaction_id)s
+                        ]
+[parameters: {'customer_id': 3995, 'transaction_date': '07-09-22', 'transaction_type': 'Withdrawal', 'amount': 142478.4, 'balance_after': 167829.95, 'fraud_flag': 0, 'transaction_id': '1'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 18:23:55,339 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:23:55,339 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:23:55,339 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 18:23:55,339 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:23:55,340 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 18:23:55,340 - ETLPipeline - INFO - run_extraction_phase:57 - Step 4: Extraction Summary
+2025-09-16 18:23:55,340 - ETLPipeline - INFO - run_extraction_phase:58 - ----------------------------------------
+2025-09-16 18:23:55,343 - ETLPipeline - INFO - run_extraction_phase:71 - branches: 26 total records in staging table
+2025-09-16 18:23:55,346 - ETLPipeline - INFO - run_extraction_phase:71 - customers: 5014 total records in staging table
+2025-09-16 18:23:55,349 - ETLPipeline - INFO - run_extraction_phase:71 - loans: 2007 total records in staging table
+2025-09-16 18:23:55,369 - ETLPipeline - INFO - run_extraction_phase:71 - transactions: 100001 total records in staging table
+2025-09-16 18:23:55,369 - ETLPipeline - INFO - run_extraction_phase:73 - ----------------------------------------
+2025-09-16 18:23:55,369 - ETLPipeline - INFO - run_extraction_phase:74 - Overall Statistics:
+2025-09-16 18:23:55,370 - ETLPipeline - INFO - run_extraction_phase:75 -   Total CSV rows processed: 107048
+2025-09-16 18:23:55,370 - ETLPipeline - INFO - run_extraction_phase:76 -   New records inserted: 7047
+2025-09-16 18:23:55,370 - ETLPipeline - INFO - run_extraction_phase:77 -   Duplicates skipped: 0
+2025-09-16 18:23:55,370 - ETLPipeline - INFO - run_extraction_phase:81 -   Success rate: 6.6%
+2025-09-16 18:23:55,371 - ETLPipeline - INFO - run_extraction_phase:83 - ==================================================
+2025-09-16 18:23:55,371 - ETLPipeline - INFO - run_extraction_phase:84 - Extraction Phase Completed Successfully
+2025-09-16 18:23:55,371 - ETLPipeline - INFO - run_extraction_phase:85 - ==================================================
+2025-09-16 18:25:28,419 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:25:28,433 - UpsertTest - INFO - test_upsert:35 - Testing initial insert...
+2025-09-16 18:25:28,459 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:25:28,501 - MySQLExtractor - INFO - _perform_upsert:240 - Inserted 2 new records into staging_branches
+2025-09-16 18:25:28,502 - UpsertTest - INFO - test_upsert:38 - First run: total=2, new=2, updated=0
+2025-09-16 18:25:28,502 - UpsertTest - INFO - test_upsert:41 - Testing no changes...
+2025-09-16 18:25:28,505 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:25:28,515 - MySQLExtractor - ERROR - _update_existing_records:314 - Failed to update existing records: DataFrame index must be unique for orient='index'.
+2025-09-16 18:25:28,516 - UpsertTest - INFO - test_upsert:43 - Second run (no changes): total=2, new=0, updated=0
+2025-09-16 18:25:28,516 - UpsertTest - INFO - test_upsert:46 - Testing updates...
+2025-09-16 18:25:28,534 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:25:28,542 - MySQLExtractor - ERROR - _update_existing_records:314 - Failed to update existing records: DataFrame index must be unique for orient='index'.
+2025-09-16 18:25:28,542 - UpsertTest - INFO - test_upsert:54 - Third run (with updates): total=2, new=0, updated=0
+2025-09-16 18:25:28,542 - UpsertTest - INFO - test_upsert:57 - Testing new record addition...
+2025-09-16 18:25:28,560 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (3 rows)
+2025-09-16 18:25:28,575 - MySQLExtractor - INFO - _perform_upsert:240 - Inserted 1 new records into staging_branches
+2025-09-16 18:25:28,577 - MySQLExtractor - ERROR - _update_existing_records:314 - Failed to update existing records: DataFrame index must be unique for orient='index'.
+2025-09-16 18:25:28,577 - UpsertTest - INFO - test_upsert:64 - Fourth run (with new record): total=3, new=1, updated=0
+2025-09-16 18:25:28,578 - UpsertTest - INFO - test_upsert:69 - UPSERT test completed successfully!
+2025-09-16 18:25:28,579 - MySQLExtractor - INFO - close:391 - Database connections closed
+2025-09-16 18:26:40,257 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:26:40,268 - UpsertTest - INFO - test_upsert:35 - Testing initial insert...
+2025-09-16 18:26:40,274 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:26:40,313 - UpsertTest - INFO - test_upsert:38 - First run: total=2, new=0, updated=0
+2025-09-16 18:26:40,313 - UpsertTest - INFO - test_upsert:41 - Testing no changes...
+2025-09-16 18:26:40,316 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:26:40,326 - UpsertTest - INFO - test_upsert:43 - Second run (no changes): total=2, new=0, updated=0
+2025-09-16 18:26:40,327 - UpsertTest - INFO - test_upsert:46 - Testing updates...
+2025-09-16 18:26:40,336 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (2 rows)
+2025-09-16 18:26:40,351 - MySQLExtractor - INFO - _update_existing_records:311 - Updated 2 existing records in staging_branches
+2025-09-16 18:26:40,352 - UpsertTest - INFO - test_upsert:54 - Third run (with updates): total=2, new=0, updated=2
+2025-09-16 18:26:40,352 - UpsertTest - INFO - test_upsert:57 - Testing new record addition...
+2025-09-16 18:26:40,360 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./test_branches.csv (3 rows)
+2025-09-16 18:26:40,370 - UpsertTest - INFO - test_upsert:64 - Fourth run (with new record): total=3, new=0, updated=0
+2025-09-16 18:26:40,372 - UpsertTest - INFO - test_upsert:69 - UPSERT test completed successfully!
+2025-09-16 18:26:40,373 - MySQLExtractor - INFO - close:393 - Database connections closed
+2025-09-16 18:28:01,930 - ETLScheduler - INFO - start:246 - Starting ETL Scheduler - running every 1 minute(s)
+2025-09-16 18:28:01,930 - ETLScheduler - INFO - start:247 - Data directory: ./data
+2025-09-16 18:28:01,931 - ETLScheduler - INFO - start:248 - Press Ctrl+C to stop the scheduler
+2025-09-16 18:28:01,931 - ETLScheduler - INFO - start:254 - Running initial ETL job...
+2025-09-16 18:28:01,931 - ETLScheduler - INFO - run_etl_job:154 - ============================================================
+2025-09-16 18:28:01,931 - ETLScheduler - INFO - run_etl_job:155 - ETL Scheduler - Run #1
+2025-09-16 18:28:01,932 - ETLScheduler - INFO - run_etl_job:156 - Started at: 2025-09-16 18:28:01
+2025-09-16 18:28:01,932 - ETLScheduler - INFO - run_etl_job:157 - ============================================================
+2025-09-16 18:28:01,933 - ETLScheduler - INFO - run_etl_job:167 - Step 1: Connecting to MySQL database...
+2025-09-16 18:28:02,043 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:28:02,044 - ETLScheduler - INFO - run_etl_job:173 - Step 2: Creating/verifying staging tables...
+2025-09-16 18:28:02,079 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:28:02,079 - ETLScheduler - INFO - run_etl_job:179 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:28:02,080 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\branches.csv
+2025-09-16 18:28:02,088 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:28:02,125 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 26 new records into staging_branches
+2025-09-16 18:28:02,126 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:28:02,126 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:28:02,126 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:28:02,126 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:02,127 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:02,128 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\customers.csv
+2025-09-16 18:28:02,157 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:28:02,493 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 5014 new records into staging_customers
+2025-09-16 18:28:02,494 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:28:02,494 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:28:02,494 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:28:02,495 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:02,495 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:02,496 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\loans.csv
+2025-09-16 18:28:02,503 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:28:02,625 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 2007 new records into staging_loans
+2025-09-16 18:28:02,625 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:28:02,626 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:28:02,626 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:28:02,626 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:02,627 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:02,627 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\transactions.csv
+2025-09-16 18:28:02,751 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:28:47,671 - ETLScheduler - INFO - run_etl_job:154 - ============================================================
+2025-09-16 18:28:47,671 - ETLScheduler - INFO - run_etl_job:155 - ETL Scheduler - Run #1
+2025-09-16 18:28:47,671 - ETLScheduler - INFO - run_etl_job:156 - Started at: 2025-09-16 18:28:47
+2025-09-16 18:28:47,672 - ETLScheduler - INFO - run_etl_job:157 - ============================================================
+2025-09-16 18:28:47,673 - ETLScheduler - INFO - run_etl_job:167 - Step 1: Connecting to MySQL database...
+2025-09-16 18:28:47,761 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:28:47,761 - ETLScheduler - INFO - run_etl_job:173 - Step 2: Creating/verifying staging tables...
+2025-09-16 18:28:47,808 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:28:47,808 - ETLScheduler - INFO - run_etl_job:179 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:28:47,809 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\branches.csv
+2025-09-16 18:28:47,817 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:28:47,862 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 26 new records into staging_branches
+2025-09-16 18:28:47,862 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:28:47,863 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:28:47,863 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:28:47,863 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:47,863 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:47,864 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\customers.csv
+2025-09-16 18:28:47,897 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:28:48,293 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 5014 new records into staging_customers
+2025-09-16 18:28:48,295 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:28:48,295 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:28:48,295 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:28:48,295 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:48,296 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:48,296 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\loans.csv
+2025-09-16 18:28:48,304 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:28:48,443 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 2007 new records into staging_loans
+2025-09-16 18:28:48,443 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:28:48,444 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:28:48,444 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:28:48,444 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:28:48,444 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:28:48,445 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\transactions.csv
+2025-09-16 18:28:48,590 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:29:41,561 - MySQLExtractor - ERROR - _update_existing_records:316 - Failed to update existing records: (pymysql.err.OperationalError) (1205, 'Lock wait timeout exceeded; try restarting transaction')
+[SQL: 
+                            UPDATE staging_transactions 
+                            SET customer_id = %(customer_id)s, transaction_date = %(transaction_date)s, transaction_type = %(transaction_type)s, amount = %(amount)s, balance_after = %(balance_after)s, fraud_flag = %(fraud_flag)s 
+                            WHERE transaction_id = %(transaction_id)s
+                        ]
+[parameters: {'customer_id': 3995, 'transaction_date': '07-09-22', 'transaction_type': 'Withdrawal', 'amount': 142478.4, 'balance_after': 167829.95, 'fraud_flag': 0, 'transaction_id': '1'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 18:29:41,581 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:29:41,581 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:29:41,581 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 18:29:41,582 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:29:41,582 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 18:29:41,582 - ETLScheduler - INFO - run_etl_job:189 - Step 4: Extraction Summary
+2025-09-16 18:29:41,582 - ETLScheduler - INFO - run_etl_job:190 - --------------------------------------------------
+2025-09-16 18:29:41,619 - ETLScheduler - INFO - run_etl_job:203 - branches: 26 total records (+26 new, ~0 updated)
+2025-09-16 18:29:41,624 - ETLScheduler - INFO - run_etl_job:203 - customers: 5014 total records (+5014 new, ~0 updated)
+2025-09-16 18:29:41,627 - ETLScheduler - INFO - run_etl_job:203 - loans: 2007 total records (+2007 new, ~0 updated)
+2025-09-16 18:29:41,640 - ETLScheduler - INFO - run_etl_job:203 - transactions: 100001 total records (+0 new, ~0 updated)
+2025-09-16 18:29:41,640 - ETLScheduler - INFO - run_etl_job:208 - --------------------------------------------------
+2025-09-16 18:29:41,640 - ETLScheduler - INFO - run_etl_job:209 - Overall Statistics:
+2025-09-16 18:29:41,641 - ETLScheduler - INFO - run_etl_job:210 -   Total CSV rows processed: 107048
+2025-09-16 18:29:41,641 - ETLScheduler - INFO - run_etl_job:211 -   New records inserted: 7047
+2025-09-16 18:29:41,641 - ETLScheduler - INFO - run_etl_job:212 -   Existing records updated: 0
+2025-09-16 18:29:41,641 - ETLScheduler - INFO - run_etl_job:216 -   Processing rate: 6.6%
+2025-09-16 18:29:41,641 - ETLScheduler - INFO - run_etl_job:219 -   Run duration: 53.97 seconds
+2025-09-16 18:29:41,642 - ETLScheduler - INFO - run_etl_job:224 - ============================================================
+2025-09-16 18:29:41,642 - ETLScheduler - INFO - run_etl_job:225 - ETL Run Completed Successfully
+2025-09-16 18:29:41,642 - ETLScheduler - INFO - run_etl_job:226 - Success rate: 100.0% (1/1)
+2025-09-16 18:29:41,642 - ETLScheduler - INFO - run_etl_job:227 - ============================================================
+2025-09-16 18:29:41,645 - MySQLExtractor - INFO - close:393 - Database connections closed
+2025-09-16 18:29:53,172 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 18:29:53,172 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:29:53,172 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 18:29:53,173 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 18:29:53,273 - MySQLExtractor - INFO - connect:50 - Successfully connected to MySQL database: stagging
+2025-09-16 18:29:53,273 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 18:29:53,311 - MySQLExtractor - INFO - create_staging_tables:84 - Staging tables created successfully
+2025-09-16 18:29:53,312 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:29:53,313 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\branches.csv
+2025-09-16 18:29:53,322 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:29:53,365 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 26 new records into staging_branches
+2025-09-16 18:29:53,365 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:29:53,366 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:29:53,366 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:29:53,366 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:29:53,367 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:29:53,368 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\customers.csv
+2025-09-16 18:29:53,405 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:29:53,793 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 5014 new records into staging_customers
+2025-09-16 18:29:53,794 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:29:53,794 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:29:53,794 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:29:53,795 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:29:53,795 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:29:53,796 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\loans.csv
+2025-09-16 18:29:53,807 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:29:53,956 - MySQLExtractor - INFO - _perform_upsert:215 - Inserted 2007 new records into staging_loans
+2025-09-16 18:29:53,957 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:29:53,957 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:29:53,958 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:29:53,958 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:29:53,958 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:29:53,959 - MySQLExtractor - INFO - extract_all_csv_files:350 - Processing: ./data\transactions.csv
+2025-09-16 18:29:54,128 - MySQLExtractor - INFO - load_csv_to_staging:112 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:30:47,468 - MySQLExtractor - ERROR - _update_existing_records:316 - Failed to update existing records: (pymysql.err.OperationalError) (1205, 'Lock wait timeout exceeded; try restarting transaction')
+[SQL: 
+                            UPDATE staging_transactions 
+                            SET customer_id = %(customer_id)s, transaction_date = %(transaction_date)s, transaction_type = %(transaction_type)s, amount = %(amount)s, balance_after = %(balance_after)s, fraud_flag = %(fraud_flag)s 
+                            WHERE transaction_id = %(transaction_id)s
+                        ]
+[parameters: {'customer_id': 3995, 'transaction_date': '07-09-22', 'transaction_type': 'Withdrawal', 'amount': 142478.4, 'balance_after': 167829.95, 'fraud_flag': 0, 'transaction_id': '1'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 18:30:47,469 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:30:47,470 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:30:47,470 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 18:30:47,470 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:30:47,471 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 18:30:47,471 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 18:30:47,471 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 18:30:47,474 - ETLPipeline - INFO - run_extraction_phase:68 - branches: 26 total records in staging table
+2025-09-16 18:30:47,478 - ETLPipeline - INFO - run_extraction_phase:68 - customers: 5014 total records in staging table
+2025-09-16 18:30:47,481 - ETLPipeline - INFO - run_extraction_phase:68 - loans: 2007 total records in staging table
+2025-09-16 18:30:47,496 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 100001 total records in staging table
+2025-09-16 18:30:47,497 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 18:30:47,497 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 18:30:47,497 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 107048
+2025-09-16 18:30:47,498 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 7047
+2025-09-16 18:30:47,498 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 18:30:47,498 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 6.6%
+2025-09-16 18:30:47,499 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 18:30:47,499 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 18:30:47,499 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================
+2025-09-16 18:40:11,052 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 18:40:11,053 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:40:11,053 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 18:40:11,053 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 18:40:11,161 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:40:11,162 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 18:40:11,206 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:40:11,206 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:40:11,208 - MySQLExtractor - INFO - extract_all_csv_files:342 - Processing: ./data\branches.csv
+2025-09-16 18:40:11,216 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:40:11,233 - MySQLExtractor - ERROR - _perform_upsert:290 - Failed to perform bulk upsert: '_ConnectionFairy' object does not support the context manager protocol
+2025-09-16 18:40:11,234 - MySQLExtractor - INFO - _perform_upsert:293 - Falling back to insert-only mode...
+2025-09-16 18:40:11,262 - MySQLExtractor - INFO - _perform_upsert:304 - Inserted 26 records using fallback mode
+2025-09-16 18:40:11,262 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:40:11,262 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:40:11,263 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:40:11,263 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:40:11,263 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:40:11,264 - MySQLExtractor - INFO - extract_all_csv_files:342 - Processing: ./data\customers.csv
+2025-09-16 18:40:11,292 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:40:11,312 - MySQLExtractor - ERROR - _perform_upsert:290 - Failed to perform bulk upsert: '_ConnectionFairy' object does not support the context manager protocol
+2025-09-16 18:40:11,312 - MySQLExtractor - INFO - _perform_upsert:293 - Falling back to insert-only mode...
+2025-09-16 18:40:11,650 - MySQLExtractor - INFO - _perform_upsert:304 - Inserted 5014 records using fallback mode
+2025-09-16 18:40:11,651 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:40:11,652 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:40:11,652 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:40:11,652 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:40:11,652 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:40:11,653 - MySQLExtractor - INFO - extract_all_csv_files:342 - Processing: ./data\loans.csv
+2025-09-16 18:40:11,665 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:40:11,678 - MySQLExtractor - ERROR - _perform_upsert:290 - Failed to perform bulk upsert: '_ConnectionFairy' object does not support the context manager protocol
+2025-09-16 18:40:11,678 - MySQLExtractor - INFO - _perform_upsert:293 - Falling back to insert-only mode...
+2025-09-16 18:40:11,799 - MySQLExtractor - INFO - _perform_upsert:304 - Inserted 2007 records using fallback mode
+2025-09-16 18:40:11,800 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:40:11,800 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:40:11,800 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:40:11,801 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:40:11,801 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:40:11,802 - MySQLExtractor - INFO - extract_all_csv_files:342 - Processing: ./data\transactions.csv
+2025-09-16 18:40:11,930 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:40:13,226 - MySQLExtractor - ERROR - _perform_upsert:290 - Failed to perform bulk upsert: '_ConnectionFairy' object does not support the context manager protocol
+2025-09-16 18:40:13,226 - MySQLExtractor - INFO - _perform_upsert:293 - Falling back to insert-only mode...
+2025-09-16 18:40:17,581 - MySQLExtractor - INFO - _perform_upsert:304 - Inserted 100001 records using fallback mode
+2025-09-16 18:40:17,610 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:40:17,610 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:40:17,611 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100001
+2025-09-16 18:40:17,611 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:40:17,611 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:40:17,611 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 18:40:17,612 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 18:40:17,615 - ETLPipeline - INFO - run_extraction_phase:68 - branches: 26 total records in staging table
+2025-09-16 18:40:17,618 - ETLPipeline - INFO - run_extraction_phase:68 - customers: 5014 total records in staging table
+2025-09-16 18:40:17,621 - ETLPipeline - INFO - run_extraction_phase:68 - loans: 2007 total records in staging table
+2025-09-16 18:40:17,644 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 200002 total records in staging table
+2025-09-16 18:40:17,645 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 18:40:17,645 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 18:40:17,645 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 107048
+2025-09-16 18:40:17,646 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 107048
+2025-09-16 18:40:17,647 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 18:40:17,647 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 100.0%
+2025-09-16 18:40:17,647 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 18:40:17,648 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 18:40:17,648 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================
+2025-09-16 18:41:20,979 - ETLScheduler - INFO - run_etl_job:154 - ============================================================
+2025-09-16 18:41:20,980 - ETLScheduler - INFO - run_etl_job:155 - ETL Scheduler - Run #1
+2025-09-16 18:41:20,980 - ETLScheduler - INFO - run_etl_job:156 - Started at: 2025-09-16 18:41:20
+2025-09-16 18:41:20,980 - ETLScheduler - INFO - run_etl_job:157 - ============================================================
+2025-09-16 18:41:20,981 - ETLScheduler - INFO - run_etl_job:167 - Step 1: Connecting to MySQL database...
+2025-09-16 18:41:21,100 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:41:21,100 - ETLScheduler - INFO - run_etl_job:173 - Step 2: Creating/verifying staging tables...
+2025-09-16 18:41:21,142 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:41:21,142 - ETLScheduler - INFO - run_etl_job:179 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:41:21,143 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\branches.csv
+2025-09-16 18:41:21,150 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 18:41:21,167 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: nan can not be used with MySQL
+2025-09-16 18:41:21,168 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 18:41:21,197 - MySQLExtractor - INFO - _perform_upsert:307 - Inserted 26 records using fallback mode
+2025-09-16 18:41:21,198 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 18:41:21,198 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 18:41:21,198 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 26
+2025-09-16 18:41:21,198 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:41:21,199 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:41:21,199 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\customers.csv
+2025-09-16 18:41:21,232 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 18:41:21,279 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: (1146, "Table 'stagging.staging_customers' doesn't exist")
+2025-09-16 18:41:21,280 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 18:41:21,691 - MySQLExtractor - INFO - _perform_upsert:307 - Inserted 5014 records using fallback mode
+2025-09-16 18:41:21,693 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 18:41:21,693 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 18:41:21,694 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 5014
+2025-09-16 18:41:21,694 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:41:21,694 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:41:21,696 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\loans.csv
+2025-09-16 18:41:21,708 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 18:41:21,749 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: (1146, "Table 'stagging.staging_loans' doesn't exist")
+2025-09-16 18:41:21,749 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 18:41:21,892 - MySQLExtractor - INFO - _perform_upsert:307 - Inserted 2007 records using fallback mode
+2025-09-16 18:41:21,893 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 18:41:21,893 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 18:41:21,893 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 2007
+2025-09-16 18:41:21,894 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:41:21,894 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:41:21,895 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\transactions.csv
+2025-09-16 18:41:22,050 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:41:28,227 - MySQLExtractor - INFO - _perform_upsert:286 - Inserted 100001 new records into staging_transactions
+2025-09-16 18:41:28,258 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:41:28,258 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:41:28,259 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100001
+2025-09-16 18:41:28,259 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:41:28,259 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:41:28,260 - ETLScheduler - INFO - run_etl_job:189 - Step 4: Extraction Summary
+2025-09-16 18:41:28,260 - ETLScheduler - INFO - run_etl_job:190 - --------------------------------------------------
+2025-09-16 18:41:28,263 - ETLScheduler - INFO - run_etl_job:203 - branches: 26 total records (+26 new, ~0 updated)
+2025-09-16 18:41:28,267 - ETLScheduler - INFO - run_etl_job:203 - customers: 5014 total records (+5014 new, ~0 updated)
+2025-09-16 18:41:28,270 - ETLScheduler - INFO - run_etl_job:203 - loans: 2007 total records (+2007 new, ~0 updated)
+2025-09-16 18:41:28,301 - ETLScheduler - INFO - run_etl_job:203 - transactions: 300003 total records (+100001 new, ~0 updated)
+2025-09-16 18:41:28,301 - ETLScheduler - INFO - run_etl_job:208 - --------------------------------------------------
+2025-09-16 18:41:28,302 - ETLScheduler - INFO - run_etl_job:209 - Overall Statistics:
+2025-09-16 18:41:28,302 - ETLScheduler - INFO - run_etl_job:210 -   Total CSV rows processed: 107048
+2025-09-16 18:41:28,302 - ETLScheduler - INFO - run_etl_job:211 -   New records inserted: 107048
+2025-09-16 18:41:28,302 - ETLScheduler - INFO - run_etl_job:212 -   Existing records updated: 0
+2025-09-16 18:41:28,302 - ETLScheduler - INFO - run_etl_job:216 -   Processing rate: 100.0%
+2025-09-16 18:41:28,303 - ETLScheduler - INFO - run_etl_job:219 -   Run duration: 7.32 seconds
+2025-09-16 18:41:28,303 - ETLScheduler - INFO - run_etl_job:224 - ============================================================
+2025-09-16 18:41:28,303 - ETLScheduler - INFO - run_etl_job:225 - ETL Run Completed Successfully
+2025-09-16 18:41:28,303 - ETLScheduler - INFO - run_etl_job:226 - Success rate: 100.0% (1/1)
+2025-09-16 18:41:28,304 - ETLScheduler - INFO - run_etl_job:227 - ============================================================
+2025-09-16 18:41:28,307 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 18:50:47,614 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 18:50:47,614 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:50:47,615 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 18:50:47,615 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 18:50:47,728 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:50:47,729 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 18:50:47,787 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:50:47,788 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:50:47,789 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for branches in ./data
+2025-09-16 18:50:47,790 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for customers in ./data
+2025-09-16 18:50:47,790 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for loans in ./data
+2025-09-16 18:50:47,791 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\transactions.csv
+2025-09-16 18:50:47,954 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:50:55,526 - MySQLExtractor - INFO - _perform_upsert:286 - Inserted 100001 new records into staging_transactions
+2025-09-16 18:50:55,567 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:50:55,567 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:50:55,568 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100001
+2025-09-16 18:50:55,568 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:50:55,569 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:50:55,569 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 18:50:55,569 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 18:50:55,603 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 400004 total records in staging table
+2025-09-16 18:50:55,603 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 18:50:55,604 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 18:50:55,604 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 100001
+2025-09-16 18:50:55,605 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 100001
+2025-09-16 18:50:55,605 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 18:50:55,605 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 100.0%
+2025-09-16 18:50:55,606 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 18:50:55,606 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 18:50:55,606 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================
+2025-09-16 18:53:45,718 - DatabaseDiagnostic - INFO - diagnose_database:22 - Connecting to database...
+2025-09-16 18:53:45,817 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:53:45,818 - DatabaseDiagnostic - INFO - diagnose_database:27 - ✅ Database connection successful
+2025-09-16 18:53:45,818 - DatabaseDiagnostic - INFO - diagnose_database:30 - 
+==================================================
+2025-09-16 18:53:45,818 - DatabaseDiagnostic - INFO - diagnose_database:31 - CHECKING DATABASES
+2025-09-16 18:53:45,818 - DatabaseDiagnostic - INFO - diagnose_database:32 - ==================================================
+2025-09-16 18:53:45,819 - DatabaseDiagnostic - ERROR - diagnose_database:104 - Diagnostic failed: Not an executable object: 'SHOW DATABASES'
+2025-09-16 18:53:45,823 - DatabaseDiagnostic - ERROR - diagnose_database:106 - Traceback: Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1415, in execute
+    meth = statement._execute_on_connection
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '_execute_on_connection'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\python-etl-pipeline\diagnose_tables.py", line 36, in diagnose_database
+    databases_result = conn.execute(text(databases_query) if hasattr(__builtins__, 'text') else databases_query)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1417, in execute
+    raise exc.ObjectNotExecutableError(statement) from err
+sqlalchemy.exc.ObjectNotExecutableError: Not an executable object: 'SHOW DATABASES'
+
+2025-09-16 18:53:45,824 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 18:54:16,336 - DatabaseDiagnostic - INFO - diagnose_database:22 - Connecting to database...
+2025-09-16 18:54:16,429 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:54:16,430 - DatabaseDiagnostic - INFO - diagnose_database:27 - ✅ Database connection successful
+2025-09-16 18:54:16,430 - DatabaseDiagnostic - INFO - diagnose_database:30 - 
+==================================================
+2025-09-16 18:54:16,430 - DatabaseDiagnostic - INFO - diagnose_database:31 - CHECKING DATABASES
+2025-09-16 18:54:16,431 - DatabaseDiagnostic - INFO - diagnose_database:32 - ==================================================
+2025-09-16 18:54:16,441 - DatabaseDiagnostic - INFO - diagnose_database:39 - Available databases: ['information_schema', 'mysql', 'performance_schema', 'stagging']
+2025-09-16 18:54:16,442 - DatabaseDiagnostic - INFO - diagnose_database:42 - 
+==================================================
+2025-09-16 18:54:16,442 - DatabaseDiagnostic - INFO - diagnose_database:43 - CHECKING TABLES IN 'stagging' DATABASE
+2025-09-16 18:54:16,442 - DatabaseDiagnostic - INFO - diagnose_database:44 - ==================================================
+2025-09-16 18:54:16,445 - DatabaseDiagnostic - INFO - diagnose_database:51 - Tables found: ['staging_transactions']
+2025-09-16 18:54:16,446 - DatabaseDiagnostic - INFO - diagnose_database:56 - ✅ Found 1 tables
+2025-09-16 18:54:16,447 - DatabaseDiagnostic - INFO - diagnose_database:59 - 
+==================================================
+2025-09-16 18:54:16,447 - DatabaseDiagnostic - INFO - diagnose_database:60 - CHECKING EXPECTED STAGING TABLES
+2025-09-16 18:54:16,447 - DatabaseDiagnostic - INFO - diagnose_database:61 - ==================================================
+2025-09-16 18:54:16,450 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_branches: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_branches' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_branches]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:54:16,452 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_customers: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_customers' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_customers]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:54:16,453 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_loans: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_loans' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_loans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:54:16,492 - DatabaseDiagnostic - INFO - diagnose_database:71 - ✅ staging_transactions: 400004 records
+2025-09-16 18:54:16,493 - DatabaseDiagnostic - INFO - diagnose_database:76 - 
+==================================================
+2025-09-16 18:54:16,493 - DatabaseDiagnostic - INFO - diagnose_database:77 - ATTEMPTING TO CREATE MISSING TABLES
+2025-09-16 18:54:16,494 - DatabaseDiagnostic - INFO - diagnose_database:78 - ==================================================
+2025-09-16 18:54:16,504 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:54:16,504 - DatabaseDiagnostic - INFO - diagnose_database:81 - ✅ Staging tables creation completed
+2025-09-16 18:54:16,505 - DatabaseDiagnostic - INFO - diagnose_database:86 - 
+==================================================
+2025-09-16 18:54:16,505 - DatabaseDiagnostic - INFO - diagnose_database:87 - RECHECKING TABLES AFTER CREATION
+2025-09-16 18:54:16,505 - DatabaseDiagnostic - INFO - diagnose_database:88 - ==================================================
+2025-09-16 18:54:16,508 - DatabaseDiagnostic - INFO - diagnose_database:93 - Tables now available: ['staging_transactions']
+2025-09-16 18:54:16,543 - DatabaseDiagnostic - INFO - diagnose_database:100 -   📊 staging_transactions: 400004 records
+2025-09-16 18:54:16,545 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 18:55:17,453 - TableCreator - INFO - create_missing_tables:21 - Connecting to database...
+2025-09-16 18:55:17,544 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:55:17,544 - TableCreator - INFO - create_missing_tables:26 - ✅ Database connection successful
+2025-09-16 18:55:17,545 - TableCreator - INFO - create_missing_tables:99 - Creating table: staging_branches
+2025-09-16 18:55:17,569 - TableCreator - INFO - create_missing_tables:102 - ✅ Successfully created staging_branches
+2025-09-16 18:55:17,570 - TableCreator - INFO - create_missing_tables:99 - Creating table: staging_customers
+2025-09-16 18:55:17,615 - TableCreator - INFO - create_missing_tables:102 - ✅ Successfully created staging_customers
+2025-09-16 18:55:17,615 - TableCreator - INFO - create_missing_tables:99 - Creating table: staging_loans
+2025-09-16 18:55:17,658 - TableCreator - INFO - create_missing_tables:102 - ✅ Successfully created staging_loans
+2025-09-16 18:55:17,658 - TableCreator - INFO - create_missing_tables:99 - Creating table: staging_transactions
+2025-09-16 18:55:17,661 - TableCreator - INFO - create_missing_tables:102 - ✅ Successfully created staging_transactions
+2025-09-16 18:55:17,662 - TableCreator - INFO - create_missing_tables:107 - 
+==================================================
+2025-09-16 18:55:17,662 - TableCreator - INFO - create_missing_tables:108 - VERIFYING ALL TABLES
+2025-09-16 18:55:17,662 - TableCreator - INFO - create_missing_tables:109 - ==================================================
+2025-09-16 18:55:17,665 - TableCreator - INFO - create_missing_tables:114 - All tables in database: ['staging_branches', 'staging_customers', 'staging_loans', 'staging_transactions']
+2025-09-16 18:55:17,668 - TableCreator - INFO - create_missing_tables:122 -   📊 staging_branches: 0 records
+2025-09-16 18:55:17,671 - TableCreator - INFO - create_missing_tables:122 -   📊 staging_customers: 0 records
+2025-09-16 18:55:17,673 - TableCreator - INFO - create_missing_tables:122 -   📊 staging_loans: 0 records
+2025-09-16 18:55:17,705 - TableCreator - INFO - create_missing_tables:122 -   📊 staging_transactions: 400004 records
+2025-09-16 18:55:17,706 - TableCreator - INFO - create_missing_tables:126 - ✅ Table creation process completed!
+2025-09-16 18:55:17,707 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 18:55:30,999 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 18:55:31,000 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:55:31,000 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 18:55:31,000 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 18:55:31,099 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:55:31,099 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 18:55:31,159 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:55:31,159 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:55:31,161 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for branches in ./data
+2025-09-16 18:55:31,161 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for customers in ./data
+2025-09-16 18:55:31,162 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for loans in ./data
+2025-09-16 18:55:31,163 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\transactions.csv
+2025-09-16 18:55:31,296 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:55:39,092 - MySQLExtractor - INFO - _perform_upsert:286 - Inserted 100001 new records into staging_transactions
+2025-09-16 18:55:39,130 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:55:39,131 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:55:39,131 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100001
+2025-09-16 18:55:39,131 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:55:39,131 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:55:39,131 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 18:55:39,132 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 18:55:39,175 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 500005 total records in staging table
+2025-09-16 18:55:39,175 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 18:55:39,175 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 18:55:39,176 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 100001
+2025-09-16 18:55:39,176 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 100001
+2025-09-16 18:55:39,176 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 18:55:39,177 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 100.0%
+2025-09-16 18:55:39,177 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 18:55:39,177 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 18:55:39,177 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================
+2025-09-16 18:56:11,640 - DatabaseDiagnostic - INFO - diagnose_database:22 - Connecting to database...
+2025-09-16 18:56:11,733 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:56:11,733 - DatabaseDiagnostic - INFO - diagnose_database:27 - ✅ Database connection successful
+2025-09-16 18:56:11,734 - DatabaseDiagnostic - INFO - diagnose_database:30 - 
+==================================================
+2025-09-16 18:56:11,734 - DatabaseDiagnostic - INFO - diagnose_database:31 - CHECKING DATABASES
+2025-09-16 18:56:11,734 - DatabaseDiagnostic - INFO - diagnose_database:32 - ==================================================
+2025-09-16 18:56:11,737 - DatabaseDiagnostic - INFO - diagnose_database:39 - Available databases: ['information_schema', 'mysql', 'performance_schema', 'stagging']
+2025-09-16 18:56:11,738 - DatabaseDiagnostic - INFO - diagnose_database:42 - 
+==================================================
+2025-09-16 18:56:11,738 - DatabaseDiagnostic - INFO - diagnose_database:43 - CHECKING TABLES IN 'stagging' DATABASE
+2025-09-16 18:56:11,739 - DatabaseDiagnostic - INFO - diagnose_database:44 - ==================================================
+2025-09-16 18:56:11,742 - DatabaseDiagnostic - INFO - diagnose_database:51 - Tables found: ['staging_transactions']
+2025-09-16 18:56:11,742 - DatabaseDiagnostic - INFO - diagnose_database:56 - ✅ Found 1 tables
+2025-09-16 18:56:11,743 - DatabaseDiagnostic - INFO - diagnose_database:59 - 
+==================================================
+2025-09-16 18:56:11,743 - DatabaseDiagnostic - INFO - diagnose_database:60 - CHECKING EXPECTED STAGING TABLES
+2025-09-16 18:56:11,743 - DatabaseDiagnostic - INFO - diagnose_database:61 - ==================================================
+2025-09-16 18:56:11,747 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_branches: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_branches' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_branches]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:56:11,748 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_customers: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_customers' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_customers]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:56:11,750 - DatabaseDiagnostic - ERROR - diagnose_database:73 - ❌ staging_loans: Table doesn't exist or error - (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_loans' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_loans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:56:11,788 - DatabaseDiagnostic - INFO - diagnose_database:71 - ✅ staging_transactions: 500005 records
+2025-09-16 18:56:11,789 - DatabaseDiagnostic - INFO - diagnose_database:76 - 
+==================================================
+2025-09-16 18:56:11,789 - DatabaseDiagnostic - INFO - diagnose_database:77 - ATTEMPTING TO CREATE MISSING TABLES
+2025-09-16 18:56:11,789 - DatabaseDiagnostic - INFO - diagnose_database:78 - ==================================================
+2025-09-16 18:56:11,799 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:56:11,800 - DatabaseDiagnostic - INFO - diagnose_database:81 - ✅ Staging tables creation completed
+2025-09-16 18:56:11,800 - DatabaseDiagnostic - INFO - diagnose_database:86 - 
+==================================================
+2025-09-16 18:56:11,800 - DatabaseDiagnostic - INFO - diagnose_database:87 - RECHECKING TABLES AFTER CREATION
+2025-09-16 18:56:11,801 - DatabaseDiagnostic - INFO - diagnose_database:88 - ==================================================
+2025-09-16 18:56:11,803 - DatabaseDiagnostic - INFO - diagnose_database:93 - Tables now available: ['staging_transactions']
+2025-09-16 18:56:11,850 - DatabaseDiagnostic - INFO - diagnose_database:100 -   📊 staging_transactions: 500005 records
+2025-09-16 18:56:11,852 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 18:57:11,816 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 18:57:11,817 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 18:57:11,817 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 18:57:11,817 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 18:57:11,914 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:57:11,914 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 18:57:11,916 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 18:57:11,917 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 18:57:11,918 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for branches in ./data
+2025-09-16 18:57:11,919 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for customers in ./data
+2025-09-16 18:57:11,919 - MySQLExtractor - WARNING - extract_all_csv_files:336 - No CSV files found for loans in ./data
+2025-09-16 18:57:11,920 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\transactions.csv
+2025-09-16 18:57:12,057 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100001 rows)
+2025-09-16 18:57:21,338 - MySQLExtractor - INFO - _perform_upsert:286 - Inserted 100001 new records into staging_transactions
+2025-09-16 18:57:21,379 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 18:57:21,379 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100001
+2025-09-16 18:57:21,379 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100001
+2025-09-16 18:57:21,379 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 18:57:21,380 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 18:57:21,380 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 18:57:21,380 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 18:57:21,423 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 600006 total records in staging table
+2025-09-16 18:57:21,423 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 18:57:21,423 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 18:57:21,424 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 100001
+2025-09-16 18:57:21,424 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 100001
+2025-09-16 18:57:21,424 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 18:57:21,424 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 100.0%
+2025-09-16 18:57:21,425 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 18:57:21,425 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 18:57:21,425 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================
+2025-09-16 18:59:34,980 - ETLPipeline - INFO - show_staging_status:132 - Current Staging Tables Status:
+2025-09-16 18:59:34,981 - ETLPipeline - INFO - show_staging_status:133 - ------------------------------
+2025-09-16 18:59:35,075 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 18:59:35,078 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for branches: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_branches' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_branches]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:59:35,078 - ETLPipeline - INFO - show_staging_status:142 - staging_branches: 0 records
+2025-09-16 18:59:35,080 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for customers: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_customers' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_customers]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:59:35,080 - ETLPipeline - INFO - show_staging_status:142 - staging_customers: 0 records
+2025-09-16 18:59:35,082 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for loans: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_loans' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_loans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 18:59:35,082 - ETLPipeline - INFO - show_staging_status:142 - staging_loans: 0 records
+2025-09-16 18:59:35,130 - ETLPipeline - INFO - show_staging_status:142 - staging_transactions: 600006 records
+2025-09-16 18:59:35,131 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 19:06:16,551 - ETLPipeline - INFO - show_staging_status:132 - Current Staging Tables Status:
+2025-09-16 19:06:16,552 - ETLPipeline - INFO - show_staging_status:133 - ------------------------------
+2025-09-16 19:06:16,657 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 19:06:16,661 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for branches: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_branches' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_branches]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 19:06:16,661 - ETLPipeline - INFO - show_staging_status:142 - staging_branches: 0 records
+2025-09-16 19:06:16,663 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for customers: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_customers' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_customers]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 19:06:16,663 - ETLPipeline - INFO - show_staging_status:142 - staging_customers: 0 records
+2025-09-16 19:06:16,665 - MySQLExtractor - ERROR - get_staging_table_count:381 - Failed to get count for loans: (pymysql.err.ProgrammingError) (1146, "Table 'stagging.staging_loans' doesn't exist")
+[SQL: SELECT COUNT(*) as count FROM staging_loans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-16 19:06:16,665 - ETLPipeline - INFO - show_staging_status:142 - staging_loans: 0 records
+2025-09-16 19:06:16,706 - ETLPipeline - INFO - show_staging_status:142 - staging_transactions: 600006 records
+2025-09-16 19:06:16,707 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 19:07:02,266 - TableCreator - INFO - create_all_tables:21 - Connecting to database...
+2025-09-16 19:07:02,356 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 19:07:02,357 - TableCreator - INFO - create_all_tables:26 - ✅ Connected successfully
+2025-09-16 19:07:02,357 - TableCreator - INFO - create_all_tables:84 - Creating staging_branches...
+2025-09-16 19:07:02,424 - TableCreator - INFO - create_all_tables:87 - ✅ staging_branches created successfully
+2025-09-16 19:07:02,424 - TableCreator - INFO - create_all_tables:84 - Creating staging_customers...
+2025-09-16 19:07:02,466 - TableCreator - INFO - create_all_tables:87 - ✅ staging_customers created successfully
+2025-09-16 19:07:02,467 - TableCreator - INFO - create_all_tables:84 - Creating staging_loans...
+2025-09-16 19:07:02,507 - TableCreator - INFO - create_all_tables:87 - ✅ staging_loans created successfully
+2025-09-16 19:07:02,508 - TableCreator - INFO - create_all_tables:92 - 
+==================================================
+2025-09-16 19:07:02,509 - TableCreator - INFO - create_all_tables:93 - VERIFYING TABLES
+2025-09-16 19:07:02,509 - TableCreator - INFO - create_all_tables:94 - ==================================================
+2025-09-16 19:07:02,512 - TableCreator - INFO - create_all_tables:99 - Tables in database: ['staging_branches', 'staging_customers', 'staging_loans', 'staging_transactions']
+2025-09-16 19:07:02,515 - TableCreator - INFO - create_all_tables:106 - 📊 staging_branches: 0 records
+2025-09-16 19:07:02,518 - TableCreator - INFO - create_all_tables:106 - 📊 staging_customers: 0 records
+2025-09-16 19:07:02,520 - TableCreator - INFO - create_all_tables:106 - 📊 staging_loans: 0 records
+2025-09-16 19:07:02,556 - TableCreator - INFO - create_all_tables:106 - 📊 staging_transactions: 600006 records
+2025-09-16 19:07:02,557 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 19:07:18,487 - ETLPipeline - INFO - show_staging_status:132 - Current Staging Tables Status:
+2025-09-16 19:07:18,488 - ETLPipeline - INFO - show_staging_status:133 - ------------------------------
+2025-09-16 19:07:18,581 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 19:07:18,583 - ETLPipeline - INFO - show_staging_status:142 - staging_branches: 0 records
+2025-09-16 19:07:18,585 - ETLPipeline - INFO - show_staging_status:142 - staging_customers: 0 records
+2025-09-16 19:07:18,586 - ETLPipeline - INFO - show_staging_status:142 - staging_loans: 0 records
+2025-09-16 19:07:18,637 - ETLPipeline - INFO - show_staging_status:142 - staging_transactions: 600006 records
+2025-09-16 19:07:18,638 - MySQLExtractor - INFO - close:388 - Database connections closed
+2025-09-16 19:11:40,819 - ETLPipeline - INFO - run_extraction_phase:28 - ==================================================
+2025-09-16 19:11:40,819 - ETLPipeline - INFO - run_extraction_phase:29 - Starting ETL Pipeline - Extraction Phase
+2025-09-16 19:11:40,820 - ETLPipeline - INFO - run_extraction_phase:30 - ==================================================
+2025-09-16 19:11:40,820 - ETLPipeline - INFO - run_extraction_phase:34 - Step 1: Connecting to MySQL database...
+2025-09-16 19:11:40,923 - MySQLExtractor - INFO - connect:62 - Successfully connected to MySQL database: stagging
+2025-09-16 19:11:40,924 - ETLPipeline - INFO - run_extraction_phase:40 - Step 2: Creating staging tables...
+2025-09-16 19:11:40,926 - MySQLExtractor - INFO - create_staging_tables:96 - Staging tables created successfully
+2025-09-16 19:11:40,926 - ETLPipeline - INFO - run_extraction_phase:46 - Step 3: Extracting CSV files to staging tables...
+2025-09-16 19:11:40,927 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\branches.csv
+2025-09-16 19:11:40,934 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\branches.csv (26 rows)
+2025-09-16 19:11:40,954 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: nan can not be used with MySQL
+2025-09-16 19:11:40,955 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 19:11:40,973 - MySQLExtractor - ERROR - _perform_upsert:310 - Fallback insert also failed: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'QT0025' for key 'staging_branches.PRIMARY'")
+[SQL: INSERT INTO staging_branches (branch_id, branch_name, city, state, manager_name) VALUES (%(branch_id)s, %(branch_name)s, %(city)s, %(state)s, %(manager_name)s)]
+[parameters: [{'branch_id': 'QT0001', 'branch_name': 'Jain-Gour Branch', 'city': 'Mango', 'state': 'Punjab', 'manager_name': 'Vanya Devi'}, {'branch_id': 'QT0002', 'branch_name': 'Bahri Group Branch', 'city': 'Howrah', 'state': 'Uttar Pradesh', 'manager_name': 'Tejas Datta'}, {'branch_id': 'QT0003', 'branch_name': 'Varughese-Sood Branch', 'city': 'Thane', 'state': 'Meghalaya', 'manager_name': 'Yashvi Basak'}, {'branch_id': 'QT0004', 'branch_name': 'Viswanathan, Singh and Bhattacharyya Branch', 'city': 'Agra', 'state': 'Maharashtra', 'manager_name': 'Nitesh Bhat'}, {'branch_id': 'QT0005', 'branch_name': 'Suri-Chacko Branch', 'city': 'Suryapet', 'state': 'Chhattisgarh', 'manager_name': 'Udyati Gour'}, {'branch_id': 'QT0006', 'branch_name': 'Chandran-Bhargava Branch', 'city': 'Adoni', 'state': 'Assam', 'manager_name': 'Yatan Dey'}, {'branch_id': 'QT0007', 'branch_name': 'Bumb, Shenoy and Zacharia Branch', 'city': 'Mysore', 'state': 'Chhattisgarh', 'manager_name': 'Imaran Mane'}, {'branch_id': 'QT0008', 'branch_name': 'Bahl PLC Branch', 'city': 'Chandrapur', 'state': 'Andhra Pradesh', 'manager_name': 'Jagvi Nigam'}  ... displaying 10 of 26 total bound parameter sets ...  {'branch_id': 'QT0025', 'branch_name': 'Dube Group Branch', 'city': 'Ambarnath', 'state': 'Jharkhand', 'manager_name': 'Idika Seth'}, {'branch_id': 'QT0025', 'branch_name': 'Dube Group Branch', 'city': 'Ambarnath', 'state': None, 'manager_name': 'Idika Seth'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-09-16 19:11:40,974 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for branches:
+2025-09-16 19:11:40,974 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 26
+2025-09-16 19:11:40,974 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 19:11:40,975 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 19:11:40,975 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 19:11:40,976 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\customers.csv
+2025-09-16 19:11:41,008 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\customers.csv (5014 rows)
+2025-09-16 19:11:41,057 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: (1292, "Incorrect date value: '27-07-78' for column 'dob' at row 1")
+2025-09-16 19:11:41,057 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 19:11:41,106 - MySQLExtractor - ERROR - _perform_upsert:310 - Fallback insert also failed: (pymysql.err.OperationalError) (1292, "Incorrect date value: '27-07-78' for column 'dob' at row 1")
+[SQL: INSERT INTO staging_customers (customer_id, branch_id, first_name, last_name, dob, gender, email, phone, address, account_open_date) VALUES (%(customer_id)s, %(branch_id)s, %(first_name)s, %(last_name)s, %(dob)s, %(gender)s, %(email)s, %(phone)s, %(address)s, %(account_open_date)s)]
+[parameters: [{'customer_id': '1', 'branch_id': 'QT0021', 'first_name': 'Rachita', 'last_name': 'Tandon', 'dob': '27-07-78', 'gender': 'F', 'email': 'ryan40@example.org', 'phone': 7025702592.0, 'address': '60/736, Swamy Nagar, Mango-248774', 'account_open_date': '11-01-07'}, {'customer_id': '2', 'branch_id': 'QT0010', 'first_name': 'Naveen', 'last_name': 'Sura', 'dob': '06-08-96', 'gender': 'F', 'email': 'hmani@example.org', 'phone': 8342433207.0, 'address': '14/469, Natt Road, Bhiwani-380292', 'account_open_date': '03-08-13'}, {'customer_id': '3', 'branch_id': 'QT0020', 'first_name': 'Warda', 'last_name': 'Dalal', 'dob': '18-10-91', 'gender': 'M', 'email': 'qadimradhakrishnan@example.com', 'phone': 6871611823.0, 'address': 'H.No. 21, Raja Chowk, Guwahati 468597', 'account_open_date': '30-06-18'}, {'customer_id': '4', 'branch_id': 'QT0024', 'first_name': 'Noah', 'last_name': 'Lall', 'dob': '27-10-77', 'gender': 'F', 'email': 'idikachhabra@example.net', 'phone': 9335875952.0, 'address': '89/28, Varkey Nagar, Moradabad 908874', 'account_open_date': '14-12-06'}, {'customer_id': '5', 'branch_id': 'QT0004', 'first_name': 'Charvi', 'last_name': 'Atwal', 'dob': '13-04-58', 'gender': 'M', 'email': 'mohammedsibal@example.org', 'phone': 7725492045.0, 'address': '20/40, Dora Road, Tiruchirappalli-718976', 'account_open_date': '26-07-16'}, {'customer_id': '6', 'branch_id': 'QT0014', 'first_name': 'Luke', 'last_name': 'Kota', 'dob': '05-06-84', 'gender': 'M', 'email': 'rachana69@example.org', 'phone': 9476423239.0, 'address': 'H.No. 678, Rama Path, Rourkela 425123', 'account_open_date': '26-08-10'}, {'customer_id': '7', 'branch_id': 'QT0013', 'first_name': 'Vaishnavi', 'last_name': 'Kurian', 'dob': '26-05-94', 'gender': 'F', 'email': 'ekapadsubramanian@example.org', 'phone': 9303611993.0, 'address': '75, Kari Nagar, Malda 952965', 'account_open_date': '24-08-11'}, {'customer_id': '8', 'branch_id': 'QT0009', 'first_name': 'Aryan', 'last_name': 'Varkey', 'dob': '11-09-60', 'gender': 'F', 'email': 'raagini75@example.com', 'phone': 9735929061.0, 'address': '01/577, Patil Ganj, Burhanpur 007915', 'account_open_date': '20-11-15'}  ... displaying 10 of 1000 total bound parameter sets ...  {'customer_id': '999', 'branch_id': 'QT0018', 'first_name': 'Ishanvi', 'last_name': 'Nair', 'dob': '20-02-05', 'gender': 'M', 'email': 'omaja62@example.net', 'phone': 8116966074.0, 'address': 'H.No. 568, Bera Chowk, Sri Ganganagar 869592', 'account_open_date': '05-02-12'}, {'customer_id': '1000', 'branch_id': 'QT0004', 'first_name': 'Riya', 'last_name': 'Misra', 'dob': '29-11-94', 'gender': 'M', 'email': 'fdugal@example.com', 'phone': 8588258705.0, 'address': '32, Ravel Road, Madhyamgram-918669', 'account_open_date': '09-12-14'}]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 19:11:41,107 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for customers:
+2025-09-16 19:11:41,107 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 5014
+2025-09-16 19:11:41,108 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 19:11:41,108 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 19:11:41,108 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 19:11:41,109 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\loans.csv
+2025-09-16 19:11:41,119 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\loans.csv (2007 rows)
+2025-09-16 19:11:41,164 - MySQLExtractor - ERROR - _perform_upsert:293 - Failed to perform bulk upsert: (1292, "Incorrect date value: '29-05-42' for column 'end_date' at row 7")
+2025-09-16 19:11:41,165 - MySQLExtractor - INFO - _perform_upsert:296 - Falling back to insert-only mode...
+2025-09-16 19:11:41,205 - MySQLExtractor - ERROR - _perform_upsert:310 - Fallback insert also failed: (pymysql.err.OperationalError) (1292, "Incorrect date value: '29-05-42' for column 'end_date' at row 7")
+[SQL: INSERT INTO staging_loans (loan_id, customer_id, loan_type, loan_amount, interest_rate, start_date, end_date, loan_status) VALUES (%(loan_id)s, %(customer_id)s, %(loan_type)s, %(loan_amount)s, %(interest_rate)s, %(start_date)s, %(end_date)s, %(loan_status)s)]
+[parameters: [{'loan_id': '1', 'customer_id': 4512, 'loan_type': 'Home', 'loan_amount': 545642.51, 'interest_rate': 10.56, 'start_date': '13-03-11', 'end_date': '13-03-19', 'loan_status': 'Closed'}, {'loan_id': '2', 'customer_id': 656, 'loan_type': 'Car', 'loan_amount': 454714.63, 'interest_rate': 7.5, 'start_date': '06-06-19', 'end_date': '06-06-27', 'loan_status': 'Default'}, {'loan_id': '3', 'customer_id': 4348, 'loan_type': 'Car', 'loan_amount': 1044928.95, 'interest_rate': 13.42, 'start_date': '10-01-10', 'end_date': '10-01-28', 'loan_status': 'Default'}, {'loan_id': '4', 'customer_id': 214, 'loan_type': 'Car', 'loan_amount': 488388.31, 'interest_rate': 13.45, 'start_date': '12-08-15', 'end_date': '12-08-31', 'loan_status': 'Closed'}, {'loan_id': '5', 'customer_id': 4156, 'loan_type': 'Home', 'loan_amount': 1233982.1, 'interest_rate': 5.9, 'start_date': '25-06-23', 'end_date': '25-06-27', 'loan_status': 'Closed'}, {'loan_id': '6', 'customer_id': 2450, 'loan_type': 'Home', 'loan_amount': 3790382.26, 'interest_rate': 6.97, 'start_date': '22-09-22', 'end_date': '22-09-29', 'loan_status': 'Closed'}, {'loan_id': '7', 'customer_id': 4769, 'loan_type': 'Car', 'loan_amount': 4430010.85, 'interest_rate': 7.36, 'start_date': '29-05-24', 'end_date': '29-05-42', 'loan_status': 'Closed'}, {'loan_id': '8', 'customer_id': 4307, 'loan_type': 'Education', 'loan_amount': 347519.8, 'interest_rate': 7.0, 'start_date': '06-03-20', 'end_date': '06-03-35', 'loan_status': 'Active'}  ... displaying 10 of 1000 total bound parameter sets ...  {'loan_id': '999', 'customer_id': 251, 'loan_type': 'Education', 'loan_amount': 1583910.99, 'interest_rate': 12.36, 'start_date': '31-10-22', 'end_date': '31-10-31', 'loan_status': 'Active'}, {'loan_id': '1000', 'customer_id': 106, 'loan_type': 'Home', 'loan_amount': 2099255.75, 'interest_rate': 12.38, 'start_date': '22-04-22', 'end_date': '22-04-37', 'loan_status': 'Closed'}]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-16 19:11:41,205 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for loans:
+2025-09-16 19:11:41,206 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 2007
+2025-09-16 19:11:41,206 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 0
+2025-09-16 19:11:41,206 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 19:11:41,207 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 0.0%
+2025-09-16 19:11:41,208 - MySQLExtractor - INFO - extract_all_csv_files:345 - Processing: ./data\transactions.csv
+2025-09-16 19:11:41,336 - MySQLExtractor - INFO - load_csv_to_staging:124 - Loaded CSV file: ./data\transactions.csv (100004 rows)
+2025-09-16 19:11:51,764 - MySQLExtractor - INFO - _perform_upsert:286 - Inserted 100004 new records into staging_transactions
+2025-09-16 19:11:51,805 - MySQLExtractor - INFO - log_extraction_stats:81 - Extraction completed for transactions:
+2025-09-16 19:11:51,806 - MySQLExtractor - INFO - log_extraction_stats:82 -   Total rows in CSV: 100004
+2025-09-16 19:11:51,806 - MySQLExtractor - INFO - log_extraction_stats:83 -   New rows inserted: 100004
+2025-09-16 19:11:51,806 - MySQLExtractor - INFO - log_extraction_stats:84 -   Duplicates skipped: 0
+2025-09-16 19:11:51,807 - MySQLExtractor - INFO - log_extraction_stats:85 -   Success rate: 100.0%
+2025-09-16 19:11:51,807 - ETLPipeline - INFO - run_extraction_phase:54 - Step 4: Extraction Summary
+2025-09-16 19:11:51,807 - ETLPipeline - INFO - run_extraction_phase:55 - ----------------------------------------
+2025-09-16 19:11:51,809 - ETLPipeline - INFO - run_extraction_phase:68 - branches: 0 total records in staging table
+2025-09-16 19:11:51,811 - ETLPipeline - INFO - run_extraction_phase:68 - customers: 0 total records in staging table
+2025-09-16 19:11:51,813 - ETLPipeline - INFO - run_extraction_phase:68 - loans: 0 total records in staging table
+2025-09-16 19:11:51,852 - ETLPipeline - INFO - run_extraction_phase:68 - transactions: 700010 total records in staging table
+2025-09-16 19:11:51,853 - ETLPipeline - INFO - run_extraction_phase:70 - ----------------------------------------
+2025-09-16 19:11:51,853 - ETLPipeline - INFO - run_extraction_phase:71 - Overall Statistics:
+2025-09-16 19:11:51,853 - ETLPipeline - INFO - run_extraction_phase:72 -   Total CSV rows processed: 107051
+2025-09-16 19:11:51,854 - ETLPipeline - INFO - run_extraction_phase:73 -   New records inserted: 100004
+2025-09-16 19:11:51,854 - ETLPipeline - INFO - run_extraction_phase:74 -   Duplicates skipped: 0
+2025-09-16 19:11:51,854 - ETLPipeline - INFO - run_extraction_phase:78 -   Success rate: 93.4%
+2025-09-16 19:11:51,855 - ETLPipeline - INFO - run_extraction_phase:80 - ==================================================
+2025-09-16 19:11:51,855 - ETLPipeline - INFO - run_extraction_phase:81 - Extraction Phase Completed Successfully
+2025-09-16 19:11:51,855 - ETLPipeline - INFO - run_extraction_phase:82 - ==================================================

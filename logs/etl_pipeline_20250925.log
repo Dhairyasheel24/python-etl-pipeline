@@ -1,0 +1,197 @@
+2025-09-25 09:44:19,145 - ETLScheduler - INFO - start:146 - ============================================================
+2025-09-25 09:44:19,145 - ETLScheduler - INFO - start:147 - STARTING ETL SCHEDULER
+2025-09-25 09:44:19,145 - ETLScheduler - INFO - start:148 - ============================================================
+2025-09-25 09:44:19,145 - ETLScheduler - INFO - start:149 - Schedule: Every 1 minute(s)
+2025-09-25 09:44:19,145 - ETLScheduler - INFO - start:150 - Data directory: ./data
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - start:151 - Monitoring for CSV file changes...
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - start:152 - Press Ctrl+C to stop
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - start:158 - 
+Running initial ETL job...
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #1
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:44:19
+2025-09-25 09:44:19,146 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:44:19,147 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: branches.csv
+2025-09-25 09:44:19,148 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: customers.csv
+2025-09-25 09:44:19,149 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: loans.csv
+2025-09-25 09:44:19,159 - ETLScheduler - INFO - _check_for_file_changes:79 - New CSV file detected: transactions.csv
+2025-09-25 09:44:19,160 - ETLPipeline - INFO - run_extraction_phase:25 - ==================================================
+2025-09-25 09:44:19,160 - ETLPipeline - INFO - run_extraction_phase:26 - Starting ETL Pipeline - Extraction Phase
+2025-09-25 09:44:19,160 - ETLPipeline - INFO - run_extraction_phase:27 - ==================================================
+2025-09-25 09:44:19,160 - ETLPipeline - INFO - run_extraction_phase:31 - Step 1: Connecting to MySQL database...
+2025-09-25 09:44:19,235 - ETLPipeline - INFO - run_extraction_phase:37 - Step 2: Creating staging tables...
+2025-09-25 09:44:19,240 - ETLPipeline - INFO - run_extraction_phase:43 - Step 3: Processing CSV files (incremental mode)...
+2025-09-25 09:44:19,285 - ETLPipeline - INFO - run_extraction_phase:51 - Step 4: Extraction Summary
+2025-09-25 09:44:19,285 - ETLPipeline - INFO - run_extraction_phase:52 - ----------------------------------------
+2025-09-25 09:44:19,286 - ETLPipeline - INFO - run_extraction_phase:65 - branches: 25 total records (+0 new)
+2025-09-25 09:44:19,288 - ETLPipeline - INFO - run_extraction_phase:65 - customers: 5025 total records (+0 new)
+2025-09-25 09:44:19,289 - ETLPipeline - INFO - run_extraction_phase:65 - loans: 2006 total records (+0 new)
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:65 - transactions: 100004 total records (+0 new)
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:67 - ----------------------------------------
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:68 - Overall Statistics:
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:69 -   Total CSV rows processed: 107061
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:70 -   New records inserted: 0
+2025-09-25 09:44:19,294 - ETLPipeline - INFO - run_extraction_phase:71 -   Existing records updated: 0
+2025-09-25 09:44:19,295 - ETLPipeline - INFO - run_extraction_phase:75 -   Efficiency: 0.0% (only new records inserted)
+2025-09-25 09:44:19,295 - ETLPipeline - INFO - run_extraction_phase:77 - ==================================================
+2025-09-25 09:44:19,295 - ETLPipeline - INFO - run_extraction_phase:78 - Extraction Phase Completed Successfully
+2025-09-25 09:44:19,295 - ETLPipeline - INFO - run_extraction_phase:79 - ==================================================
+2025-09-25 09:44:19,295 - ETLScheduler - INFO - run_etl_job:128 - ============================================================
+2025-09-25 09:44:19,295 - ETLScheduler - INFO - run_etl_job:129 - SCHEDULED ETL RUN COMPLETED
+2025-09-25 09:44:19,295 - ETLScheduler - INFO - run_etl_job:130 - Run duration: 0.1 seconds
+2025-09-25 09:44:19,296 - ETLScheduler - INFO - run_etl_job:131 - Success rate: 100.0% (1/1)
+2025-09-25 09:44:19,296 - ETLScheduler - INFO - run_etl_job:132 - ============================================================
+2025-09-25 09:44:19,297 - ETLScheduler - INFO - start:162 - 
+Scheduler is now running (every 1 min)...
+2025-09-25 09:45:19,313 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:45:19,313 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #2
+2025-09-25 09:45:19,314 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:45:19
+2025-09-25 09:45:19,314 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:45:19,332 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:45:19,332 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:46:19,348 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:46:19,348 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #3
+2025-09-25 09:46:19,349 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:46:19
+2025-09-25 09:46:19,349 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:46:19,365 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:46:19,365 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:47:19,381 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:47:19,382 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #4
+2025-09-25 09:47:19,382 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:47:19
+2025-09-25 09:47:19,382 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:47:19,399 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:47:19,399 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:48:19,422 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:48:19,422 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #5
+2025-09-25 09:48:19,423 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:48:19
+2025-09-25 09:48:19,423 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:48:19,436 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:48:19,436 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:49:19,457 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:49:19,458 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #6
+2025-09-25 09:49:19,458 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:49:19
+2025-09-25 09:49:19,458 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:49:19,470 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:49:19,470 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:50:19,489 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:50:19,489 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #7
+2025-09-25 09:50:19,489 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:50:19
+2025-09-25 09:50:19,490 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:50:19,505 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:50:19,506 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:51:19,527 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:51:19,527 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #8
+2025-09-25 09:51:19,527 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:51:19
+2025-09-25 09:51:19,527 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:51:19,544 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:51:19,544 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:52:19,563 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:52:19,564 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #9
+2025-09-25 09:52:19,564 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:52:19
+2025-09-25 09:52:19,564 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:52:19,580 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:52:19,580 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:53:19,598 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:53:19,599 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #10
+2025-09-25 09:53:19,599 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:53:19
+2025-09-25 09:53:19,599 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:53:19,614 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:53:19,614 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:54:19,637 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:54:19,638 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #11
+2025-09-25 09:54:19,638 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:54:19
+2025-09-25 09:54:19,638 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:54:19,656 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:54:19,656 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:55:19,676 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:55:19,676 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #12
+2025-09-25 09:55:19,677 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:55:19
+2025-09-25 09:55:19,677 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:55:19,693 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:55:19,693 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:56:19,715 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:56:19,715 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #13
+2025-09-25 09:56:19,716 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:56:19
+2025-09-25 09:56:19,716 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:56:19,729 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:56:19,729 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:57:19,750 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:57:19,751 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #14
+2025-09-25 09:57:19,751 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:57:19
+2025-09-25 09:57:19,751 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:57:19,767 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:57:19,767 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:58:19,788 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:58:19,788 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #15
+2025-09-25 09:58:19,788 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:58:19
+2025-09-25 09:58:19,789 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:58:19,806 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:58:19,806 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 09:59:19,826 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 09:59:19,827 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #16
+2025-09-25 09:59:19,827 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 09:59:19
+2025-09-25 09:59:19,827 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 09:59:19,844 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 09:59:19,844 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:00:19,868 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:00:19,868 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #17
+2025-09-25 10:00:19,868 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:00:19
+2025-09-25 10:00:19,869 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:00:19,884 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:00:19,885 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:01:19,908 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:01:19,908 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #18
+2025-09-25 10:01:19,908 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:01:19
+2025-09-25 10:01:19,909 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:01:19,926 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:01:19,926 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:02:19,944 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:02:19,944 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #19
+2025-09-25 10:02:19,944 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:02:19
+2025-09-25 10:02:19,944 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:02:19,956 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:02:19,956 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:03:19,977 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:03:19,977 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #20
+2025-09-25 10:03:19,977 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:03:19
+2025-09-25 10:03:19,977 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:03:19,990 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:03:19,990 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:04:20,011 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:04:20,012 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #21
+2025-09-25 10:04:20,012 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:04:20
+2025-09-25 10:04:20,012 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:04:20,029 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:04:20,029 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:05:20,049 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:05:20,049 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #22
+2025-09-25 10:05:20,050 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:05:20
+2025-09-25 10:05:20,050 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:05:20,065 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:05:20,065 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:06:20,085 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:06:20,085 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #23
+2025-09-25 10:06:20,085 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:06:20
+2025-09-25 10:06:20,086 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:06:20,102 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:06:20,102 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:07:20,123 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:07:20,123 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #24
+2025-09-25 10:07:20,124 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:07:20
+2025-09-25 10:07:20,124 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:07:20,140 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:07:20,140 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:08:20,160 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:08:20,160 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #25
+2025-09-25 10:08:20,161 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:08:20
+2025-09-25 10:08:20,161 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:08:20,177 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:08:20,177 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:09:20,202 - ETLScheduler - INFO - run_etl_job:106 - ============================================================
+2025-09-25 10:09:20,203 - ETLScheduler - INFO - run_etl_job:107 - ETL Scheduler - Run #26
+2025-09-25 10:09:20,203 - ETLScheduler - INFO - run_etl_job:108 - Started at: 2025-09-25 10:09:20
+2025-09-25 10:09:20,203 - ETLScheduler - INFO - run_etl_job:109 - ============================================================
+2025-09-25 10:09:20,219 - ETLScheduler - INFO - _check_for_file_changes:93 - No CSV file changes detected
+2025-09-25 10:09:20,220 - ETLScheduler - INFO - run_etl_job:114 - No changes detected - skipping ETL run
+2025-09-25 10:10:18,246 - ETLScheduler - INFO - _signal_handler:38 - Shutdown signal received, stopping scheduler...
+2025-09-25 10:10:19,241 - ETLScheduler - INFO - start:175 - ETL Scheduler stopped
