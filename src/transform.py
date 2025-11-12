@@ -300,7 +300,7 @@ class DataTransformer:
             'outlier_rate': (self.stats[table].get('outliers', 0) / total * 100) if total > 0 else 0
         }
 
-    # --- MODIFIED: Uses batch fetching ---
+    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_branches(self):
         """Transform branches"""
         print("\nTRANSFORMING BRANCHES")
@@ -310,7 +310,7 @@ class DataTransformer:
         try:
             cursor.execute("SELECT * FROM staging_branches LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # Clear buffer
+            cursor.fetchall() # <-- FIX IS HERE
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_branches: {e}")
             cursor.close()
@@ -391,7 +391,7 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['branches']['transformed']}")
         print(f"  Duplicates: {self.stats['branches']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching ---
+    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_customers(self):
         """Transform customers"""
         print("\nTRANSFORMING CUSTOMERS")
@@ -401,7 +401,7 @@ class DataTransformer:
         try:
             cursor.execute("SELECT * FROM staging_customers LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # Clear buffer
+            cursor.fetchall() # <-- FIX IS HERE
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_customers: {e}")
             cursor.close()
@@ -520,7 +520,7 @@ class DataTransformer:
         if date_warnings >= max_warnings:
             print(f"  Additional date warnings suppressed")
 
-    # --- MODIFIED: Uses batch fetching ---
+    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_loans(self):
         """Transform loans"""
         print("\nTRANSFORMING LOANS")
@@ -535,7 +535,7 @@ class DataTransformer:
         try:
             scursor.execute("SELECT * FROM staging_loans LIMIT 1")
             columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # Clear buffer
+            scursor.fetchall() # <-- FIX IS HERE
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_loans: {e}")
             scursor.close()
@@ -638,7 +638,7 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['loans']['transformed']}")
         print(f"  Duplicates: {self.stats['loans']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching ---
+    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_transactions(self):
         """Transform transactions"""
         print("\nTRANSFORMING TRANSACTIONS")
@@ -653,7 +653,7 @@ class DataTransformer:
         try:
             scursor.execute("SELECT * FROM staging_transactions LIMIT 1")
             columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # Clear buffer
+            scursor.fetchall() # <-- FIX IS HERE
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_transactions: {e}")
             scursor.close()
@@ -748,7 +748,7 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['transactions']['transformed']}")
         print(f"  Duplicates: {self.stats['transactions']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching ---
+    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def export_csv(self):
         """Export to CSV"""
         print("\nEXPORTING CSV")
@@ -762,7 +762,7 @@ class DataTransformer:
             try:
                 cursor.execute(f"SELECT * FROM {table} LIMIT 1")
                 columns = [c[0] for c in cursor.description]
-                cursor.fetchall() # Clear buffer
+                cursor.fetchall() # <-- FIX IS HERE
             except mysql.connector.Error as e:
                 print(f"  Error getting columns for {table}: {e}")
                 cursor.close()
