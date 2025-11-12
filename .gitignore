@@ -32,3 +32,7 @@ scheduler_stats.json
 NOTE: We are INTENTIONALLY allowing /data, /logs, and /exports
 
 to be uploaded for project portability.
+
+# Ignore generated data and log files
+exports/
+logs/
