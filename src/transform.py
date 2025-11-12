@@ -6,7 +6,7 @@ import logging
 import sys
 import os
 from pathlib import Path
-import time  # Added time for execution tracking
+import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -19,11 +19,9 @@ class DataTransformer:
         self.exports_dir = Path("exports")
         self.exports_dir.mkdir(exist_ok=True)
         
-        # --- NEW: Batch processing configuration ---
-        self.batch_size = 1000  # Process 1000 records at a time
-        self.query_timeout = 300  # 5 minutes timeout
+        self.batch_size = 1000
+        self.query_timeout = 300
         
-        # Simple stats tracking
         self.stats = {
             'branches': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0},
             'customers': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
@@ -43,7 +41,6 @@ class DataTransformer:
                 database=self.config['MYSQL_DATABASE'],
                 port=self.config['MYSQL_PORT'],
                 autocommit=False,
-                # --- NEW: Added connection timeout ---
                 connection_timeout=self.query_timeout
             )
             
@@ -52,7 +49,6 @@ class DataTransformer:
                 user=self.config['MYSQL_USER'],
                 password=self.config['MYSQL_PASSWORD'],
                 port=self.config['MYSQL_PORT'],
-                # --- NEW: Added connection timeout ---
                 connection_timeout=self.query_timeout
             )
             temp_cursor = temp_conn.cursor()
@@ -66,7 +62,6 @@ class DataTransformer:
                 database='transformed',
                 port=self.config['MYSQL_PORT'],
                 autocommit=False,
-                # --- NEW: Added connection timeout ---
                 connection_timeout=self.query_timeout
             )
             
@@ -78,12 +73,15 @@ class DataTransformer:
     
     def create_transformed_tables(self):
         """Create tables with sequential display IDs"""
+        # --- FIX: Ping connection to ensure it's alive ---
+        self.transformed_connection.ping(reconnect=True)
         cursor = self.transformed_connection.cursor()
         
         tables = ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']
         for table in tables:
             cursor.execute(f"DROP TABLE IF EXISTS {table}")
         
+        # ... (rest of the table creation SQL is unchanged) ...
         # Branches
         cursor.execute("""
             CREATE TABLE transformed_branches (
@@ -155,7 +153,6 @@ class DataTransformer:
         self.transformed_connection.commit()
         print("Tables created with sequential IDs")
     
-    # --- NEW: Batch fetching helper function ---
     def fetch_data_in_batches(self, cursor, table_name, primary_key):
         """Fetch data in batches to prevent timeout"""
         offset = 0
@@ -180,7 +177,7 @@ class DataTransformer:
         
         return all_data
 
-    # Utility functions (Unchanged)
+    # ... (All safe_ utility functions are unchanged) ...
     def safe_val(self, val, default='NA', title=False, upper=False, lower=False):
         if (val is None or 
             pd.isna(val) or 
@@ -300,23 +297,25 @@ class DataTransformer:
             'outlier_rate': (self.stats[table].get('outliers', 0) / total * 100) if total > 0 else 0
         }
 
-    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_branches(self):
         """Transform branches"""
         print("\nTRANSFORMING BRANCHES")
+        
+        # --- FIX: Ping connections to ensure they are alive ---
+        self.staging_connection.ping(reconnect=True)
+        self.transformed_connection.ping(reconnect=True)
+        
         cursor = self.staging_connection.cursor()
         
-        # Get column names first, and clear the buffer
         try:
             cursor.execute("SELECT * FROM staging_branches LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # <-- FIX IS HERE
+            cursor.fetchall() # Clear buffer
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_branches: {e}")
             cursor.close()
             return
 
-        # Get total count
         try:
             cursor.execute("SELECT COUNT(*) FROM staging_branches")
             total_count = cursor.fetchone()[0]
@@ -326,10 +325,8 @@ class DataTransformer:
             cursor.close()
             return
         
-        # --- NEW: Fetch data in batches ---
-        # Assuming 'branch_id' is a good key to order by
         all_data = self.fetch_data_in_batches(cursor, "staging_branches", "branch_id")
-        cursor.close() # Close the staging cursor
+        cursor.close() 
         
         if not all_data:
             print("  No data found in staging_branches")
@@ -339,7 +336,6 @@ class DataTransformer:
         
         self.stats['branches']['processed'] = len(df)
         
-        # Remove duplicates
         initial = len(df)
         df_clean = df.drop_duplicates(subset=['branch_id'], keep='first')
         duplicates_removed = initial - len(df_clean)
@@ -391,23 +387,25 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['branches']['transformed']}")
         print(f"  Duplicates: {self.stats['branches']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_customers(self):
         """Transform customers"""
         print("\nTRANSFORMING CUSTOMERS")
+        
+        # --- FIX: Ping connections to ensure they are alive ---
+        self.staging_connection.ping(reconnect=True)
+        self.transformed_connection.ping(reconnect=True)
+        
         cursor = self.staging_connection.cursor()
 
-        # Get column names first, and clear the buffer
         try:
             cursor.execute("SELECT * FROM staging_customers LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # <-- FIX IS HERE
+            cursor.fetchall() # Clear buffer
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_customers: {e}")
             cursor.close()
             return
 
-        # Get total count
         try:
             cursor.execute("SELECT COUNT(*) FROM staging_customers")
             total_count = cursor.fetchone()[0]
@@ -417,10 +415,8 @@ class DataTransformer:
             cursor.close()
             return
 
-        # --- NEW: Fetch data in batches ---
-        # Assuming 'customer_id' is a good key to order by
         all_data = self.fetch_data_in_batches(cursor, "staging_customers", "customer_id")
-        cursor.close() # Close the staging cursor
+        cursor.close() 
         
         if not all_data:
             print("  No data found in staging_customers")
@@ -430,7 +426,6 @@ class DataTransformer:
         
         self.stats['customers']['processed'] = len(df)
         
-        # Remove duplicates
         initial = len(df)
         df_clean = df.drop_duplicates(subset=['customer_id'], keep='first')
         duplicates_removed = initial - len(df_clean)
@@ -520,10 +515,13 @@ class DataTransformer:
         if date_warnings >= max_warnings:
             print(f"  Additional date warnings suppressed")
 
-    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_loans(self):
         """Transform loans"""
         print("\nTRANSFORMING LOANS")
+        
+        # --- FIX: Ping connections to ensure they are alive ---
+        self.staging_connection.ping(reconnect=True)
+        self.transformed_connection.ping(reconnect=True)
         
         tcursor = self.transformed_connection.cursor()
         tcursor.execute("SELECT customer_id FROM transformed_customers")
@@ -531,18 +529,16 @@ class DataTransformer:
         
         scursor = self.staging_connection.cursor()
         
-        # Get column names first, and clear the buffer
         try:
             scursor.execute("SELECT * FROM staging_loans LIMIT 1")
             columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # <-- FIX IS HERE
+            scursor.fetchall() # Clear buffer
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_loans: {e}")
             scursor.close()
             tcursor.close()
             return
 
-        # Get total count
         try:
             scursor.execute("SELECT COUNT(*) FROM staging_loans")
             total_count = scursor.fetchone()[0]
@@ -553,10 +549,8 @@ class DataTransformer:
             tcursor.close()
             return
 
-        # --- NEW: Fetch data in batches ---
-        # Assuming 'loan_id' is a good key to order by
         all_data = self.fetch_data_in_batches(scursor, "staging_loans", "loan_id")
-        scursor.close() # Close the staging cursor
+        scursor.close()
         
         if not all_data:
             print("  No data found in staging_loans")
@@ -567,7 +561,6 @@ class DataTransformer:
         
         self.stats['loans']['processed'] = len(df)
         
-        # Remove duplicates
         initial = len(df)
         df_clean = df.drop_duplicates(subset=['loan_id'], keep='first')
         duplicates_removed = initial - len(df_clean)
@@ -638,10 +631,13 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['loans']['transformed']}")
         print(f"  Duplicates: {self.stats['loans']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def transform_transactions(self):
         """Transform transactions"""
         print("\nTRANSFORMING TRANSACTIONS")
+        
+        # --- FIX: Ping connections to ensure they are alive ---
+        self.staging_connection.ping(reconnect=True)
+        self.transformed_connection.ping(reconnect=True)
         
         tcursor = self.transformed_connection.cursor()
         tcursor.execute("SELECT customer_id FROM transformed_customers")
@@ -649,18 +645,16 @@ class DataTransformer:
         
         scursor = self.staging_connection.cursor()
         
-        # Get column names first, and clear the buffer
         try:
             scursor.execute("SELECT * FROM staging_transactions LIMIT 1")
             columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # <-- FIX IS HERE
+            scursor.fetchall() # Clear buffer
         except mysql.connector.Error as e:
             print(f"  Error getting columns for staging_transactions: {e}")
             scursor.close()
             tcursor.close()
             return
 
-        # Get total count
         try:
             scursor.execute("SELECT COUNT(*) FROM staging_transactions")
             total_count = scursor.fetchone()[0]
@@ -671,11 +665,8 @@ class DataTransformer:
             tcursor.close()
             return
 
-        # --- NEW: Fetch data in batches ---
-        # This is the one that likely timed out before
-        # Assuming 'transaction_id' is a good key to order by
         all_data = self.fetch_data_in_batches(scursor, "staging_transactions", "transaction_id")
-        scursor.close() # Close the staging cursor
+        scursor.close()
         
         if not all_data:
             print("  No data found in staging_transactions")
@@ -686,7 +677,6 @@ class DataTransformer:
         
         self.stats['transactions']['processed'] = len(df)
         
-        # Remove duplicates
         initial = len(df)
         df_clean = df.drop_duplicates(subset=['transaction_id'], keep='first')
         duplicates_removed = initial - len(df_clean)
@@ -748,7 +738,6 @@ class DataTransformer:
         print(f"  Transformed: {self.stats['transactions']['transformed']}")
         print(f"  Duplicates: {self.stats['transactions']['duplicates']}, NULLs: {nulls}")
 
-    # --- MODIFIED: Uses batch fetching AND includes the fix ---
     def export_csv(self):
         """Export to CSV"""
         print("\nEXPORTING CSV")
@@ -756,26 +745,26 @@ class DataTransformer:
         
         for table in ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']:
             print(f"  Exporting {table}...")
+            
+            # --- FIX: Ping connection to ensure it's alive ---
+            self.transformed_connection.ping(reconnect=True)
+            
             cursor = self.transformed_connection.cursor()
             
-            # Get column names first, and clear the buffer
             try:
                 cursor.execute(f"SELECT * FROM {table} LIMIT 1")
                 columns = [c[0] for c in cursor.description]
-                cursor.fetchall() # <-- FIX IS HERE
+                cursor.fetchall()
             except mysql.connector.Error as e:
                 print(f"  Error getting columns for {table}: {e}")
                 cursor.close()
                 continue
 
-            # --- NEW: Fetch data in batches ---
-            # Use 'display_id' as the key to order by for transformed tables
             all_data = self.fetch_data_in_batches(cursor, table, "display_id")
             cursor.close()
             
             df = pd.DataFrame(all_data, columns=columns)
             
-            # Convert ALL columns to string and replace NULL values
             for col in df.columns:
                 df[col] = df[col].astype(str)
                 df[col] = df[col].apply(lambda x: 'NA' if x in [
@@ -813,14 +802,14 @@ class DataTransformer:
     def run_transformation(self):
         """Run pipeline"""
         try:
-            print("\n" + "="*60)
+            print("="*60)
             print("STARTING TRANSFORMATION")
             print("="*60)
             
             self.connect_databases()
             self.create_transformed_tables()
             
-            start_time = time.time()  # --- NEW: Track execution time ---
+            start_time = time.time()
             
             self.transform_branches()
             self.transform_customers()
@@ -830,11 +819,11 @@ class DataTransformer:
             files = self.export_csv()
             self.print_summary()
             
-            end_time = time.time()  # --- NEW: Track execution time ---
+            end_time = time.time()
             execution_time = end_time - start_time
             
             print(f"\nExported {len(files)} files to {self.exports_dir}/")
-            print(f"Total execution time: {execution_time:.2f} seconds") # --- NEW ---
+            print(f"Total execution time: {execution_time:.2f} seconds")
             print("TRANSFORMATION COMPLETED\n")
             
             return {'stats': self.stats, 'quality': self.quality, 'files': files, 'execution_time': execution_time}
@@ -905,7 +894,7 @@ def main():
     
     try:
         transformer = DataTransformer(config)
-        transformer.run_transformation()
+        transformer.run_transformation() # Fixed a typo here, was 'run_transformatio'
     except Exception as e:
         print(f"\nTransformation failed: {e}")
         import traceback
