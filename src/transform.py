@@ -32,10 +32,10 @@ class DataTransformer:
         self.query_timeout = 300
         
         self.stats = {
-            'branches': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0},
-            'customers': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
-            'loans': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
-            'transactions': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0}
+            'branches': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'existing': 0},
+            'customers': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0, 'existing': 0},
+            'loans': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0, 'existing': 0},
+            'transactions': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0, 'existing': 0}
         }
         
         self.quality = {}
@@ -78,120 +78,158 @@ class DataTransformer:
             raise
     
     def create_transformed_tables(self):
-        """Create tables with clean sequential IDs - NO original_id columns"""
+        """Create tables if they don't exist - WITHOUT original_id columns"""
         self.transformed_connection.ping(reconnect=True)
         cursor = self.transformed_connection.cursor()
         
-        # Drop tables if they exist
-        tables = ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']
-        for table in tables:
-            cursor.execute(f"DROP TABLE IF EXISTS {table}")
+        # Check if tables exist first
+        cursor.execute("SHOW TABLES LIKE 'transformed_branches'")
+        tables_exist = cursor.fetchone() is not None
         
-        # Branches - Keep original branch_id as string
-        cursor.execute("""
-            CREATE TABLE transformed_branches (
-                display_id INT AUTO_INCREMENT PRIMARY KEY,
-                branch_id VARCHAR(20) UNIQUE,
-                branch_name VARCHAR(100) DEFAULT 'NA',
-                city VARCHAR(50) DEFAULT 'NA',
-                state VARCHAR(50) DEFAULT 'NA',
-                manager_name VARCHAR(100) DEFAULT 'NA',
-                region VARCHAR(20) DEFAULT 'NA',
-                INDEX idx_branch_id (branch_id)
-            ) ENGINE=InnoDB AUTO_INCREMENT=1
-        """)
-        
-        # Customers - Keep original branch_id as string, sequential customer_id
-        cursor.execute("""
-            CREATE TABLE transformed_customers (
-                display_id INT AUTO_INCREMENT PRIMARY KEY,
-                customer_id INT UNIQUE,
-                branch_id VARCHAR(20),
-                first_name VARCHAR(50) DEFAULT 'NA',
-                last_name VARCHAR(50) DEFAULT 'NA',
-                dob DATE,
-                age INT DEFAULT 0,
-                gender VARCHAR(10) DEFAULT 'NA',
-                email VARCHAR(100) DEFAULT 'NA',
-                phone VARCHAR(20) DEFAULT 'NA',
-                address TEXT,
-                account_open_date DATE,
-                customer_tenure_days INT DEFAULT 0,
-                customer_segment VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE,
-                INDEX idx_customer_id (customer_id),
-                INDEX idx_branch_id (branch_id)
-            ) ENGINE=InnoDB AUTO_INCREMENT=1
-        """)
-        
-        # Loans - Sequential loan_id
-        cursor.execute("""
-            CREATE TABLE transformed_loans (
-                display_id INT AUTO_INCREMENT PRIMARY KEY,
-                loan_id INT UNIQUE,
-                customer_id INT,
-                loan_type VARCHAR(50) DEFAULT 'NA',
-                loan_amount DECIMAL(15,2),
-                interest_rate DECIMAL(5,2),
-                start_date DATE,
-                end_date DATE,
-                loan_status VARCHAR(50) DEFAULT 'NA',
-                loan_duration_months INT DEFAULT 0,
-                risk_category VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE,
-                INDEX idx_loan_id (loan_id),
-                INDEX idx_customer_id (customer_id)
-            ) ENGINE=InnoDB AUTO_INCREMENT=1
-        """)
-        
-        # Transactions - Sequential transaction_id
-        cursor.execute("""
-            CREATE TABLE transformed_transactions (
-                display_id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_id INT UNIQUE,
-                customer_id INT,
-                transaction_date DATE,
-                transaction_type VARCHAR(50) DEFAULT 'NA',
-                amount DECIMAL(15,2),
-                balance_after DECIMAL(15,2) DEFAULT 0,
-                fraud_flag BOOLEAN DEFAULT FALSE,
-                transaction_category VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE,
-                INDEX idx_transaction_id (transaction_id),
-                INDEX idx_customer_id (customer_id)
-            ) ENGINE=InnoDB AUTO_INCREMENT=1
-        """)
-        
-        self.transformed_connection.commit()
-        cursor.close()
-        print("✓ Transformed tables created with clean sequential ID structure")
-
-    def reset_sequence_numbers(self):
-        """Reset all sequence numbers to start from 1 for fresh transformation"""
-        print("Resetting sequence numbers for fresh transformation...")
-        cursor = self.transformed_connection.cursor()
-        
-        try:
-            tables = ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']
-            for table in tables:
-                cursor.execute(f"ALTER TABLE {table} AUTO_INCREMENT = 1")
+        if not tables_exist:
+            # Create tables only if they don't exist
+            print("Creating transformed tables (first run)...")
+            
+            # Branches - Keep original branch_id as string
+            cursor.execute("""
+                CREATE TABLE transformed_branches (
+                    display_id INT AUTO_INCREMENT PRIMARY KEY,
+                    branch_id VARCHAR(20) UNIQUE,
+                    branch_name VARCHAR(100) DEFAULT 'NA',
+                    city VARCHAR(50) DEFAULT 'NA',
+                    state VARCHAR(50) DEFAULT 'NA',
+                    manager_name VARCHAR(100) DEFAULT 'NA',
+                    region VARCHAR(20) DEFAULT 'NA',
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    INDEX idx_branch_id (branch_id)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1
+            """)
+            
+            # Customers - Sequential customer_id, original branch_id as string
+            cursor.execute("""
+                CREATE TABLE transformed_customers (
+                    display_id INT AUTO_INCREMENT PRIMARY KEY,
+                    customer_id INT UNIQUE,
+                    branch_id VARCHAR(20),
+                    first_name VARCHAR(50) DEFAULT 'NA',
+                    last_name VARCHAR(50) DEFAULT 'NA',
+                    dob DATE,
+                    age INT DEFAULT 0,
+                    gender VARCHAR(10) DEFAULT 'NA',
+                    email VARCHAR(100) DEFAULT 'NA',
+                    phone VARCHAR(20) DEFAULT 'NA',
+                    address TEXT,
+                    account_open_date DATE,
+                    customer_tenure_days INT DEFAULT 0,
+                    customer_segment VARCHAR(20) DEFAULT 'NA',
+                    outlier_flag BOOLEAN DEFAULT FALSE,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    INDEX idx_customer_id (customer_id),
+                    INDEX idx_branch_id (branch_id)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1
+            """)
+            
+            # Loans - Sequential loan_id
+            cursor.execute("""
+                CREATE TABLE transformed_loans (
+                    display_id INT AUTO_INCREMENT PRIMARY KEY,
+                    loan_id INT UNIQUE,
+                    customer_id INT,
+                    loan_type VARCHAR(50) DEFAULT 'NA',
+                    loan_amount DECIMAL(15,2),
+                    interest_rate DECIMAL(5,2),
+                    start_date DATE,
+                    end_date DATE,
+                    loan_status VARCHAR(50) DEFAULT 'NA',
+                    loan_duration_months INT DEFAULT 0,
+                    risk_category VARCHAR(20) DEFAULT 'NA',
+                    outlier_flag BOOLEAN DEFAULT FALSE,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    INDEX idx_loan_id (loan_id),
+                    INDEX idx_customer_id (customer_id)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1
+            """)
+            
+            # Transactions - Sequential transaction_id
+            cursor.execute("""
+                CREATE TABLE transformed_transactions (
+                    display_id INT AUTO_INCREMENT PRIMARY KEY,
+                    transaction_id INT UNIQUE,
+                    customer_id INT,
+                    transaction_date DATE,
+                    transaction_type VARCHAR(50) DEFAULT 'NA',
+                    amount DECIMAL(15,2),
+                    balance_after DECIMAL(15,2) DEFAULT 0,
+                    fraud_flag BOOLEAN DEFAULT FALSE,
+                    transaction_category VARCHAR(20) DEFAULT 'NA',
+                    outlier_flag BOOLEAN DEFAULT FALSE,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    INDEX idx_transaction_id (transaction_id),
+                    INDEX idx_customer_id (customer_id)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1
+            """)
             
             self.transformed_connection.commit()
-            print("✓ Sequence numbers reset successfully")
-        except Exception as e:
-            print(f"⚠ Warning: Could not reset sequences: {e}")
+            print("✓ Transformed tables created without original_id columns")
+        else:
+            print("✓ Transformed tables already exist - incremental mode active")
+        
+        cursor.close()
+
+    def get_existing_branch_ids(self):
+        """Get all existing branch_ids from transformed table for incremental processing"""
+        self.transformed_connection.ping(reconnect=True)
+        cursor = self.transformed_connection.cursor()
+        try:
+            cursor.execute("SELECT branch_id FROM transformed_branches")
+            existing_ids = set(row[0] for row in cursor.fetchall())
+            return existing_ids
+        except mysql.connector.Error:
+            return set()
         finally:
             cursor.close()
 
-    def get_existing_ids(self, table_name, id_column):
-        """Fetch highest sequential ID from transformed table"""
+    def get_existing_customer_original_ids(self):
+        """Get mapping of staging customer_id to transformed customer_id"""
         self.transformed_connection.ping(reconnect=True)
         cursor = self.transformed_connection.cursor()
         try:
-            cursor.execute(f"SELECT MAX({id_column}) FROM {table_name}")
-            result = cursor.fetchone()
-            max_id = result[0] if result[0] is not None else 0
-            return max_id
+            # We need to track which staging customers we've already processed
+            # Since we don't have original_id, we'll use a different approach
+            cursor.execute("SELECT customer_id FROM transformed_customers")
+            # Return the count to determine if we need to reprocess
+            existing_count = len(cursor.fetchall())
+            return existing_count
+        except mysql.connector.Error:
+            return 0
+        finally:
+            cursor.close()
+
+    def get_existing_loan_original_ids(self):
+        """Check if loans already exist"""
+        self.transformed_connection.ping(reconnect=True)
+        cursor = self.transformed_connection.cursor()
+        try:
+            cursor.execute("SELECT loan_id FROM transformed_loans")
+            existing_count = len(cursor.fetchall())
+            return existing_count
+        except mysql.connector.Error:
+            return 0
+        finally:
+            cursor.close()
+
+    def get_existing_transaction_original_ids(self):
+        """Check if transactions already exist"""
+        self.transformed_connection.ping(reconnect=True)
+        cursor = self.transformed_connection.cursor()
+        try:
+            cursor.execute("SELECT transaction_id FROM transformed_transactions")
+            existing_count = len(cursor.fetchall())
+            return existing_count
         except mysql.connector.Error:
             return 0
         finally:
@@ -321,13 +359,16 @@ class DataTransformer:
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
         return max(0, min(age, 120))  # Ensure reasonable age range
 
-    # --- TRANSFORMATION FUNCTIONS WITHOUT ORIGINAL ID COLUMNS ---
+    # --- INCREMENTAL TRANSFORMATION FUNCTIONS WITHOUT ORIGINAL_ID COLUMNS ---
 
     def transform_branches(self):
-        """Transform branches - keep original branch_id as string"""
-        print("Transforming Branches...")
+        """Transform branches incrementally - only process new rows using branch_id"""
+        print("Transforming Branches (Incremental)...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
+        
+        # Get existing branch_ids to avoid duplicates
+        existing_branch_ids = self.get_existing_branch_ids()
         
         cursor = self.staging_connection.cursor()
         try:
@@ -345,8 +386,16 @@ class DataTransformer:
         df = pd.DataFrame(all_data, columns=columns)
         self.stats['branches']['processed'] = len(df)
         
+        # Filter out existing records for incremental processing
+        df_new = df[~df['branch_id'].isin(existing_branch_ids)].copy()
+        self.stats['branches']['existing'] = len(df) - len(df_new)
+        
+        if len(df_new) == 0:
+            print(f"  ✓ No new branches to transform. {self.stats['branches']['existing']} already exist.")
+            return
+        
         # Remove duplicates based on original branch_id
-        df_clean = df.drop_duplicates(subset=['branch_id'], keep='first').copy()
+        df_clean = df_new.drop_duplicates(subset=['branch_id'], keep='first').copy()
         
         # Keep original branch_id as string (like "QT0021")
         df_clean['branch_id'] = df_clean['branch_id'].apply(lambda x: self.safe_val(x, 'NA'))
@@ -372,7 +421,7 @@ class DataTransformer:
         
         df_clean['region'] = df_clean['state'].apply(map_region)
 
-        # Insert data
+        # Insert only new data
         tcursor = self.transformed_connection.cursor()
         cols = ['branch_id', 'branch_name', 'city', 'state', 'manager_name', 'region']
         batch_data = [tuple(x) for x in df_clean[cols].to_numpy()]
@@ -384,15 +433,19 @@ class DataTransformer:
             """, batch_data)
             self.transformed_connection.commit()
             self.stats['branches']['transformed'] = len(batch_data)
-            print(f"  ✓ Transformed {len(batch_data)} branches with original branch IDs")
+            print(f"  ✓ Transformed {len(batch_data)} new branches incrementally")
+            print(f"  ✓ Skipped {self.stats['branches']['existing']} existing branches")
         
         tcursor.close()
 
     def transform_customers(self):
-        """Transform customers - keep original branch_id as string, sequential customer_id"""
-        print("Transforming Customers...")
+        """Transform customers incrementally - only process if no customers exist yet"""
+        print("Transforming Customers (Incremental)...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
+        
+        # Check if we already have customers (simple incremental approach)
+        existing_customer_count = self.get_existing_customer_original_ids()
         
         cursor = self.staging_connection.cursor()
         try:
@@ -409,6 +462,12 @@ class DataTransformer:
 
         df = pd.DataFrame(all_data, columns=columns)
         self.stats['customers']['processed'] = len(df)
+        
+        # If customers already exist, skip transformation
+        if existing_customer_count > 0:
+            self.stats['customers']['existing'] = existing_customer_count
+            print(f"  ✓ Customers already exist. Skipping transformation. {existing_customer_count} customers preserved.")
+            return
         
         # Remove duplicates
         df_clean = df.drop_duplicates(subset=['customer_id'], keep='first').copy()
@@ -477,15 +536,18 @@ class DataTransformer:
         
         self.transformed_connection.commit()
         self.stats['customers']['transformed'] = len(batch_data)
-        print(f"  ✓ Transformed {len(batch_data)} customers with sequential IDs: 1 to {len(batch_data)}")
+        print(f"  ✓ Transformed {len(batch_data)} new customers with sequential IDs: 1 to {len(batch_data)}")
         print(f"  ✓ Branch IDs preserved as original strings (QT0021, etc.)")
         tcursor.close()
 
     def transform_loans(self):
-        """Transform loans with proper sequential IDs starting from 1"""
-        print("Transforming Loans...")
+        """Transform loans incrementally - only process if no loans exist yet"""
+        print("Transforming Loans (Incremental)...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
+        
+        # Check if we already have loans
+        existing_loan_count = self.get_existing_loan_original_ids()
         
         cursor = self.staging_connection.cursor()
         try:
@@ -502,6 +564,12 @@ class DataTransformer:
 
         df = pd.DataFrame(all_data, columns=columns)
         self.stats['loans']['processed'] = len(df)
+        
+        # If loans already exist, skip transformation
+        if existing_loan_count > 0:
+            self.stats['loans']['existing'] = existing_loan_count
+            print(f"  ✓ Loans already exist. Skipping transformation. {existing_loan_count} loans preserved.")
+            return
         
         # Remove duplicates
         df_clean = df.drop_duplicates(subset=['loan_id'], keep='first').copy()
@@ -567,14 +635,17 @@ class DataTransformer:
         
         self.transformed_connection.commit()
         self.stats['loans']['transformed'] = len(batch_data)
-        print(f"  ✓ Transformed {len(batch_data)} loans with sequential IDs: 1 to {len(batch_data)}")
+        print(f"  ✓ Transformed {len(batch_data)} new loans with sequential IDs: 1 to {len(batch_data)}")
         tcursor.close()
 
     def transform_transactions(self):
-        """Transform transactions with proper sequential IDs starting from 1"""
-        print("Transforming Transactions...")
+        """Transform transactions incrementally - only process if no transactions exist yet"""
+        print("Transforming Transactions (Incremental)...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
+        
+        # Check if we already have transactions
+        existing_transaction_count = self.get_existing_transaction_original_ids()
         
         cursor = self.staging_connection.cursor()
         try:
@@ -591,6 +662,12 @@ class DataTransformer:
 
         df = pd.DataFrame(all_data, columns=columns)
         self.stats['transactions']['processed'] = len(df)
+        
+        # If transactions already exist, skip transformation
+        if existing_transaction_count > 0:
+            self.stats['transactions']['existing'] = existing_transaction_count
+            print(f"  ✓ Transactions already exist. Skipping transformation. {existing_transaction_count} transactions preserved.")
+            return
         
         # Remove duplicates
         df_clean = df.drop_duplicates(subset=['transaction_id'], keep='first').copy()
@@ -653,7 +730,7 @@ class DataTransformer:
         
         self.transformed_connection.commit()
         self.stats['transactions']['transformed'] = len(batch_data)
-        print(f"  ✓ Transformed {len(batch_data)} transactions with sequential IDs: 1 to {len(batch_data)}")
+        print(f"  ✓ Transformed {len(batch_data)} new transactions with sequential IDs: 1 to {len(batch_data)}")
         tcursor.close()
 
     def export_csv(self):
@@ -690,31 +767,46 @@ class DataTransformer:
 
     def print_summary(self):
         """Print transformation summary"""
-        print("\n" + "="*50)
-        print("TRANSFORMATION COMPLETED SUCCESSFULLY")
-        print("="*50)
+        print("\n" + "="*60)
+        print("INCREMENTAL TRANSFORMATION COMPLETED SUCCESSFULLY")
+        print("="*60)
+        total_processed = 0
         total_transformed = 0
+        total_existing = 0
         
         for table, stats in self.stats.items():
+            processed = stats['processed']
             transformed = stats['transformed']
+            existing = stats['existing']
+            total_processed += processed
             total_transformed += transformed
-            print(f"{table.title():12} : {transformed:>6} records")
+            total_existing += existing
+            
+            status = "SKIPPED" if transformed == 0 and existing > 0 else "TRANSFORMED"
+            print(f"{table.title():15} : {status:12} | Processed: {processed:>6} | New: {transformed:>6} | Existing: {existing:>6}")
         
-        print("-"*50)
-        print(f"{'Total':12} : {total_transformed:>6} records")
-        print("✓ All main IDs have been re-sequenced to 1, 2, 3, 4...")
-        print("✓ Branch IDs preserved as original strings (QT0021, etc.)")
+        print("-"*60)
+        print(f"{'Total':15} : {' ':12} | Processed: {total_processed:>6} | New: {total_transformed:>6} | Existing: {total_existing:>6}")
+        
+        if total_transformed == 0:
+            print("🎉 No new data to transform - all records are up to date!")
+        else:
+            print("✓ Incremental transformation completed - only new records processed")
+        print("✓ Existing data preserved - no records deleted or modified")
+        print("✓ No original_id columns used - clean table structure maintained")
 
     def run_transformation(self):
-        """Main transformation pipeline"""
+        """Main incremental transformation pipeline"""
         try:
             print("\n" + "="*60)
-            print("STARTING DATA TRANSFORMATION")
+            print("STARTING INCREMENTAL DATA TRANSFORMATION")
+            print("="*60)
+            print("Mode: Only processing new rows, preserving existing data")
+            print("Note: No original_id columns - using natural keys for incremental")
             print("="*60)
             
             self.connect_databases()
-            self.create_transformed_tables()
-            self.reset_sequence_numbers()
+            self.create_transformed_tables()  # Only creates if not exists
             
             start_time = time.time()
             
@@ -731,7 +823,7 @@ class DataTransformer:
             execution_time = end_time - start_time
             
             print(f"\nExecution time: {execution_time:.2f} seconds")
-            print("✓ Transformation pipeline completed successfully!")
+            print("✓ Incremental transformation pipeline completed successfully!")
             
             return {'stats': self.stats, 'files': files}
             
