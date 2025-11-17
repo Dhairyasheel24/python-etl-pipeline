@@ -1,5 +1,5 @@
 customer_id,branch_id,first_name,last_name,dob,gender,email,phone,address,account_open_date
-1,QT0021,Rachita,Tandon,27-07-78,F,ryan40@example.org,7025702592,"60/736, Swamy Nagar, Mango-248774",11-01-07
+1,QT0021,Rachita,Tandon,27-07-78,F,ryan40@example.org,7000002987,"60/736, Swamy Nagar, Mango-248774",11-01-07
 2,QT0010,Naveen,Sura,06-08-96,F,hmani@example.org,8342433207,"14/469, Natt Road, Bhiwani-380292",03-08-13
 3,QT0020,Warda,Dalal,18-10-91,M,qadimradhakrishnan@example.com,6871611823,"H.No. 21, Raja Chowk, Guwahati 468597",30-06-18
 4,QT0024,Noah,Lall,27-10-77,F,idikachhabra@example.net,9335875952,"89/28, Varkey Nagar, Moradabad 908874",14-12-06

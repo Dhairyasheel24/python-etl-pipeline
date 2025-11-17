@@ -1,6 +1,6 @@
 """
 Complete ETL Extract Module - Stores CSV data AS-IS
-No date conversion - transform.py handles all date logic
+Handles both new and updated records (Upsert)
 """
 import pandas as pd
 import mysql.connector
@@ -123,6 +123,7 @@ class MySQLExtractor:
             ''')
             
             # Staging tables - all columns as VARCHAR to preserve raw data
+            # NOTE: The UNIQUE constraint on the primary key is CRITICAL for UPSERT
             table_definitions = {
                 'staging_branches': '''
                     CREATE TABLE IF NOT EXISTS staging_branches (
@@ -324,31 +325,42 @@ class MySQLExtractor:
             self.logger.error(f"Failed to get existing keys for {table_name}: {str(e)}")
             return set()
     
-    def _insert_batch_data(self, staging_table: str, columns: List[str], batch_data: List[tuple]) -> int:
-        """Insert batch data into staging table"""
+    def _upsert_batch_data(self, staging_table: str, columns: List[str], batch_data: List[tuple]) -> int:
+        """Insert/Update batch data into staging table using UPSERT"""
         if not batch_data:
             return 0
         
         try:
             columns_str = ', '.join(columns)
             placeholders = ', '.join(['%s'] * len(columns))
-            insert_query = f"INSERT INTO {staging_table} ({columns_str}) VALUES ({placeholders})"
+            
+            # Build the UPDATE part
+            # e.g. "col1 = VALUES(col1), col2 = VALUES(col2)"
+            update_clause = ', '.join([f"{col} = VALUES({col})" for col in columns])
+            
+            upsert_query = f"""INSERT INTO {staging_table} ({columns_str}) 
+                               VALUES ({placeholders})
+                               ON DUPLICATE KEY UPDATE {update_clause}"""
             
             cursor = self.connection.cursor()
-            cursor.executemany(insert_query, batch_data)
+            cursor.executemany(upsert_query, batch_data)
+            affected_rows = cursor.rowcount
             self.connection.commit()
             cursor.close()
             
+            # For logging, we'll rely on the Python-side counts.
+            # Return the number of rows we attempted to process.
             return len(batch_data)
         except Error as e:
-            self.logger.error(f"Failed to insert batch data: {str(e)}")
+            self.logger.error(f"Failed to upsert batch data: {str(e)}")
             self.connection.rollback()
             return 0
     
     def _process_large_file_in_chunks(self, table_name: str, csv_file_path: str) -> Tuple[int, int, int]:
         """Process large CSV files in chunks"""
-        total_rows = 0
+        total_rows_processed = 0
         total_new = 0
+        total_updated = 0
         
         try:
             file_size_mb = os.path.getsize(csv_file_path) / (1024 * 1024)
@@ -376,29 +388,35 @@ class MySQLExtractor:
                 chunk_df = chunk_df[chunk_df[primary_key] != '']
                 chunk_df = chunk_df.drop_duplicates(subset=[primary_key], keep='last')
                 
+                if chunk_df.empty:
+                    continue
+
+                total_rows_processed += len(chunk_df)
+                
+                # Calculate new vs update counts
                 chunk_keys = set(chunk_df[primary_key].astype(str))
                 new_keys = chunk_keys - existing_keys
+                update_keys = chunk_keys.intersection(existing_keys)
                 
-                if new_keys:
-                    new_df = chunk_df[chunk_df[primary_key].astype(str).isin(new_keys)]
+                total_new += len(new_keys)
+                total_updated += len(update_keys)
+                
+                # Send the *entire* chunk to be upserted
+                if not chunk_df.empty:
+                    batch_data = [tuple(row) for row in chunk_df.to_numpy()]
                     
-                    if not new_df.empty:
-                        batch_data = [tuple(row) for row in new_df.to_numpy()]
-                        
-                        for i in range(0, len(batch_data), BATCH_SIZE):
-                            sub_batch = batch_data[i:i+BATCH_SIZE]
-                            inserted = self._insert_batch_data(staging_table, expected_columns, sub_batch)
-                            total_new += inserted
-                        
-                        existing_keys.update(new_keys)
-                
-                total_rows += len(chunk_df)
+                    for i in range(0, len(batch_data), BATCH_SIZE):
+                        sub_batch = batch_data[i:i+BATCH_SIZE]
+                        self._upsert_batch_data(staging_table, expected_columns, sub_batch)
+                    
+                    # Add new keys to our set so they aren't double-counted
+                    existing_keys.update(new_keys)
                 
                 if chunk_num % 10 == 0:
-                    self.logger.info(f"Processed {chunk_num} chunks, {total_rows} rows total, {total_new} new records")
+                    self.logger.info(f"Processed {chunk_num} chunks, {total_rows_processed} rows total, {total_new} new, {total_updated} updated")
             
-            self.logger.info(f"Large file completed: {total_new} new records from {total_rows} total rows")
-            return total_rows, total_new, 0
+            self.logger.info(f"Large file completed: {total_new} new records, {total_updated} updated records from {total_rows_processed} total rows")
+            return total_rows_processed, total_new, total_updated
             
         except Exception as e:
             self.logger.error(f"Error processing large file: {str(e)}")
@@ -429,21 +447,31 @@ class MySQLExtractor:
             df = df[df[primary_key] != '']
             df = df.drop_duplicates(subset=[primary_key], keep='last')
             
+            if df.empty:
+                self.logger.info(f"No valid data after cleaning in {csv_file_path}")
+                return total_rows, 0, 0
+
+            # Calculate new vs update counts
             existing_keys = self._get_existing_primary_keys(table_name)
             csv_keys = set(df[primary_key].astype(str))
+            
             new_keys = csv_keys - existing_keys
+            update_keys = csv_keys.intersection(existing_keys)
             
-            new_count = 0
-            if new_keys:
-                new_df = df[df[primary_key].astype(str).isin(new_keys)]
+            new_count = len(new_keys)
+            update_count = len(update_keys)
+            
+            # Send the *entire* DataFrame to be upserted
+            if not df.empty:
+                staging_table = f"staging_{table_name}"
+                batch_data = [tuple(row) for row in df.to_numpy()]
                 
-                if not new_df.empty:
-                    staging_table = f"staging_{table_name}"
-                    batch_data = [tuple(row) for row in new_df.to_numpy()]
-                    new_count = self._insert_batch_data(staging_table, expected_columns, batch_data)
+                for i in range(0, len(batch_data), BATCH_SIZE):
+                    sub_batch = batch_data[i:i+BATCH_SIZE]
+                    self._upsert_batch_data(staging_table, expected_columns, sub_batch)
             
-            self.logger.info(f"Small file: {new_count} new records from {total_rows} CSV rows")
-            return total_rows, new_count, 0
+            self.logger.info(f"Small file: {new_count} new records, {update_count} updated records from {total_rows} CSV rows")
+            return total_rows, new_count, update_count
             
         except Exception as e:
             self.logger.error(f"Failed to process {csv_file_path}: {str(e)}")

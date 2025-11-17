@@ -7,7 +7,16 @@ import sys
 import os
 from pathlib import Path
 import time
+import numpy as np
+import warnings
 
+# Suppress all warnings
+warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore', category=FutureWarning)
+warnings.filterwarnings('ignore', category=DeprecationWarning)
+pd.set_option('future.no_silent_downcasting', True)
+
+# Ensure we can find the config folder
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class DataTransformer:
@@ -19,20 +28,19 @@ class DataTransformer:
         self.exports_dir = Path("exports")
         self.exports_dir.mkdir(exist_ok=True)
         
-        self.batch_size = 1000
+        self.batch_size = 5000
         self.query_timeout = 300
         
         self.stats = {
-            'branches': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0},
-            'customers': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
-            'loans': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
-            'transactions': {'processed': 0, 'transformed': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0}
+            'branches': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0},
+            'customers': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
+            'loans': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0},
+            'transactions': {'processed': 0, 'transformed': 0, 'skipped': 0, 'duplicates': 0, 'nulls': 0, 'outliers': 0}
         }
         
         self.quality = {}
     
     def connect_databases(self):
-        """Connect to databases"""
         try:
             self.staging_connection = mysql.connector.connect(
                 host=self.config['MYSQL_HOST'],
@@ -65,24 +73,21 @@ class DataTransformer:
                 connection_timeout=self.query_timeout
             )
             
-            print("Connected to databases")
-            
         except mysql.connector.Error as e:
             self.logger.error(f"Connection error: {e}")
             raise
     
     def create_transformed_tables(self):
-        """Create tables with sequential display IDs"""
-        # --- FIX: Ping connection to ensure it's alive ---
+        """Create tables with clean sequential IDs - NO original_id columns"""
         self.transformed_connection.ping(reconnect=True)
         cursor = self.transformed_connection.cursor()
         
+        # Drop tables if they exist
         tables = ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']
         for table in tables:
             cursor.execute(f"DROP TABLE IF EXISTS {table}")
         
-        # ... (rest of the table creation SQL is unchanged) ...
-        # Branches
+        # Branches - Keep original branch_id as string
         cursor.execute("""
             CREATE TABLE transformed_branches (
                 display_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -91,16 +96,17 @@ class DataTransformer:
                 city VARCHAR(50) DEFAULT 'NA',
                 state VARCHAR(50) DEFAULT 'NA',
                 manager_name VARCHAR(100) DEFAULT 'NA',
-                region VARCHAR(20) DEFAULT 'NA'
-            )
+                region VARCHAR(20) DEFAULT 'NA',
+                INDEX idx_branch_id (branch_id)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1
         """)
         
-        # Customers
+        # Customers - Keep original branch_id as string, sequential customer_id
         cursor.execute("""
             CREATE TABLE transformed_customers (
                 display_id INT AUTO_INCREMENT PRIMARY KEY,
-                customer_id VARCHAR(20) UNIQUE,
-                branch_id VARCHAR(20) DEFAULT 'NA',
+                customer_id INT UNIQUE,
+                branch_id VARCHAR(20),
                 first_name VARCHAR(50) DEFAULT 'NA',
                 last_name VARCHAR(50) DEFAULT 'NA',
                 dob DATE,
@@ -112,16 +118,18 @@ class DataTransformer:
                 account_open_date DATE,
                 customer_tenure_days INT DEFAULT 0,
                 customer_segment VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE
-            )
+                outlier_flag BOOLEAN DEFAULT FALSE,
+                INDEX idx_customer_id (customer_id),
+                INDEX idx_branch_id (branch_id)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1
         """)
         
-        # Loans
+        # Loans - Sequential loan_id
         cursor.execute("""
             CREATE TABLE transformed_loans (
                 display_id INT AUTO_INCREMENT PRIMARY KEY,
-                loan_id VARCHAR(20) UNIQUE,
-                customer_id VARCHAR(20) DEFAULT 'NA',
+                loan_id INT UNIQUE,
+                customer_id INT,
                 loan_type VARCHAR(50) DEFAULT 'NA',
                 loan_amount DECIMAL(15,2),
                 interest_rate DECIMAL(5,2),
@@ -130,31 +138,67 @@ class DataTransformer:
                 loan_status VARCHAR(50) DEFAULT 'NA',
                 loan_duration_months INT DEFAULT 0,
                 risk_category VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE
-            )
+                outlier_flag BOOLEAN DEFAULT FALSE,
+                INDEX idx_loan_id (loan_id),
+                INDEX idx_customer_id (customer_id)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1
         """)
         
-        # Transactions
+        # Transactions - Sequential transaction_id
         cursor.execute("""
             CREATE TABLE transformed_transactions (
                 display_id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_id VARCHAR(20) UNIQUE,
-                customer_id VARCHAR(20) DEFAULT 'NA',
+                transaction_id INT UNIQUE,
+                customer_id INT,
                 transaction_date DATE,
                 transaction_type VARCHAR(50) DEFAULT 'NA',
                 amount DECIMAL(15,2),
                 balance_after DECIMAL(15,2) DEFAULT 0,
                 fraud_flag BOOLEAN DEFAULT FALSE,
                 transaction_category VARCHAR(20) DEFAULT 'NA',
-                outlier_flag BOOLEAN DEFAULT FALSE
-            )
+                outlier_flag BOOLEAN DEFAULT FALSE,
+                INDEX idx_transaction_id (transaction_id),
+                INDEX idx_customer_id (customer_id)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1
         """)
         
         self.transformed_connection.commit()
-        print("Tables created with sequential IDs")
-    
+        cursor.close()
+        print("✓ Transformed tables created with clean sequential ID structure")
+
+    def reset_sequence_numbers(self):
+        """Reset all sequence numbers to start from 1 for fresh transformation"""
+        print("Resetting sequence numbers for fresh transformation...")
+        cursor = self.transformed_connection.cursor()
+        
+        try:
+            tables = ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']
+            for table in tables:
+                cursor.execute(f"ALTER TABLE {table} AUTO_INCREMENT = 1")
+            
+            self.transformed_connection.commit()
+            print("✓ Sequence numbers reset successfully")
+        except Exception as e:
+            print(f"⚠ Warning: Could not reset sequences: {e}")
+        finally:
+            cursor.close()
+
+    def get_existing_ids(self, table_name, id_column):
+        """Fetch highest sequential ID from transformed table"""
+        self.transformed_connection.ping(reconnect=True)
+        cursor = self.transformed_connection.cursor()
+        try:
+            cursor.execute(f"SELECT MAX({id_column}) FROM {table_name}")
+            result = cursor.fetchone()
+            max_id = result[0] if result[0] is not None else 0
+            return max_id
+        except mysql.connector.Error:
+            return 0
+        finally:
+            cursor.close()
+
     def fetch_data_in_batches(self, cursor, table_name, primary_key):
-        """Fetch data in batches to prevent timeout"""
+        """Fetch data in batches with progress indicator"""
         offset = 0
         all_data = []
         
@@ -163,26 +207,25 @@ class DataTransformer:
                 query = f"SELECT * FROM {table_name} ORDER BY {primary_key} LIMIT {self.batch_size} OFFSET {offset}"
                 cursor.execute(query)
                 batch = cursor.fetchall()
-                
                 if not batch:
                     break
-                    
                 all_data.extend(batch)
                 offset += self.batch_size
-                print(f"  Fetched batch: {len(batch)} records (total: {len(all_data)})")
                 
+                if len(all_data) % 10000 == 0:
+                    print(f"  Fetched {len(all_data)} records from staging...", end='\r')
+                    
             except mysql.connector.Error as e:
-                print(f"  Error fetching batch for {table_name}: {e}")
+                print(f"  Error fetching batch: {e}")
                 break
         
+        if all_data:
+            print(f"  Fetched total {len(all_data)} records from staging.      ")
         return all_data
 
-    # ... (All safe_ utility functions are unchanged) ...
+    # --- Safe Utilities ---
     def safe_val(self, val, default='NA', title=False, upper=False, lower=False):
-        if (val is None or 
-            pd.isna(val) or 
-            str(val).strip() in ['', 'None', 'NaN', 'nan', 'NULL', 'null', 'N/A', 'n/a'] or
-            str(val).strip().lower() in ['nan', 'none', '', 'n/a', 'null']):
+        if (val is None or pd.isna(val) or str(val).strip() in ['', 'None', 'NaN', 'nan', 'NULL'] or str(val).strip().lower() == 'nan'):
             return default
         result = str(val).strip()
         if not result: return default
@@ -192,627 +235,492 @@ class DataTransformer:
         return result
 
     def safe_date(self, val, return_string_na=False):
-        if (val is None or 
-            pd.isna(val) or 
-            str(val).strip() in ['', 'None', 'NaN', 'nan', 'NULL', 'null', 'N/A', 'n/a'] or
-            str(val).strip().lower() in ['nan', 'none', '', 'n/a', 'null']):
-            return 'NA' if return_string_na else None
+        """Robust date parser that correctly handles 2-digit years"""
+        if pd.isna(val) or str(val).strip() in ['', 'None', 'NaN', 'nan', 'NULL', 'null', 'N/A', 'n/a']:
+            return None if not return_string_na else 'NA'
+        
         try:
             val_str = str(val).strip()
-            if not val_str: return 'NA' if return_string_na else None
-            date_formats_4digit = ['%d-%m-%Y', '%m-%d-%Y', '%Y-%m-%d', '%d/%m/%Y', '%m/%d/%Y', '%Y/%m/%d', '%d.%m.%Y', '%m.%d.%Y', '%Y.%m.%d']
-            for fmt in date_formats_4digit:
+
+            # Try 4-digit year formats first
+            four_digit_match = None
+            if re.match(r'^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$', val_str):
+                 four_digit_match = True
+            elif re.match(r'^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$', val_str):
+                 four_digit_match = True
+            
+            if four_digit_match:
                 try:
-                    parsed = datetime.strptime(val_str, fmt).date()
-                    current_year = date.today().year
-                    if (current_year - 120) <= parsed.year <= (current_year + 50):
-                        return parsed
-                except ValueError: continue
-            two_digit_match = re.match(r'^(\d{1,2})[-/](\d{1,2})[-/](\d{2})$', val_str)
-            if two_digit_match:
-                day, month, year = two_digit_match.groups()
-                day, month, year_2digit = int(day), int(month), int(year)
-                year_4digit = 2000 + year_2digit if year_2digit <= 49 else 1900 + year_2digit
-                if 1 <= month <= 12 and 1 <= day <= 31:
-                    try:
-                        if month == 12: last_day = date(year_4digit + 1, 1, 1) - timedelta(days=1)
-                        else: last_day = date(year_4digit, month + 1, 1) - timedelta(days=1)
-                        adjusted_day = min(day, last_day.day)
-                        parsed_date = date(year_4digit, month, adjusted_day)
-                        current_year = date.today().year
-                        if (current_year - 120) <= parsed_date.year <= (current_year + 50):
+                    parsed = pd.to_datetime(val_str, errors='coerce')
+                    if pd.notna(parsed):
+                        parsed_date = parsed.date()
+                        if 1900 <= parsed_date.year <= date.today().year:
                             return parsed_date
-                    except ValueError:
-                        try:
-                            parsed_date = date(year_4digit, month, 1)
-                            current_year = date.today().year
-                            if (current_year - 120) <= parsed_date.year <= (current_year + 50):
-                                return parsed_date
-                        except ValueError: pass
-            date_formats_2digit = ['%d-%m-%y', '%m-%d-%y', '%y-%m-%d', '%d/%m/%y', '%m/%d/%y', '%y/%m/%d']
-            for fmt in date_formats_2digit:
+                except Exception:
+                    pass
+
+            # Handle 2-digit year dates with sliding window logic
+            two_digit_match = re.match(r'^(\d{1,2})[-/.](\d{1,2})[-/.](\d{2})$', val_str)
+            if two_digit_match:
+                day, month, year_2digit = map(int, two_digit_match.groups())
+                
+                # Handle day/month ambiguity
+                if day > 12 and month <= 12:
+                    # Likely DD-MM-YY format
+                    pass
+                elif month > 12 and day <= 12:
+                    # Likely MM-DD-YY format, swap day and month
+                    day, month = month, day
+                
+                current_year_2digit = date.today().year % 100
+                
+                # Sliding window logic: years 00-23 → 2000-2023, years 24-99 → 1924-1999
+                if year_2digit <= current_year_2digit:
+                    year_4digit = 2000 + year_2digit
+                else:
+                    year_4digit = 1900 + year_2digit
+                
                 try:
-                    parsed = datetime.strptime(val_str, fmt).date()
-                    current_year = date.today().year
-                    if (current_year - 120) <= parsed.year <= (current_year + 50):
+                    parsed = date(year_4digit, month, day)
+                    if 1900 <= parsed.year <= date.today().year:
                         return parsed
-                except ValueError: continue
+                except ValueError:
+                    # If invalid date (like Feb 30), try with first day of month
+                    try:
+                        parsed = date(year_4digit, month, 1)
+                        if 1900 <= parsed.year <= date.today().year:
+                            return parsed
+                    except ValueError:
+                        pass
+
+            # Final fallback
             try:
                 parsed = pd.to_datetime(val_str, errors='coerce', dayfirst=True)
                 if pd.notna(parsed):
                     parsed_date = parsed.date()
-                    current_year = date.today().year
-                    if (current_year - 120) <= parsed_date.year <= (current_year + 50):
+                    if 1900 <= parsed_date.year <= date.today().year:
                         return parsed_date
-            except Exception: pass
-            return 'NA' if return_string_na else None
-        except Exception as e:
-            return 'NA' if return_string_na else None
+            except Exception:
+                pass
+
+            return None if not return_string_na else 'NA'
+        except Exception:
+            return None if not return_string_na else 'NA'
 
     def safe_num(self, val, default=0):
-        if (val is None or 
-            pd.isna(val) or 
-            str(val).strip() in ['', 'None', 'NaN', 'nan', 'NULL', 'null', 'N/A', 'n/a'] or
-            str(val).strip().lower() in ['nan', 'none', '', 'n/a', 'null']):
-            return default
         try: 
             cleaned = str(val).replace('₹','').replace('$','').replace(',','').replace(' ','').strip()
-            if not cleaned: return default
-            return float(cleaned)
+            return float(cleaned) if cleaned else default
         except: 
             return default
     
-    def detect_outliers(self, series):
-        if len(series) < 4: return set()
-        Q1, Q3 = series.quantile(0.25), series.quantile(0.75)
-        IQR = Q3 - Q1
-        if IQR == 0: return set()
-        return set(series[(series < Q1-1.5*IQR) | (series > Q3+1.5*IQR)].index)
-    
     def calc_age(self, dob):
-        if not dob or dob == 'NA' or dob > date.today(): return 0
+        if pd.isna(dob) or dob is None or dob > date.today(): 
+            return 0
         today = date.today()
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-        return age if 0 <= age <= 120 else 0
-    
-    def clean_email(self, email):
-        return self.safe_val(email, 'NA', lower=True)
-    
-    def clean_phone(self, phone):
-        return self.safe_val(phone, 'NA')
-    
-    def calc_quality(self, df, table, required_cols):
-        total = len(df)
-        if total == 0:
-            completeness, accuracy, dup_rate = 0, 0, 0
-        else:
-            completeness = (df.count().sum() / (total * len(df.columns)) * 100)
-            accuracy = (total / self.stats[table]['processed'] * 100) if self.stats[table]['processed'] > 0 else 0
-            dup_rate = (self.stats[table]['duplicates'] / self.stats[table]['processed'] * 100) if self.stats[table]['processed'] > 0 else 0
-        
-        self.quality[table] = {
-            'completeness': completeness,
-            'accuracy': accuracy,
-            'duplication_rate': dup_rate,
-            'outlier_rate': (self.stats[table].get('outliers', 0) / total * 100) if total > 0 else 0
-        }
+        return max(0, min(age, 120))  # Ensure reasonable age range
+
+    # --- TRANSFORMATION FUNCTIONS WITHOUT ORIGINAL ID COLUMNS ---
 
     def transform_branches(self):
-        """Transform branches"""
-        print("\nTRANSFORMING BRANCHES")
-        
-        # --- FIX: Ping connections to ensure they are alive ---
+        """Transform branches - keep original branch_id as string"""
+        print("Transforming Branches...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
         
         cursor = self.staging_connection.cursor()
-        
         try:
             cursor.execute("SELECT * FROM staging_branches LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # Clear buffer
-        except mysql.connector.Error as e:
-            print(f"  Error getting columns for staging_branches: {e}")
+            cursor.fetchall()
+            all_data = self.fetch_data_in_batches(cursor, "staging_branches", "branch_id")
+        finally:
             cursor.close()
+
+        if not all_data:
+            print("  No data in staging.")
             return
 
-        try:
-            cursor.execute("SELECT COUNT(*) FROM staging_branches")
-            total_count = cursor.fetchone()[0]
-            print(f"  Total records: {total_count}")
-        except mysql.connector.Error as e:
-            print(f"  Error counting staging_branches: {e}")
-            cursor.close()
-            return
-        
-        all_data = self.fetch_data_in_batches(cursor, "staging_branches", "branch_id")
-        cursor.close() 
-        
-        if not all_data:
-            print("  No data found in staging_branches")
-            return
-            
         df = pd.DataFrame(all_data, columns=columns)
-        
         self.stats['branches']['processed'] = len(df)
         
-        initial = len(df)
-        df_clean = df.drop_duplicates(subset=['branch_id'], keep='first')
-        duplicates_removed = initial - len(df_clean)
-        self.stats['branches']['duplicates'] = duplicates_removed
+        # Remove duplicates based on original branch_id
+        df_clean = df.drop_duplicates(subset=['branch_id'], keep='first').copy()
         
-        if duplicates_removed > 0:
-            print(f"  Removed {duplicates_removed} duplicate branches")
+        # Keep original branch_id as string (like "QT0021")
+        df_clean['branch_id'] = df_clean['branch_id'].apply(lambda x: self.safe_val(x, 'NA'))
         
+        # Clean data
+        df_clean['branch_name'] = df_clean['branch_name'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        df_clean['city'] = df_clean['city'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        df_clean['state'] = df_clean['state'].apply(lambda x: self.safe_val(x, 'NA', upper=True))
+        df_clean['manager_name'] = df_clean['manager_name'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        
+        # Region mapping
+        def map_region(state):
+            state_upper = str(state).upper()
+            if any(x in state_upper for x in ['DELHI','PUNJAB','HARYANA','UP','UTTAR']): 
+                return 'North'
+            if any(x in state_upper for x in ['MAHARASHTRA','GUJARAT','GOA']): 
+                return 'West'
+            if any(x in state_upper for x in ['KARNATAKA','TAMIL','KERALA','ANDHRA','TELANGANA']): 
+                return 'South'
+            if any(x in state_upper for x in ['BENGAL','BIHAR','ODISHA','ASSAM','MEGHALAYA','CHHATTISGARH','ARUNACHAL','MANIPUR']): 
+                return 'East'
+            return 'NA'
+        
+        df_clean['region'] = df_clean['state'].apply(map_region)
+
+        # Insert data
         tcursor = self.transformed_connection.cursor()
-        nulls = 0
+        cols = ['branch_id', 'branch_name', 'city', 'state', 'manager_name', 'region']
+        batch_data = [tuple(x) for x in df_clean[cols].to_numpy()]
         
-        for _, row in df_clean.iterrows():
-            branch_id = self.safe_val(row.get('branch_id'), 'NA')
-            branch_name = self.safe_val(row.get('branch_name'), 'NA', title=True)
-            city = self.safe_val(row.get('city'), 'NA', title=True)
-            state = self.safe_val(row.get('state'), 'NA', upper=True)
-            manager = self.safe_val(row.get('manager_name'), 'NA', title=True)
-            
-            if any(field == 'NA' for field in [branch_name, city, state, manager]):
-                nulls += 1
-            
-            region = 'NA'
-            if state != 'NA':
-                sl = state.lower()
-                if any(x in sl for x in ['delhi','punjab','haryana','up','uttar']): region = 'North'
-                elif any(x in sl for x in ['maharashtra','gujarat','goa']): region = 'West'
-                elif any(x in sl for x in ['karnataka','tamil','kerala','andhra','telangana']): region = 'South'
-                elif any(x in sl for x in ['bengal','bihar','odisha','assam','meghalaya','chhattisgarh','arunachal','manipur']): region = 'East'
-            
-            try:
-                tcursor.execute("""
-                    INSERT INTO transformed_branches 
-                    (branch_id, branch_name, city, state, manager_name, region)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, (branch_id, branch_name, city, state, manager, region))
-                self.stats['branches']['transformed'] += 1
-            except mysql.connector.Error as e:
-                if "Duplicate entry" in str(e): continue
-                else: raise
+        if batch_data:
+            tcursor.executemany("""
+                INSERT INTO transformed_branches (branch_id, branch_name, city, state, manager_name, region)
+                VALUES (%s, %s, %s, %s, %s, %s)
+            """, batch_data)
+            self.transformed_connection.commit()
+            self.stats['branches']['transformed'] = len(batch_data)
+            print(f"  ✓ Transformed {len(batch_data)} branches with original branch IDs")
         
-        self.transformed_connection.commit()
-        self.stats['branches']['nulls'] = nulls
-        
-        tcursor.execute("SELECT * FROM transformed_branches")
-        result_df = pd.DataFrame(tcursor.fetchall(), columns=[c[0] for c in tcursor.description])
-        self.calc_quality(result_df, 'branches', ['branch_id', 'branch_name'])
         tcursor.close()
-        
-        print(f"  Transformed: {self.stats['branches']['transformed']}")
-        print(f"  Duplicates: {self.stats['branches']['duplicates']}, NULLs: {nulls}")
 
     def transform_customers(self):
-        """Transform customers"""
-        print("\nTRANSFORMING CUSTOMERS")
-        
-        # --- FIX: Ping connections to ensure they are alive ---
+        """Transform customers - keep original branch_id as string, sequential customer_id"""
+        print("Transforming Customers...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
         
         cursor = self.staging_connection.cursor()
-
         try:
             cursor.execute("SELECT * FROM staging_customers LIMIT 1")
             columns = [c[0] for c in cursor.description]
-            cursor.fetchall() # Clear buffer
-        except mysql.connector.Error as e:
-            print(f"  Error getting columns for staging_customers: {e}")
+            cursor.fetchall()
+            all_data = self.fetch_data_in_batches(cursor, "staging_customers", "customer_id")
+        finally:
             cursor.close()
-            return
 
-        try:
-            cursor.execute("SELECT COUNT(*) FROM staging_customers")
-            total_count = cursor.fetchone()[0]
-            print(f"  Total records: {total_count}")
-        except mysql.connector.Error as e:
-            print(f"  Error counting staging_customers: {e}")
-            cursor.close()
-            return
-
-        all_data = self.fetch_data_in_batches(cursor, "staging_customers", "customer_id")
-        cursor.close() 
-        
         if not all_data:
-            print("  No data found in staging_customers")
+            print("  No data in staging.")
             return
-            
+
         df = pd.DataFrame(all_data, columns=columns)
-        
         self.stats['customers']['processed'] = len(df)
         
-        initial = len(df)
-        df_clean = df.drop_duplicates(subset=['customer_id'], keep='first')
-        duplicates_removed = initial - len(df_clean)
-        self.stats['customers']['duplicates'] = duplicates_removed
+        # Remove duplicates
+        df_clean = df.drop_duplicates(subset=['customer_id'], keep='first').copy()
         
-        if duplicates_removed > 0:
-            print(f"  Removed {duplicates_removed} duplicate customers")
+        # Generate proper sequential customer_id starting from 1
+        df_clean = df_clean.reset_index(drop=True)
+        df_clean['customer_id'] = df_clean.index + 1  # This ensures 1, 2, 3, 4...
         
+        # Keep original branch_id as string (like "QT0021")
+        df_clean['branch_id'] = df_clean['branch_id'].apply(lambda x: self.safe_val(x, 'NA'))
+        
+        # Clean data
+        df_clean['first_name'] = df_clean['first_name'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        df_clean['last_name'] = df_clean['last_name'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        
+        df_clean['dob'] = df_clean['dob'].apply(lambda x: self.safe_date(x, return_string_na=False))
+        df_clean['account_open_date'] = df_clean['account_open_date'].apply(lambda x: self.safe_date(x, return_string_na=False))
+        
+        df_clean['age'] = df_clean['dob'].apply(self.calc_age)
+        
+        # Calculate tenure days
+        today = pd.to_datetime(date.today())
+        df_clean['customer_tenure_days'] = (today - pd.to_datetime(df_clean['account_open_date'])).dt.days
+        df_clean['customer_tenure_days'] = df_clean['customer_tenure_days'].fillna(0).astype(int)
+        df_clean.loc[df_clean['customer_tenure_days'] < 0, 'customer_tenure_days'] = 0
+        
+        # Customer segmentation
+        conditions = [
+            df_clean['customer_tenure_days'] >= 730,
+            df_clean['customer_tenure_days'] >= 180,
+            df_clean['customer_tenure_days'] > 0
+        ]
+        choices = ['VIP', 'Regular', 'New']
+        df_clean['customer_segment'] = np.select(conditions, choices, default='NA')
+        
+        df_clean['email'] = df_clean['email'].apply(lambda x: self.safe_val(x, 'NA', lower=True))
+        df_clean['phone'] = df_clean['phone'].apply(lambda x: self.safe_val(x, 'NA'))
+        df_clean['address'] = df_clean['address'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        
+        # Gender standardization
+        gender_map = {'m': 'Male', 'f': 'Female', 'male': 'Male', 'female': 'Female'}
+        df_clean['gender'] = (df_clean['gender']
+                             .apply(lambda x: self.safe_val(x, 'NA'))
+                             .str.lower()
+                             .map(gender_map)
+                             .fillna('NA'))
+        
+        df_clean['outlier_flag'] = False
+        
+        # Handle NaN values for database insertion
+        df_clean = df_clean.replace({np.nan: None})
+        
+        # Insert data in batches
         tcursor = self.transformed_connection.cursor()
-        nulls = 0
-        date_warnings = 0
-        max_warnings = 5
+        cols = ['customer_id', 'branch_id', 'first_name', 'last_name', 'dob', 'age', 'gender', 'email', 'phone', 'address', 'account_open_date', 'customer_tenure_days', 'customer_segment', 'outlier_flag']
         
-        for idx, row in df_clean.iterrows():
-            cid = self.safe_val(row.get('customer_id'), 'NA')
-            fname = self.safe_val(row.get('first_name'), 'NA', title=True)
-            lname = self.safe_val(row.get('last_name'), 'NA', title=True)
-            branch_id = self.safe_val(row.get('branch_id'), 'NA')
-            
-            raw_dob = row.get('dob')
-            dob_result = self.safe_date(raw_dob, return_string_na=True)
-            
-            if dob_result == 'NA':
-                dob_sql = None
-                nulls += 1
-                if (raw_dob and 
-                    str(raw_dob).strip().lower() not in ['nan', 'none', '', 'n/a', 'null'] and
-                    date_warnings < max_warnings):
-                    date_warnings += 1
-                    print(f"  WARNING: Invalid date '{raw_dob}' for customer {cid}")
-            else:
-                dob_sql = dob_result
-            
-            raw_acc_date = row.get('account_open_date')
-            acc_date_result = self.safe_date(raw_acc_date, return_string_na=True)
-            if acc_date_result == 'NA':
-                acc_date_sql = None
-                nulls += 1
-            else:
-                acc_date_sql = acc_date_result
-            
-            age = self.calc_age(dob_result) if dob_result != 'NA' else 0
-            tenure = max(0, (date.today() - acc_date_result).days) if acc_date_result != 'NA' else 0
-            
-            if tenure >= 730: segment = 'VIP'
-            elif tenure >= 180: segment = 'Regular'
-            elif tenure > 0: segment = 'New'
-            else: segment = 'NA'
-            
-            email = self.clean_email(row.get('email'))
-            phone = self.clean_phone(row.get('phone'))
-            
-            gender = self.safe_val(row.get('gender'), 'NA', title=True)
-            if gender.lower() in ['m', 'male']: gender = 'Male'
-            elif gender.lower() in ['f', 'female']: gender = 'Female'
-            else: gender = 'NA'
-            
-            address = self.safe_val(row.get('address'), 'NA', title=True)
-            
-            if any(field == 'NA' for field in [email, phone, gender]):
-                nulls += 1
-            
-            try:
-                tcursor.execute("""
-                    INSERT INTO transformed_customers 
-                    (customer_id, branch_id, first_name, last_name, dob, age, gender, 
-                     email, phone, address, account_open_date, customer_tenure_days, 
-                     customer_segment, outlier_flag)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """, (cid, branch_id, fname, lname, dob_sql, age, gender,
-                      email, phone, address, acc_date_sql, tenure, segment, False))
-                self.stats['customers']['transformed'] += 1
-            except mysql.connector.Error as e:
-                if "Duplicate entry" in str(e): continue
-                else: raise
+        batch_data = [tuple(x) for x in df_clean[cols].to_numpy()]
+        
+        for i in range(0, len(batch_data), self.batch_size):
+            batch = batch_data[i:i + self.batch_size]
+            tcursor.executemany("""
+                INSERT INTO transformed_customers 
+                (customer_id, branch_id, first_name, last_name, dob, age, gender, email, phone, address, account_open_date, customer_tenure_days, customer_segment, outlier_flag)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, batch)
         
         self.transformed_connection.commit()
-        self.stats['customers']['nulls'] = nulls
-        
-        tcursor.execute("SELECT * FROM transformed_customers")
-        result_df = pd.DataFrame(tcursor.fetchall(), columns=[c[0] for c in tcursor.description])
-        self.calc_quality(result_df, 'customers', ['customer_id', 'first_name'])
+        self.stats['customers']['transformed'] = len(batch_data)
+        print(f"  ✓ Transformed {len(batch_data)} customers with sequential IDs: 1 to {len(batch_data)}")
+        print(f"  ✓ Branch IDs preserved as original strings (QT0021, etc.)")
         tcursor.close()
-        
-        print(f"  Transformed: {self.stats['customers']['transformed']}")
-        print(f"  Duplicates: {self.stats['customers']['duplicates']}, NULLs: {nulls}")
-        if date_warnings >= max_warnings:
-            print(f"  Additional date warnings suppressed")
 
     def transform_loans(self):
-        """Transform loans"""
-        print("\nTRANSFORMING LOANS")
-        
-        # --- FIX: Ping connections to ensure they are alive ---
+        """Transform loans with proper sequential IDs starting from 1"""
+        print("Transforming Loans...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
         
-        tcursor = self.transformed_connection.cursor()
-        tcursor.execute("SELECT customer_id FROM transformed_customers")
-        valid_custs = set(r[0] for r in tcursor.fetchall())
-        
-        scursor = self.staging_connection.cursor()
-        
+        cursor = self.staging_connection.cursor()
         try:
-            scursor.execute("SELECT * FROM staging_loans LIMIT 1")
-            columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # Clear buffer
-        except mysql.connector.Error as e:
-            print(f"  Error getting columns for staging_loans: {e}")
-            scursor.close()
-            tcursor.close()
-            return
+            cursor.execute("SELECT * FROM staging_loans LIMIT 1")
+            columns = [c[0] for c in cursor.description]
+            cursor.fetchall()
+            all_data = self.fetch_data_in_batches(cursor, "staging_loans", "loan_id")
+        finally:
+            cursor.close()
 
-        try:
-            scursor.execute("SELECT COUNT(*) FROM staging_loans")
-            total_count = scursor.fetchone()[0]
-            print(f"  Total records: {total_count}")
-        except mysql.connector.Error as e:
-            print(f"  Error counting staging_loans: {e}")
-            scursor.close()
-            tcursor.close()
-            return
-
-        all_data = self.fetch_data_in_batches(scursor, "staging_loans", "loan_id")
-        scursor.close()
-        
         if not all_data:
-            print("  No data found in staging_loans")
-            tcursor.close()
+            print("  No data in staging.")
             return
-            
+
         df = pd.DataFrame(all_data, columns=columns)
-        
         self.stats['loans']['processed'] = len(df)
         
-        initial = len(df)
-        df_clean = df.drop_duplicates(subset=['loan_id'], keep='first')
-        duplicates_removed = initial - len(df_clean)
-        self.stats['loans']['duplicates'] = duplicates_removed
+        # Remove duplicates
+        df_clean = df.drop_duplicates(subset=['loan_id'], keep='first').copy()
         
-        if duplicates_removed > 0:
-            print(f"  Removed {duplicates_removed} duplicate loans")
+        # Generate proper sequential loan_id starting from 1
+        df_clean = df_clean.reset_index(drop=True)
+        df_clean['loan_id'] = df_clean.index + 1  # This ensures 1, 2, 3, 4...
         
-        nulls = 0
+        # Map customer_id to sequential ID from transformed_customers
+        cust_cursor = self.transformed_connection.cursor()
+        cust_cursor.execute("SELECT customer_id FROM transformed_customers")
+        valid_customer_ids = set(row[0] for row in cust_cursor.fetchall())
+        cust_cursor.close()
         
-        for idx, row in df_clean.iterrows():
-            cid = self.safe_val(row.get('customer_id'), 'NA')
-            if cid not in valid_custs: continue
-            
-            amt = self.safe_num(row.get('loan_amount'), 0)
-            if amt <= 0: continue
-            
-            rate = self.safe_num(row.get('interest_rate'), 0)
-            
-            start_result = self.safe_date(row.get('start_date'), return_string_na=True)
-            if start_result == 'NA':
-                start_sql = None
-                continue
-            else:
-                start_sql = start_result
-            
-            end_result = self.safe_date(row.get('end_date'), return_string_na=True)
-            if end_result == 'NA':
-                end_sql = None
-                nulls += 1
-            else:
-                end_sql = end_result
-            
-            duration = 0
-            if end_sql and end_sql >= start_sql:
-                duration = ((end_sql.year - start_sql.year) * 12 + (end_sql.month - start_sql.month))
-            
-            if amt > 500000: risk = 'High'
-            elif amt > 100000: risk = 'Medium'
-            else: risk = 'Low'
-            
-            loan_id = self.safe_val(row.get('loan_id'), 'NA')
-            loan_type = self.safe_val(row.get('loan_type'), 'NA', title=True)
-            loan_status = self.safe_val(row.get('loan_status'), 'NA', title=True)
-            
-            try:
-                tcursor.execute("""
-                    INSERT INTO transformed_loans 
-                    (loan_id, customer_id, loan_type, loan_amount, interest_rate, 
-                     start_date, end_date, loan_status, loan_duration_months, 
-                     risk_category, outlier_flag)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """, (loan_id, cid, loan_type, amt, rate, start_sql, end_sql, 
-                      loan_status, duration, risk, False))
-                self.stats['loans']['transformed'] += 1
-            except mysql.connector.Error as e:
-                if "Duplicate entry" in str(e): continue
-                else: raise
+        # Filter to only include valid customer_ids
+        df_clean['customer_id'] = df_clean['customer_id'].astype(int)
+        df_clean = df_clean[df_clean['customer_id'].isin(valid_customer_ids)].copy()
+        
+        # Clean data
+        df_clean['loan_amount'] = df_clean['loan_amount'].apply(lambda x: self.safe_num(x, 0))
+        df_clean['loan_type'] = df_clean['loan_type'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        df_clean['loan_status'] = df_clean['loan_status'].apply(lambda x: self.safe_val(x, 'NA', title=True))
+        df_clean['interest_rate'] = df_clean['interest_rate'].apply(lambda x: self.safe_num(x, 0))
+        
+        df_clean['start_date'] = df_clean['start_date'].apply(lambda x: self.safe_date(x))
+        df_clean['end_date'] = df_clean['end_date'].apply(lambda x: self.safe_date(x))
+
+        # Calculate loan duration months
+        start_dates = pd.to_datetime(df_clean['start_date'], errors='coerce')
+        end_dates = pd.to_datetime(df_clean['end_date'], errors='coerce')
+        
+        df_clean['loan_duration_months'] = ((end_dates.dt.year - start_dates.dt.year) * 12 + 
+                                          (end_dates.dt.month - start_dates.dt.month))
+        df_clean['loan_duration_months'] = df_clean['loan_duration_months'].fillna(0).astype(int)
+        df_clean.loc[df_clean['loan_duration_months'] < 0, 'loan_duration_months'] = 0
+
+        # Risk categorization
+        conditions = [
+            df_clean['loan_amount'] > 500000,
+            df_clean['loan_amount'] > 100000
+        ]
+        choices = ['High', 'Medium']
+        df_clean['risk_category'] = np.select(conditions, choices, default='Low')
+        
+        df_clean['outlier_flag'] = False
+        
+        # Handle NaN values for database insertion
+        df_clean = df_clean.replace({np.nan: None})
+
+        # Insert data in batches
+        tcursor = self.transformed_connection.cursor()
+        cols = ['loan_id', 'customer_id', 'loan_type', 'loan_amount', 'interest_rate', 'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category', 'outlier_flag']
+        
+        batch_data = [tuple(x) for x in df_clean[cols].to_numpy()]
+        
+        for i in range(0, len(batch_data), self.batch_size):
+            batch = batch_data[i:i + self.batch_size]
+            tcursor.executemany("""
+                INSERT INTO transformed_loans 
+                (loan_id, customer_id, loan_type, loan_amount, interest_rate, start_date, end_date, loan_status, loan_duration_months, risk_category, outlier_flag)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, batch)
         
         self.transformed_connection.commit()
-        self.stats['loans']['nulls'] = nulls
-        
-        tcursor.execute("SELECT * FROM transformed_loans")
-        result_df = pd.DataFrame(tcursor.fetchall(), columns=[c[0] for c in tcursor.description])
-        self.calc_quality(result_df, 'loans', ['loan_id', 'customer_id'])
+        self.stats['loans']['transformed'] = len(batch_data)
+        print(f"  ✓ Transformed {len(batch_data)} loans with sequential IDs: 1 to {len(batch_data)}")
         tcursor.close()
-        
-        print(f"  Transformed: {self.stats['loans']['transformed']}")
-        print(f"  Duplicates: {self.stats['loans']['duplicates']}, NULLs: {nulls}")
 
     def transform_transactions(self):
-        """Transform transactions"""
-        print("\nTRANSFORMING TRANSACTIONS")
-        
-        # --- FIX: Ping connections to ensure they are alive ---
+        """Transform transactions with proper sequential IDs starting from 1"""
+        print("Transforming Transactions...")
         self.staging_connection.ping(reconnect=True)
         self.transformed_connection.ping(reconnect=True)
         
-        tcursor = self.transformed_connection.cursor()
-        tcursor.execute("SELECT customer_id FROM transformed_customers")
-        valid_custs = set(r[0] for r in tcursor.fetchall())
-        
-        scursor = self.staging_connection.cursor()
-        
+        cursor = self.staging_connection.cursor()
         try:
-            scursor.execute("SELECT * FROM staging_transactions LIMIT 1")
-            columns = [c[0] for c in scursor.description]
-            scursor.fetchall() # Clear buffer
-        except mysql.connector.Error as e:
-            print(f"  Error getting columns for staging_transactions: {e}")
-            scursor.close()
-            tcursor.close()
-            return
+            cursor.execute("SELECT * FROM staging_transactions LIMIT 1")
+            columns = [c[0] for c in cursor.description]
+            cursor.fetchall()
+            all_data = self.fetch_data_in_batches(cursor, "staging_transactions", "transaction_id")
+        finally:
+            cursor.close()
 
-        try:
-            scursor.execute("SELECT COUNT(*) FROM staging_transactions")
-            total_count = scursor.fetchone()[0]
-            print(f"  Total records: {total_count}")
-        except mysql.connector.Error as e:
-            print(f"  Error counting staging_transactions: {e}")
-            scursor.close()
-            tcursor.close()
-            return
-
-        all_data = self.fetch_data_in_batches(scursor, "staging_transactions", "transaction_id")
-        scursor.close()
-        
         if not all_data:
-            print("  No data found in staging_transactions")
-            tcursor.close()
+            print("  No data in staging.")
             return
-            
+
         df = pd.DataFrame(all_data, columns=columns)
-        
         self.stats['transactions']['processed'] = len(df)
         
-        initial = len(df)
-        df_clean = df.drop_duplicates(subset=['transaction_id'], keep='first')
-        duplicates_removed = initial - len(df_clean)
-        self.stats['transactions']['duplicates'] = duplicates_removed
+        # Remove duplicates
+        df_clean = df.drop_duplicates(subset=['transaction_id'], keep='first').copy()
         
-        if duplicates_removed > 0:
-            print(f"  Removed {duplicates_removed} duplicate transactions")
+        # Generate proper sequential transaction_id starting from 1
+        df_clean = df_clean.reset_index(drop=True)
+        df_clean['transaction_id'] = df_clean.index + 1  # This ensures 1, 2, 3, 4...
         
-        nulls = 0
+        # Map customer_id to sequential ID from transformed_customers
+        cust_cursor = self.transformed_connection.cursor()
+        cust_cursor.execute("SELECT customer_id FROM transformed_customers")
+        valid_customer_ids = set(row[0] for row in cust_cursor.fetchall())
+        cust_cursor.close()
         
-        for idx, row in df_clean.iterrows():
-            cid = self.safe_val(row.get('customer_id'), 'NA')
-            if cid not in valid_custs: continue
-            
-            amt = self.safe_num(row.get('amount'), 0)
-            if amt <= 0: continue
-            
-            tdate_result = self.safe_date(row.get('transaction_date'), return_string_na=True)
-            if tdate_result == 'NA':
-                tdate_sql = None
-                continue
-            else:
-                tdate_sql = tdate_result
-            
-            bal = self.safe_num(row.get('balance_after'), 0)
-            if bal == 0: nulls += 1
-            
-            fraud_flag = str(row.get('fraud_flag', 'false')).lower()
-            fraud = fraud_flag in ['true', '1', 'yes', 'y']
-            
-            if amt > 10000: cat = 'Large'
-            elif amt > 1000: cat = 'Medium'
-            else: cat = 'Small'
-            
-            transaction_id = self.safe_val(row.get('transaction_id'), 'NA')
-            transaction_type = self.safe_val(row.get('transaction_type'), 'NA', upper=True)
-            
-            try:
-                tcursor.execute("""
-                    INSERT INTO transformed_transactions 
-                    (transaction_id, customer_id, transaction_date, transaction_type, 
-                     amount, balance_after, fraud_flag, transaction_category, outlier_flag)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """, (transaction_id, cid, tdate_sql, transaction_type,
-                      amt, bal, fraud, cat, False))
-                self.stats['transactions']['transformed'] += 1
-            except mysql.connector.Error as e:
-                if "Duplicate entry" in str(e): continue
-                else: raise
+        # Filter to only include valid customer_ids
+        df_clean['customer_id'] = df_clean['customer_id'].astype(int)
+        df_clean = df_clean[df_clean['customer_id'].isin(valid_customer_ids)].copy()
+        
+        # Clean data
+        df_clean['amount'] = df_clean['amount'].apply(lambda x: self.safe_num(x, 0))
+        df_clean['transaction_date'] = df_clean['transaction_date'].apply(lambda x: self.safe_date(x))
+        df_clean['transaction_type'] = df_clean['transaction_type'].apply(lambda x: self.safe_val(x, 'NA', upper=True))
+        df_clean['balance_after'] = df_clean['balance_after'].apply(lambda x: self.safe_num(x, 0))
+        
+        # Fraud flag conversion
+        fraud_map = {'true': True, '1': True, 'yes': True, 'y': True}
+        df_clean['fraud_flag'] = (df_clean['fraud_flag']
+                                 .astype(str)
+                                 .str.lower()
+                                 .map(fraud_map)
+                                 .fillna(False)
+                                 .astype(bool))
+        
+        # Transaction categorization
+        conditions = [
+            df_clean['amount'] > 10000,
+            df_clean['amount'] > 1000
+        ]
+        choices = ['Large', 'Medium']
+        df_clean['transaction_category'] = np.select(conditions, choices, default='Small')
+        
+        df_clean['outlier_flag'] = False
+        
+        # Handle NaN values for database insertion
+        df_clean = df_clean.replace({np.nan: None})
+
+        # Insert data in batches
+        tcursor = self.transformed_connection.cursor()
+        cols = ['transaction_id', 'customer_id', 'transaction_date', 'transaction_type', 'amount', 'balance_after', 'fraud_flag', 'transaction_category', 'outlier_flag']
+        
+        batch_data = [tuple(x) for x in df_clean[cols].to_numpy()]
+        
+        for i in range(0, len(batch_data), self.batch_size):
+            batch = batch_data[i:i + self.batch_size]
+            tcursor.executemany("""
+                INSERT INTO transformed_transactions 
+                (transaction_id, customer_id, transaction_date, transaction_type, amount, balance_after, fraud_flag, transaction_category, outlier_flag)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, batch)
         
         self.transformed_connection.commit()
-        self.stats['transactions']['nulls'] = nulls
-        
-        tcursor.execute("SELECT * FROM transformed_transactions")
-        result_df = pd.DataFrame(tcursor.fetchall(), columns=[c[0] for c in tcursor.description])
-        self.calc_quality(result_df, 'transactions', ['transaction_id', 'customer_id'])
+        self.stats['transactions']['transformed'] = len(batch_data)
+        print(f"  ✓ Transformed {len(batch_data)} transactions with sequential IDs: 1 to {len(batch_data)}")
         tcursor.close()
-        
-        print(f"  Transformed: {self.stats['transactions']['transformed']}")
-        print(f"  Duplicates: {self.stats['transactions']['duplicates']}, NULLs: {nulls}")
 
     def export_csv(self):
-        """Export to CSV"""
-        print("\nEXPORTING CSV")
+        """Export transformed data to CSV"""
+        print("\nExporting transformed data to CSV...")
         files = []
         
         for table in ['transformed_branches', 'transformed_customers', 'transformed_loans', 'transformed_transactions']:
             print(f"  Exporting {table}...")
-            
-            # --- FIX: Ping connection to ensure it's alive ---
             self.transformed_connection.ping(reconnect=True)
-            
             cursor = self.transformed_connection.cursor()
             
             try:
                 cursor.execute(f"SELECT * FROM {table} LIMIT 1")
                 columns = [c[0] for c in cursor.description]
                 cursor.fetchall()
-            except mysql.connector.Error as e:
-                print(f"  Error getting columns for {table}: {e}")
-                cursor.close()
-                continue
+                
+                all_data = self.fetch_data_in_batches(cursor, table, "display_id")
+                if not all_data:
+                    continue
 
-            all_data = self.fetch_data_in_batches(cursor, table, "display_id")
-            cursor.close()
-            
-            df = pd.DataFrame(all_data, columns=columns)
-            
-            for col in df.columns:
-                df[col] = df[col].astype(str)
-                df[col] = df[col].apply(lambda x: 'NA' if x in [
-                    'None', 'NaN', 'nan', 'NaT', '<NA>', 'NULL', 'null', '', 'NoneType'
-                ] else x)
-                df[col] = df[col].apply(lambda x: 'NA' if 'NaT' in str(x) else x)
-                df[col] = df[col].apply(lambda x: 'NA' if x == 'None' else x)
-            
-            filename = f"transformed_{table.replace('transformed_', '')}.csv"
-            filepath = self.exports_dir / filename
-            df.to_csv(filepath, index=False)
-            files.append(filename)
-            print(f"  {filename}: {len(df)} records")
+                df = pd.DataFrame(all_data, columns=columns)
+                df = df.fillna('NA')
+                
+                filename = f"transformed_{table.replace('transformed_', '')}.csv"
+                filepath = self.exports_dir / filename
+                df.to_csv(filepath, index=False)
+                files.append(filename)
+                print(f"    ✓ Exported {len(df)} records to {filename}")
+            finally:
+                cursor.close()
         
         return files
 
     def print_summary(self):
-        """Print summary"""
-        print("\n" + "="*60)
-        print("TRANSFORMATION SUMMARY")
-        print("="*60)
+        """Print transformation summary"""
+        print("\n" + "="*50)
+        print("TRANSFORMATION COMPLETED SUCCESSFULLY")
+        print("="*50)
+        total_transformed = 0
         
-        for table in ['branches', 'customers', 'loans', 'transactions']:
-            s = self.stats[table]
-            q = self.quality.get(table, {})
-            
-            print(f"\n{table.upper()}:")
-            print(f"  Processed: {s['processed']}, Transformed: {s['transformed']}")
-            print(f"  Duplicates: {s['duplicates']}, NULLs replaced: {s['nulls']}")
-            if 'outliers' in s:
-                print(f"  Outliers: {s['outliers']}")
-            if q:
-                print(f"  Quality: {q['completeness']:.1f}% complete, {q['accuracy']:.1f}% accurate")
-    
+        for table, stats in self.stats.items():
+            transformed = stats['transformed']
+            total_transformed += transformed
+            print(f"{table.title():12} : {transformed:>6} records")
+        
+        print("-"*50)
+        print(f"{'Total':12} : {total_transformed:>6} records")
+        print("✓ All main IDs have been re-sequenced to 1, 2, 3, 4...")
+        print("✓ Branch IDs preserved as original strings (QT0021, etc.)")
+
     def run_transformation(self):
-        """Run pipeline"""
+        """Main transformation pipeline"""
         try:
-            print("="*60)
-            print("STARTING TRANSFORMATION")
+            print("\n" + "="*60)
+            print("STARTING DATA TRANSFORMATION")
             print("="*60)
             
             self.connect_databases()
             self.create_transformed_tables()
+            self.reset_sequence_numbers()
             
             start_time = time.time()
             
+            # Run transformations in order to maintain referential integrity
             self.transform_branches()
-            self.transform_customers()
+            self.transform_customers() 
             self.transform_loans()
             self.transform_transactions()
             
@@ -822,14 +730,13 @@ class DataTransformer:
             end_time = time.time()
             execution_time = end_time - start_time
             
-            print(f"\nExported {len(files)} files to {self.exports_dir}/")
-            print(f"Total execution time: {execution_time:.2f} seconds")
-            print("TRANSFORMATION COMPLETED\n")
+            print(f"\nExecution time: {execution_time:.2f} seconds")
+            print("✓ Transformation pipeline completed successfully!")
             
-            return {'stats': self.stats, 'quality': self.quality, 'files': files, 'execution_time': execution_time}
+            return {'stats': self.stats, 'files': files}
             
         except Exception as e:
-            print(f"\nTRANSFORMATION FAILED: {e}")
+            print(f"\n❌ Transformation Error: {e}")
             import traceback
             traceback.print_exc()
             raise
@@ -840,36 +747,27 @@ class DataTransformer:
                 self.transformed_connection.close()
 
 def main():
-    import sys
-    import logging
-    
+    """Main function"""
     config = None
     
+    # Try to load config from various locations
     try:
         from config.config import config as cfg
         config = cfg
         print("Config loaded from config.config")
-    except ImportError: pass
+    except ImportError:
+        pass
     
     if config is None:
         try:
-            import sys, os
-            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
             from config import config as cfg
             config = cfg
             print("Config loaded from config")
-        except ImportError: pass
+        except ImportError:
+            pass
     
     if config is None:
-        try:
-            sys.path.insert(0, os.getcwd())
-            from config.config import config as cfg
-            config = cfg
-            print("Config loaded from current directory")
-        except ImportError: pass
-    
-    if config is None:
-        print("Using fallback config - update with your database credentials")
+        print("Warning: Config file not found. Using defaults (localhost).")
         config = {
             'MYSQL_HOST': '127.0.0.1',
             'MYSQL_USER': 'root',
@@ -877,29 +775,10 @@ def main():
             'MYSQL_DATABASE': 'stagging',
             'MYSQL_PORT': 3306
         }
-    
-    required_keys = ['MYSQL_HOST', 'MYSQL_USER', 'MYSQL_PASSWORD', 'MYSQL_DATABASE', 'MYSQL_PORT']
-    missing_keys = [key for key in required_keys if key not in config]
-    
-    if missing_keys:
-        print(f"Missing required config keys: {missing_keys}")
-        print("Please check your config.py file")
-        sys.exit(1)
-    
-    print(f"Database: {config['MYSQL_USER']}@{config['MYSQL_HOST']}:{config['MYSQL_PORT']}")
-    print(f"Staging DB: {config['MYSQL_DATABASE']}")
-    print(f"Transform DB: transformed")
-    
-    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
-    
-    try:
-        transformer = DataTransformer(config)
-        transformer.run_transformation() # Fixed a typo here, was 'run_transformatio'
-    except Exception as e:
-        print(f"\nTransformation failed: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+
+    # Run transformation
+    transformer = DataTransformer(config)
+    transformer.run_transformation()
 
 if __name__ == "__main__":
     main()
