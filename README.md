@@ -22,12 +22,8 @@ Setup Utility: setup.py acts as a "health check" to install dependencies and tes
 
 🏛️ Architecture Flow
 
-+-----------+     +-----------------+     +-------------------+     +-----------------+
-|           |     |                 |     |                   |     |                 |
-| CSV Files |-(1)->|  MySQL Staging  |-(2)->|  MySQL Transform  |-(3)->|   PostgreSQL    |
-|  (data/)  |     |   (DB: stagging)  |     | (DB: transformed) |     | (DB: production)|
-|           |     | (Raw, Unchanged)  |     | (Clean, Enriched) |     |  (Query-Ready)  |
-+-----------+     +-----------------+     +-------------------+     +-----------------+
+<img width="976" height="789" alt="image" src="https://github.com/user-attachments/assets/299bb535-420a-4174-a027-69fc3dbf0c03" />
+
 
 
 Extract: src/extract.py reads CSVs from /data into stagging as raw VARCHAR data.
