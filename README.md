@@ -77,14 +77,29 @@ python main.py --mode full
 
 3. Start the Automated Scheduler
 
-To run the pipeline immediately and then again every 1 minute:
+### **Scheduler Implementation Overview**
 
-python main.py --mode schedule
+We successfully migrated the ETL orchestration from a simple interval timer to a robust `BankingBatchScheduler` to align with industry standards for high-volume data processing. This new system replaces near-real-time polling with predictable batch windows, supporting **"Twice Daily" (12-hour cycles)**, **"Daily" (EOD)**, and **"Bi-Weekly"** execution modes. Key improvements include an automatic **"Health Check"** that triggers an immediate pipeline run upon startup to verify system connectivity, and a **concurrency locking mechanism** to prevent overlapping jobs during heavy loads. This ensures data consistency and allows for safe, off-peak processing.
 
+**Execution Commands:**
 
-To change the interval to 5 minutes:
+  * **Standard 12-Hour Cycle (Default: 01:00 AM & 01:00 PM):**
 
-python main.py --mode schedule --interval 5
+    ```
+    python main.py --mode schedule --schedule-type twice_daily
+    ```
+
+  * **Daily End-of-Day Batch (Custom Time: 03:00 AM):**
+
+    ```
+    python main.py --mode schedule --schedule-type daily --run-time "03:00"
+    ```
+
+  * **Bi-Weekly Archival Run (Wednesdays & Sundays):**
+
+    ```
+    python main.py --mode schedule --schedule-type biweekly
+    ```
 
 
 4. Run Individual Phases
