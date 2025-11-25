@@ -1,25 +1,25 @@
 """
-main.py - Main ETL Pipeline Controller & Scheduler with Simple Data Quality Metrics
+main.py - Main ETL Pipeline Controller & Scheduler (Banking Standard)
 
-This script orchestrates the complete ETL pipeline with accuracy tracking.
-1. Extract: Load CSV files into MySQL staging tables
-2. Transform: Clean and standardize data, store in transformed database
-3. Load: Incrementally load new rows into PostgreSQL
+This script orchestrates the complete ETL pipeline.
+Supported Modes:
+1. Daily (EOD Batch)
+2. Twice Daily (12-Hour Cycle - Mid-Day & EOD)
+3. Bi-Weekly (Low Volume / Archival)
 """
 
 import argparse
 import sys
 import logging
-from datetime import datetime
-import traceback
+from datetime import datetime, timedelta
 from typing import Dict, Any, Tuple
 
 # --- Imports for Scheduler ---
 import schedule
 import time
-import os
+
 import signal
-import hashlib
+
 # --- End Scheduler Imports ---
 
 # Import ETL modules
@@ -32,335 +32,127 @@ from src.logger import setup_logger
 try:
     from config.config import config, TABLE_SCHEMAS, CSV_DATA_PATH
 except ImportError:
-    print("❌ CRITICAL: Could not import 'config', 'TABLE_SCHEMAS', or 'CSV_DATA_PATH' from config.config")
-    print("Please ensure your config.py file is correct and accessible.")
+    print("❌ CRITICAL: Could not import config. Check config.py")
     sys.exit(1)
 
 
 # =============================================================================
-# SIMPLE DATA QUALITY TRACKER
+# DATA QUALITY METRICS TRACKER
 # =============================================================================
 
-class SimpleQualityTracker:
-    """Simple and clear data quality tracking"""
+class DataQualityMetrics:
+    """Tracks data quality and accuracy metrics throughout the ETL pipeline"""
     
     def __init__(self):
+        self.metrics = {
+            'extraction': {},
+            'transformation': {},
+            'loading': {},
+            'overall': {}
+        }
         self.start_time = datetime.now()
-        self.csv_total = 0
-        self.extracted = 0
-        self.transformed = 0
-        self.loaded = 0
-        self.duplicates_skipped = 0
         
-    def record_extraction(self, results: Dict[str, Tuple[int, int, int]]):
-        """Record extraction metrics"""
+    def record_extraction_metrics(self, results: Dict[str, Tuple[int, int, int]]):
+        total_csv_rows = 0
+        total_extracted = 0
+        table_metrics = {}
+        
         for table, stats in results.items():
             if isinstance(stats, tuple) and len(stats) == 3:
                 csv_rows, new_rows, updated_rows = stats
-                self.csv_total += csv_rows
-                self.extracted += new_rows
-                self.duplicates_skipped += (csv_rows - new_rows - updated_rows)
-    
-    def record_transformation(self, results: Dict[str, Any]):
-        """Record transformation metrics"""
-        stats = results.get('results', {})
-        self.transformed = sum(stats.values())
-    
-    def record_loading(self, results: Dict[str, Any]):
-        """Record loading metrics"""
-        load_results = results.get('load_results', {})
-        self.loaded = sum(load_results.values())
-    
-    def print_summary(self):
-        """Print simple, clear summary"""
-        duration = datetime.now() - self.start_time
-        
-        print("\n" + "="*70)
-        print("📊 DATA QUALITY SUMMARY")
-        print("="*70)
-        
-        # Show extraction info
-        print(f"\n✓ CSV Files Read:           {self.csv_total:,} rows")
-        print(f"✓ New Records Extracted:    {self.extracted:,} rows")
-        if self.duplicates_skipped > 0:
-            print(f"  (Skipped {self.duplicates_skipped:,} duplicates - already in staging)")
-        
-        # Show transformation info
-        print(f"\n✓ Records Transformed:      {self.transformed:,} rows")
-        if self.extracted > 0:
-            lost_in_transform = self.extracted - self.transformed
-            if lost_in_transform > 0:
-                print(f"  (Cleaned out {lost_in_transform:,} invalid/duplicate records)")
-        
-        # Show loading info
-        print(f"\n✓ Loaded to PostgreSQL:     {self.loaded:,} rows")
-        
-        # Overall accuracy
-        print(f"\n" + "-"*70)
-        if self.extracted > 0:
-            # Normal run with new data
-            accuracy = (self.loaded / self.extracted * 100) if self.extracted > 0 else 100
-            print(f"📈 Pipeline Accuracy:        {accuracy:.1f}%")
-            print(f"   ({self.loaded:,} loaded / {self.extracted:,} extracted)")
-        else:
-            # Incremental run with no new data
-            print(f"📈 Pipeline Status:          ✅ UP TO DATE")
-            print(f"   (No new data to process - all tables synchronized)")
-        
-        print(f"\n⏱️  Execution Time:          {duration.total_seconds():.1f} seconds")
-        print("="*70 + "\n")
-    
-    def log_to_file(self, logger):
-        """Save data quality report to log file for audit trail"""
-        duration = datetime.now() - self.start_time
-        
-        logger.info("="*70)
-        logger.info("📊 DATA QUALITY REPORT")
-        logger.info("="*70)
-        logger.info(f"Report Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.info("")
-        
-        # Extraction metrics
-        logger.info("EXTRACTION PHASE:")
-        logger.info(f"  CSV Files Read:           {self.csv_total:,} rows")
-        logger.info(f"  New Records Extracted:    {self.extracted:,} rows")
-        logger.info(f"  Duplicates Skipped:       {self.duplicates_skipped:,} rows")
-        if self.csv_total > 0:
-            extraction_rate = (self.extracted / self.csv_total * 100)
-            logger.info(f"  Extraction Rate:          {extraction_rate:.2f}%")
-        logger.info("")
-        
-        # Transformation metrics
-        logger.info("TRANSFORMATION PHASE:")
-        logger.info(f"  Records Transformed:      {self.transformed:,} rows")
-        if self.extracted > 0:
-            lost_in_transform = self.extracted - self.transformed
-            transform_rate = (self.transformed / self.extracted * 100)
-            logger.info(f"  Transformation Rate:      {transform_rate:.2f}%")
-            if lost_in_transform > 0:
-                logger.info(f"  Records Cleaned Out:      {lost_in_transform:,} rows (invalid/duplicates)")
-        logger.info("")
-        
-        # Loading metrics
-        logger.info("LOADING PHASE:")
-        logger.info(f"  Loaded to PostgreSQL:     {self.loaded:,} rows")
-        if self.transformed > 0:
-            load_rate = (self.loaded / self.transformed * 100)
-            logger.info(f"  Loading Success Rate:     {load_rate:.2f}%")
-        logger.info("")
-        
-        # Overall pipeline metrics
-        logger.info("OVERALL PIPELINE METRICS:")
-        logger.info(f"  Pipeline Duration:        {duration.total_seconds():.1f} seconds")
-        
-        if self.extracted > 0:
-            # Normal run with new data
-            accuracy = (self.loaded / self.extracted * 100)
-            logger.info(f"  End-to-End Accuracy:      {accuracy:.2f}%")
-            logger.info(f"  Data Flow: {self.extracted:,} extracted → {self.transformed:,} transformed → {self.loaded:,} loaded")
-            
-            # Calculate data loss
-            total_loss = self.extracted - self.loaded
-            if total_loss > 0:
-                loss_percentage = (total_loss / self.extracted * 100)
-                logger.info(f"  Total Data Loss:          {total_loss:,} rows ({loss_percentage:.2f}%)")
-            else:
-                logger.info(f"  Total Data Loss:          0 rows (0.00%)")
-            
-            # Quality assessment
-            if accuracy >= 95:
-                quality_grade = "EXCELLENT"
-            elif accuracy >= 90:
-                quality_grade = "VERY GOOD"
-            elif accuracy >= 80:
-                quality_grade = "GOOD"
-            elif accuracy >= 70:
-                quality_grade = "ACCEPTABLE"
-            else:
-                quality_grade = "NEEDS IMPROVEMENT"
-            
-            logger.info(f"  Pipeline Quality Grade:   {quality_grade}")
-            logger.info(f"  Pipeline Status:          SUCCESS - NEW DATA PROCESSED")
-        else:
-            # Incremental run with no new data
-            logger.info(f"  End-to-End Accuracy:      N/A (no new data)")
-            logger.info(f"  Pipeline Status:          SUCCESS - UP TO DATE")
-            logger.info(f"  Note:                     All tables synchronized, no new data to process")
-        
-        logger.info("="*70)
-        logger.info("")
-        
-        # Summary for easy parsing by monitoring tools
-        logger.info("QUICK STATS:")
-        logger.info(f"CSV_READ={self.csv_total} | EXTRACTED={self.extracted} | TRANSFORMED={self.transformed} | LOADED={self.loaded} | DURATION={duration.total_seconds():.1f}s")
-        logger.info("="*70)
-
-
-# =============================================================================
-# SCHEDULER CLASS
-# =============================================================================
-
-class CompleteETLScheduler:
-    """Complete ETL Scheduler - Runs the full pipeline on a timer"""
-    
-    def __init__(self, interval_minutes: int = 1):
-        self.interval_minutes = interval_minutes
-        self.running = True
-        self.total_runs = 0
-        self.successful_runs = 0
-        self.file_hashes = {}
-        
-        # Setup logger
-        self.logger = setup_logger("CompleteETLScheduler")
-        
-        # Signal handlers for graceful shutdown
-        signal.signal(signal.SIGINT, self._signal_handler)
-        signal.signal(signal.SIGTERM, self._signal_handler)
-    
-    def _signal_handler(self, signum, frame):
-        """Handle shutdown signals"""
-        self.logger.info("🛑 Shutdown signal received, stopping scheduler...")
-        self.running = False
-    
-    def _get_file_hash(self, file_path: str) -> str:
-        """Calculate file hash to detect changes"""
-        try:
-            hasher = hashlib.md5()
-            with open(file_path, 'rb') as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hasher.update(chunk)
-            return hasher.hexdigest()
-        except Exception:
-            return ""
-    
-    def _check_for_file_changes(self) -> bool:
-        """Check if CSV files have changed"""
-        changes_detected = False
-        current_hashes = {}
-        
-        try:
-            if not os.path.exists(CSV_DATA_PATH):
-                self.logger.warning(f"Data directory not found: {CSV_DATA_PATH}")
-                return False
-            
-            import glob
-            for table_name in TABLE_SCHEMAS.keys():
-                pattern = os.path.join(CSV_DATA_PATH, f"{table_name}*.csv")
-                csv_files = glob.glob(pattern)
+                total_csv_rows += csv_rows
+                total_extracted += new_rows
                 
-                for csv_file in csv_files:
-                    file_hash = self._get_file_hash(csv_file)
-                    current_hashes[csv_file] = file_hash
-                    
-                    if csv_file not in self.file_hashes or self.file_hashes[csv_file] != file_hash:
-                        changes_detected = True
-                        file_name = os.path.basename(csv_file)
-                        
-                        if csv_file not in self.file_hashes:
-                            self.logger.info(f"📄 New CSV file: {file_name}")
-                        else:
-                            self.logger.info(f"🔄 CSV file changed: {file_name}")
-            
-            # Check for deleted files
-            for old_file in self.file_hashes:
-                if old_file not in current_hashes:
-                    changes_detected = True
-                    self.logger.info(f"🗑️ CSV file deleted: {os.path.basename(old_file)}")
-            
-            self.file_hashes = current_hashes
-            
-            if not changes_detected:
-                self.logger.info("✓ No CSV file changes detected")
-            
-            return changes_detected
-            
-        except Exception as e:
-            self.logger.error(f"Error checking file changes: {str(e)}")
-            return True
-    
-    def run_complete_etl_job(self):
-        """Execute complete ETL pipeline"""
-        start_time = datetime.now()
-        self.total_runs += 1
+                table_metrics[table] = {
+                    'csv_rows': csv_rows,
+                    'extracted_rows': new_rows,
+                    'extraction_rate': (new_rows / csv_rows * 100) if csv_rows > 0 else 0
+                }
         
-        self.logger.info("\n" + "="*80)
-        self.logger.info(f"🚀 SCHEDULER: EXECUTING RUN #{self.total_runs}")
-        self.logger.info(f"⏰ Started: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
-        self.logger.info("="*80)
+        self.metrics['extraction'] = {
+            'total_csv_rows': total_csv_rows,
+            'total_extracted': total_extracted,
+            'tables': table_metrics
+        }
         
-        try:
-            run_full_pipeline(is_scheduled_run=True)
+    def record_transformation_metrics(self, results: Dict[str, Any]):
+        total_transformed = 0
+        stats = results.get('stats', {})
+        
+        for table, table_stats in stats.items():
+            total_transformed += table_stats.get('transformed', 0)
             
-            duration = datetime.now() - start_time
-            self.successful_runs += 1
+        self.metrics['transformation'] = {
+            'total_transformed': total_transformed,
+            'quality_summary': results.get('quality', {}),
+            'stats': stats
+        }
+        
+    def record_loading_metrics(self, results: Dict[str, Any]):
+        load_results = results.get('load_results', {})
+        total_loaded = sum(load_results.values())
+        
+        self.metrics['loading'] = {
+            'total_loaded': total_loaded,
+            'integrity_issues': results.get('integrity_issues', []),
+            'all_synced': results.get('all_synced', False)
+        }
+        
+    def calculate_overall_metrics(self):
+        duration = datetime.now() - self.start_time
+        
+        total_csv = self.metrics['extraction'].get('total_csv_rows', 0)
+        total_loaded = self.metrics['loading'].get('total_loaded', 0)
+        
+        accuracy = (total_loaded / total_csv * 100) if total_csv > 0 else 0
+        
+        self.metrics['overall'] = {
+            'duration': str(duration),
+            'end_to_end_accuracy': round(accuracy, 2),
+            'status': 'SUCCESS' if self.metrics['loading'].get('all_synced') else 'PARTIAL'
+        }
+
+    def print_summary(self):
+        print("\n" + "="*80)
+        print("📊 BANKING DATA QUALITY REPORT")
+        print("="*80)
+        
+        ext = self.metrics['extraction']
+        trans = self.metrics['transformation']
+        load = self.metrics['loading']
+        ovr = self.metrics['overall']
+        
+        print(f"  Duration:              {ovr.get('duration')}")
+        print(f"  End-to-End Accuracy:   {ovr.get('end_to_end_accuracy')}%")
+        print("-" * 80)
+        print(f"  Rows Read (CSV):       {ext.get('total_csv_rows', 0):,}")
+        print(f"  Rows Extracted:        {ext.get('total_extracted', 0):,}")
+        print(f"  Rows Transformed:      {trans.get('total_transformed', 0):,}")
+        print(f"  Rows Loaded (PG):      {load.get('total_loaded', 0):,}")
+        
+        issues = load.get('integrity_issues', [])
+        if issues:
+            print(f"\n  ⚠️  Issues ({len(issues)}):")
+            for i in issues:
+                print(f"     - {i}")
+        else:
+            print("\n  ✅ No Integrity Issues Detected")
             
-            self.logger.info("\n" + "="*80)
-            self.logger.info("✅ COMPLETE ETL PIPELINE SUCCEEDED (via Scheduler)")
-            self.logger.info("="*80)
-            self.logger.info(f"⏱️  Duration: {duration.total_seconds():.1f} seconds")
-            self.logger.info(f"📊 Success Rate: {(self.successful_runs/self.total_runs)*100:.1f}% ({self.successful_runs}/{self.total_runs})")
-            self.logger.info(f"⏰ Next run in: {self.interval_minutes} minute(s)")
-            self.logger.info("="*80 + "\n")
-            
-            return True
-            
-        except Exception as e:
-            self.logger.error(f"❌ SCHEDULER: Complete ETL pipeline run #{self.total_runs} FAILED")
-            self.logger.error(f"❌ Error: {str(e)}")
-            return False
-    
-    def start(self):
-        """Start the scheduler"""
-        self.logger.info("\n" + "="*80)
-        self.logger.info("🎯 STARTING COMPLETE ETL SCHEDULER")
-        self.logger.info("="*80)
-        self.logger.info(f"⏰ Schedule: Every {self.interval_minutes} minute(s)")
-        self.logger.info(f"📂 Data Directory: {CSV_DATA_PATH}")
-        self.logger.info(f"🔄 Pipeline: CSV → Staging → Transformed → PostgreSQL")
-        self.logger.info("🛑 Press Ctrl+C to stop")
-        self.logger.info("="*80)
-        
-        schedule.every(self.interval_minutes).minutes.do(self.run_complete_etl_job)
-        
-        self.logger.info("\n🔄 Running initial complete ETL pipeline...")
-        self.run_complete_etl_job()
-        
-        self.logger.info(f"\n✓ Scheduler now running (every {self.interval_minutes} min)...")
-        
-        while self.running:
-            try:
-                schedule.run_pending()
-                time.sleep(1)
-            except KeyboardInterrupt:
-                self.logger.info("\n🛑 Scheduler interrupted by user")
-                self.running = False
-            except Exception as e:
-                self.logger.error(f"❌ Scheduler error: {str(e)}")
-                time.sleep(5)
-        
-        self.logger.info("\n" + "="*80)
-        self.logger.info("🏁 COMPLETE ETL SCHEDULER STOPPED")
-        self.logger.info(f"📊 Total Runs: {self.total_runs}")
-        self.logger.info(f"✅ Successful: {self.successful_runs}")
-        self.logger.info(f"❌ Failed: {self.total_runs - self.successful_runs}")
-        self.logger.info("="*80 + "\n")
+        print("="*80 + "\n")
+
+    def export_metrics_to_log(self, logger):
+        logger.info(f"Final Metrics: {self.metrics}")
 
 
 # =============================================================================
-# PIPELINE PHASES
+# PIPELINE PHASES (ACTUAL WORKERS)
 # =============================================================================
 
 def run_extract_phase():
     """Run the extraction phase"""
-    logger = logging.getLogger('ETL_Pipeline')
-    
     print("\n" + "="*60)
     print("EXTRACTION PHASE - Loading CSV files to MySQL staging")
     print("="*60)
-    
-    logger.info("="*60)
-    logger.info("EXTRACTION PHASE STARTED")
-    logger.info("="*60)
     
     extractor = None
     try:
@@ -369,186 +161,96 @@ def run_extract_phase():
         if not extractor.connect():
             raise Exception("Failed to connect to MySQL staging database")
         
-        logger.info("✓ Connected to MySQL staging database")
-        
         if not extractor.create_staging_tables():
             raise Exception("Failed to create staging tables")
-        
-        logger.info("✓ Staging tables created/verified")
 
+        # Actual extraction work
         results = extractor.extract_all_csv_files()
         
         print("\nExtraction Results:")
-        logger.info("\nExtraction Results:")
         total_extracted = 0
-        total_csv_rows = 0
         
         for table, stats in results.items():
             if isinstance(stats, tuple) and len(stats) == 3:
                 csv_rows, new_rows, updated_rows = stats
-                msg = f"  {table.title()}: {new_rows:,} new records extracted (from {csv_rows:,} CSV rows)"
-                print(msg)
-                logger.info(msg)
+                print(f"  {table.title()}: {new_rows:,} new records extracted")
                 total_extracted += new_rows
-                total_csv_rows += csv_rows
-            else:
-                logging.warning(f"Unexpected stats format for {table}: {stats}")
         
-        summary = f"\nTotal new records extracted: {total_extracted:,} from {total_csv_rows:,} CSV rows"
-        print(summary)
-        logger.info(summary)
-        logger.info("✅ Extraction phase completed successfully")
+        print(f"\nTotal new records extracted: {total_extracted:,}")
         print("✅ Extraction phase completed successfully")
-        
         return results
         
     except Exception as e:
-        logger.error(f"❌ Extraction phase failed: {e}")
-        logger.error(traceback.format_exc())
+        logging.error(f"Extraction phase failed: {e}")
         print(f"❌ Extraction phase failed: {e}")
         raise
 
     finally:
         if extractor and extractor.connection:
             extractor.close()
-            logger.info("Database connection closed for extractor")
-            print("Database connection closed for extractor.")
-
 
 def run_transform_phase():
     """Run the transformation phase"""
-    logger = logging.getLogger('ETL_Pipeline')
-    
     print("\n" + "="*60)
     print("TRANSFORMATION PHASE - Cleaning and standardizing data")
     print("="*60)
     
-    logger.info("="*60)
-    logger.info("TRANSFORMATION PHASE STARTED")
-    logger.info("="*60)
-    
     transformer = None
     try:
         transformer = DataTransformer(config)
-        logger.info("✓ DataTransformer initialized")
-        
+        # Actual transformation work
         results = transformer.run_transformation()
         
         print("\nTransformation Results:")
-        logger.info("\nTransformation Results:")
-        total_transformed = 0
-        
-        transformed_counts = {}
         if 'stats' in results:
             for table, stats in results['stats'].items():
                 count = stats.get('transformed', 0)
-                msg = f"  {table.title()}: {count:,} records transformed"
-                print(msg)
-                logger.info(msg)
-                total_transformed += count
-                transformed_counts[table] = count
+                print(f"  {table.title()}: {count:,} records transformed")
         
-        print(f"\nFinal Record Counts in Transformed Database:")
-        logger.info("\nFinal Record Counts in Transformed Database:")
-        if 'stats' in results:
-            for table, stats in results['stats'].items():
-                count = stats.get('transformed', 0)
-                msg = f"  {table.title()}: {count:,} records"
-                print(msg)
-                logger.info(msg)
-        
-        print(f"\nExported CSV Files:")
-        logger.info("\nExported CSV Files:")
-        exported_files = results.get('files', [])
-        for file in exported_files:
-            msg = f"  📄 exports/{file}"
-            print(msg)
-            logger.info(msg)
-        
-        integrity_issues = []
-        msg = "\n✅ All referential integrity checks passed (within transform)"
-        print(msg)
-        logger.info(msg)
-        
-        summary = f"\nTotal records transformed: {total_transformed:,}"
-        print(summary)
-        logger.info(summary)
-        logger.info("✅ Transformation phase completed successfully")
         print("✅ Transformation phase completed successfully")
-        
-        return {
-            'results': transformed_counts,
-            'exported_files': exported_files,
-            'integrity_issues': integrity_issues,
-            'stats': results.get('stats', {}),
-            'quality': results.get('quality', {})
-        }
+        return results
         
     except Exception as e:
-        logger.error(f"❌ Transformation phase failed: {e}")
-        logger.error(traceback.format_exc())
+        logging.error(f"Transformation phase failed: {e}")
         print(f"❌ Transformation phase failed: {e}")
         raise
 
     finally:
-        logger.info("Transformation phase finished")
-        print("Transformation phase finished.")
-
+        pass # Connections handled inside DataTransformer
 
 def run_load_phase():
     """Run the loading phase to PostgreSQL (Incremental)"""
-    logger = logging.getLogger('ETL_Pipeline')
-    
     print("\n" + "="*60)
     print("LOADING PHASE - Incrementally loading to PostgreSQL")
     print("="*60)
-    
-    logger.info("="*60)
-    logger.info("LOADING PHASE STARTED")
-    logger.info("="*60)
     
     loader = None
     try:
         loader = IncrementalLoader()
         
         if not loader.connect_mysql():
-            raise Exception("Failed to connect to MySQL (for loading)")
-        
-        logger.info("✓ Connected to MySQL transformed database")
+            raise Exception("Failed to connect to MySQL")
         
         if not loader.connect_postgresql():
-            raise Exception("Failed to connect to PostgreSQL (for loading)")
-        
-        logger.info("✓ Connected to PostgreSQL production database")
+            raise Exception("Failed to connect to PostgreSQL")
         
         if not loader.create_production_tables():
-             raise Exception("Failed to create/verify production tables in PostgreSQL")
+             raise Exception("Failed to create/verify production tables")
         
-        logger.info("✓ Production tables created/verified")
-        
+        # Actual load work
         results = loader.load_all_entities_incremental()
         counts = loader.verify_counts()
         
         print("\nLoading Results:")
-        logger.info("\nLoading Results:")
         load_results_counts = {}
         
         for entity, success in results.items():
             status = "✅ SUCCESS" if success else "❌ FAILED"
             pg_count = counts.get(entity, {}).get('postgresql', 0)
-            msg = f"  {entity.title()}: {status} (Total in PG: {pg_count:,})"
-            print(msg)
-            logger.info(msg)
+            print(f"  {entity.title()}: {status} (Total in PG: {pg_count:,})")
             load_results_counts[entity] = pg_count
         
-        print(f"\nFinal Record Counts in PostgreSQL:")
-        logger.info("\nFinal Record Counts in PostgreSQL:")
-        final_counts_map = {e: c.get('postgresql', 0) for e, c in counts.items()}
-        for entity, count in final_counts_map.items():
-            msg = f"  {entity.title()}: {count:,} records"
-            print(msg)
-            logger.info(msg)
-        
+        # Sync Check
         integrity_issues = []
         all_synced = True
         for entity, count_info in counts.items():
@@ -557,261 +259,209 @@ def run_load_phase():
                 issue = f"{entity}: MySQL={count_info.get('mysql', 0):,} vs PostgreSQL={count_info.get('postgresql', 0):,}"
                 integrity_issues.append(issue)
         
-        if integrity_issues:
-            msg = f"\n⚠️  Data Sync Issues ({len(integrity_issues)}):"
-            print(msg)
-            logger.warning(msg)
-            for issue in integrity_issues:
-                print(f"     {issue}")
-                logger.warning(f"     {issue}")
-        
-        if all_synced:
-            msg = "\n✅ All tables are fully synchronized!"
-            print(msg)
-            logger.info(msg)
-        
-        logger.info("✅ Loading phase completed")
         print("✅ Loading phase completed")
-        
         return {
             'load_results': load_results_counts,
-            'final_counts': final_counts_map,
+            'final_counts': counts,
             'integrity_issues': integrity_issues,
             'all_synced': all_synced
         }
         
     except Exception as e:
-        logger.error(f"❌ Loading phase failed: {e}")
-        logger.error(traceback.format_exc())
+        logging.error(f"Loading phase failed: {e}")
         print(f"❌ Loading phase failed: {e}")
         raise
 
     finally:
         if loader:
             loader.close_connections()
-            logger.info("Database connections closed for loader")
-            print("Database connections closed for loader.")
-
 
 def run_full_pipeline(is_scheduled_run=False):
-    """Run the complete ETL pipeline with simple quality tracking"""
+    """Run the complete ETL pipeline"""
     start_time = datetime.now()
-    logger = logging.getLogger('ETL_Pipeline')
+    metrics_tracker = DataQualityMetrics()
     
-    # Initialize simple quality tracker
-    quality_tracker = SimpleQualityTracker()
-    
-    header = "SCHEDULER: STARTING FULL PIPELINE" if is_scheduled_run else "🚀 STARTING COMPLETE ETL PIPELINE"
-    
+    header = "BATCH PROCESS: STARTING PIPELINE" if is_scheduled_run else "🚀 STARTING MANUAL PIPELINE"
     print(f"\n{header}")
     print(f"📅 Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
     
-    logger.info("\n" + "="*80)
-    logger.info(header)
-    logger.info("="*80)
-    logger.info(f"📅 Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
-    
     try:
-        # Phase 1: Extract
-        logger.info("\n>>> PHASE 1: EXTRACTION <<<")
+        # 1. Extract
         extract_results = run_extract_phase()
-        quality_tracker.record_extraction(extract_results)
+        metrics_tracker.record_extraction_metrics(extract_results)
         
-        # Phase 2: Transform
-        logger.info("\n>>> PHASE 2: TRANSFORMATION <<<")
+        # 2. Transform
         transform_results = run_transform_phase()
-        quality_tracker.record_transformation(transform_results)
+        metrics_tracker.record_transformation_metrics(transform_results)
         
-        # Phase 3: Load
-        logger.info("\n>>> PHASE 3: LOADING <<<")
+        # 3. Load
         load_results = run_load_phase()
-        quality_tracker.record_loading(load_results)
+        metrics_tracker.record_loading_metrics(load_results)
         
-        # Print simple quality summary (terminal)
-        quality_tracker.print_summary()
+        # 4. Final Metrics
+        metrics_tracker.calculate_overall_metrics()
+        metrics_tracker.print_summary()
         
-        # Log quality report to file for audit trail
-        quality_tracker.log_to_file(logger)
-        
-        # Final summary
-        end_time = datetime.now()
-        duration = end_time - start_time
-        
-        print("\n" + "="*60)
-        print("🎉 PIPELINE COMPLETED SUCCESSFULLY")
-        print("="*60)
-        print(f"📅 Completed at: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
-        print(f"⏱️  Total duration: {duration}")
-        
-        logger.info("\n" + "="*80)
-        logger.info("🎉 PIPELINE COMPLETED SUCCESSFULLY")
-        logger.info("="*80)
-        logger.info(f"📅 Completed at: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.info(f"⏱️  Total duration: {duration}")
-        
-        # Show any issues
-        all_issues = []
-        all_issues.extend(transform_results.get('integrity_issues', []))
-        all_issues.extend(load_results.get('integrity_issues', []))
-        
-        if all_issues:
-            msg = f"\n⚠️  ISSUES DETECTED ({len(all_issues)}):"
-            print(msg)
-            logger.warning(msg)
-            for issue in all_issues:
-                print(f"     {issue}")
-                logger.warning(f"     {issue}")
-        else:
-            msg = f"\n✅ No data integrity issues detected"
-            print(msg)
-            logger.info(msg)
-        
-        print("\n🏆 ETL Pipeline completed successfully!")
-        logger.info("🏆 ETL Pipeline completed successfully!")
-        
-        return {
-            'extract_results': extract_results,
-            'transform_results': transform_results,
-            'load_results': load_results,
-            'duration': duration,
-            'issues': all_issues
-        }
-        
+        return True
     except Exception as e:
-        end_time = datetime.now()
-        duration = end_time - start_time
-        
-        error_msg = f"\n💥 PIPELINE FAILED after {duration}"
-        print(error_msg)
-        print(f"❌ Error: {e}")
-        
-        logger.error(error_msg)
-        logger.error(f"❌ Error: {e}")
-        logger.error("Full traceback:")
-        logger.error(traceback.format_exc())
-        
+        logging.error(f"Pipeline failed: {e}")
         raise
 
 
-def export_transformed_data():
-    """Export transformed data to CSV files only"""
-    print("\n" + "="*60)
-    print("CSV EXPORT - Exporting transformed data to CSV files")
-    print("="*60)
+# =============================================================================
+# BANKING STANDARD SCHEDULER
+# =============================================================================
+
+class BankingBatchScheduler:
+    """
+    Banking Standard Scheduler
+    Executes ETL jobs during off-peak hours or 12h cycles.
+    """
     
-    transformer = None
-    try:
-        transformer = DataTransformer(config)
-        transformer.connect_databases()
+    def __init__(self, schedule_type: str = 'twice_daily', run_time: str = "01:00"):
+        self.schedule_type = schedule_type
+        self.run_time = run_time
+        self.running = True
+        self.is_processing = False # Lock to prevent overlap
+        self.total_runs = 0
+        self.successful_runs = 0
         
-        exported_files = transformer.export_csv()
+        self.logger = setup_logger("BankingScheduler")
         
-        print(f"\n📄 Exported CSV Files ({len(exported_files)}):")
-        for file in exported_files:
-            from pathlib import Path
-            file_path = Path("exports") / file
-            if file_path.exists():
-                size_mb = file_path.stat().st_size / (1024 * 1024)
-                print(f"  {file} ({size_mb:.2f} MB)")
-            else:
-                print(f"  {file} (file not found)")
+        signal.signal(signal.SIGINT, self._signal_handler)
+        signal.signal(signal.SIGTERM, self._signal_handler)
+    
+    def _signal_handler(self, signum, frame):
+        self.logger.info("🛑 Shutdown signal received. Finishing current batch if running...")
+        self.running = False
+    
+    def run_batch_job(self):
+        """Wrapper to run the pipeline with locking"""
         
-        print("\n✅ CSV export completed successfully")
-        
-        return exported_files
-        
-    except Exception as e:
-        logging.error(f"CSV export failed: {e}")
-        print(f"❌ CSV export failed: {e}")
-        raise
-    finally:
-        if transformer:
-            transformer.staging_connection.close() if transformer.staging_connection else None
-            transformer.transformed_connection.close() if transformer.transformed_connection else None
-            print("Database connections closed for exporter.")
+        if self.is_processing:
+            self.logger.warning("⚠️ SKIPPING SCHEDULE: Previous batch is still processing.")
+            return
 
+        self.is_processing = True
+        self.total_runs += 1
+        
+        # Log to file
+        self.logger.info(f"🏦 STARTING BATCH RUN #{self.total_runs}")
+        
+        try:
+            # THIS CALLS THE FULL PIPELINE (Extract -> Transform -> Load)
+            run_full_pipeline(is_scheduled_run=True)
+            
+            self.successful_runs += 1
+            self.logger.info("✅ Batch Run Completed Successfully")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Batch Run Failed: {e}")
+            
+        finally:
+            self.is_processing = False
+
+    def _calculate_12h_offset(self, start_time_str):
+        try:
+            start_dt = datetime.strptime(start_time_str, "%H:%M")
+            offset_dt = start_dt + timedelta(hours=12)
+            return offset_dt.strftime("%H:%M")
+        except ValueError:
+            return "13:00"
+
+    def start(self):
+        """Configure the schedule AND run once immediately"""
+        self.logger.info("\n" + "="*80)
+        self.logger.info("📅 INITIALIZING BANKING BATCH SCHEDULER")
+        self.logger.info(f"   Mode: {self.schedule_type.upper()}")
+        self.logger.info("="*80)
+        
+        # 1. Setup Schedule
+        if self.schedule_type == 'daily':
+            self.logger.info(f"🗓️  Scheduled: Every Day at {self.run_time}")
+            schedule.every().day.at(self.run_time).do(self.run_batch_job)
+
+        elif self.schedule_type == 'twice_daily':
+            second_slot = self._calculate_12h_offset(self.run_time)
+            self.logger.info(f"🗓️  Scheduled: Twice Daily (Every 12 Hours)")
+            self.logger.info(f"   ➤ Slot 1: {self.run_time}")
+            self.logger.info(f"   ➤ Slot 2: {second_slot}")
+            
+            schedule.every().day.at(self.run_time).do(self.run_batch_job)
+            schedule.every().day.at(second_slot).do(self.run_batch_job)
+            
+        elif self.schedule_type == 'biweekly':
+            self.logger.info(f"🗓️  Scheduled: Wednesdays and Sundays at {self.run_time}")
+            schedule.every().wednesday.at(self.run_time).do(self.run_batch_job)
+            schedule.every().sunday.at(self.run_time).do(self.run_batch_job)
+
+        # 2. IMMEDIATE RUN (Crucial Step for User Feedback)
+        print("\n" + "!"*80)
+        print("🚀 TRIGGERING INITIAL PIPELINE RUN (HEALTH CHECK)")
+        print("   The pipeline will run ONCE now, then wait for the schedule.")
+        print("!"*80)
+        
+        # --- THIS LINE WAS MISSING IN YOUR OUTPUT ---
+        self.run_batch_job()  
+        # ---------------------------------------------
+
+        # 3. Enter Wait Loop
+        self.logger.info("\n💤 Initial run complete. Scheduler is now waiting for next slot...")
+        
+        while self.running:
+            try:
+                schedule.run_pending()
+                time.sleep(60) 
+            except KeyboardInterrupt:
+                self.running = False
+            except Exception as e:
+                self.logger.error(f"Scheduler Error: {e}")
+                time.sleep(60)
 
 # =============================================================================
 # MAIN EXECUTION
 # =============================================================================
 
 def main():
-    """Main function with command line argument parsing"""
-    parser = argparse.ArgumentParser(
-        description="ETL Pipeline Controller & Scheduler with Data Quality Metrics",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python main.py --mode full          # Run complete pipeline once with metrics
-  python main.py --mode schedule      # Run pipeline now, then every 1 min
-  python main.py --mode schedule -i 5 # Run pipeline now, then every 5 mins
-  python main.py --mode extract       # Extract data only
-  python main.py --mode transform     # Transform data only
-  python main.py --mode load          # Load to PostgreSQL only
-  python main.py --mode export        # Export CSV files only
-        """
-    )
+    parser = argparse.ArgumentParser(description="Banking ETL Pipeline Controller")
     
     parser.add_argument(
         "--mode", 
-        choices=['extract', 'transform', 'load', 'incremental', 'export', 'full', 'schedule'],
+        choices=['full', 'schedule', 'extract', 'transform', 'load'],
         default='full',
-        help="ETL pipeline mode to run (default: full)"
+        help="Mode of operation"
     )
     
     parser.add_argument(
-        "--log-level",
-        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
-        default='INFO',
-        help="Logging level (default: INFO)"
+        "--schedule-type",
+        choices=['daily', 'biweekly', 'twice_daily'],
+        default='twice_daily',
+        help="Schedule Type"
     )
     
     parser.add_argument(
-        "-i", "--interval",
-        type=int,
-        default=1,
-        help="Interval in minutes for schedule mode (default: 1)"
+        "--run-time",
+        type=str,
+        default="01:00",
+        help="Primary execution time (HH:MM)"
     )
     
     args = parser.parse_args()
-    
-    # Setup logging
-    logger = setup_logger(level=args.log_level)
-    
-    logger.info(f"Starting ETL pipeline in {args.mode} mode")
+    logger = setup_logger()
     
     try:
         if args.mode == 'schedule':
-            scheduler = CompleteETLScheduler(interval_minutes=args.interval)
+            scheduler = BankingBatchScheduler(
+                schedule_type=args.schedule_type,
+                run_time=args.run_time
+            )
             scheduler.start()
-            
-        elif args.mode == 'extract':
-            run_extract_phase()
-            
-        elif args.mode == 'transform':
-            run_transform_phase()
-            
-        elif args.mode == 'load' or args.mode == 'incremental':
-            run_load_phase()
-            
-        elif args.mode == 'export':
-            export_transformed_data()
             
         elif args.mode == 'full':
             run_full_pipeline()
-        
-        sys.exit(0)
-        
+            
     except KeyboardInterrupt:
-        print("\n\n🛑 Pipeline interrupted by user")
-        logger.info("Pipeline interrupted by user")
-        sys.exit(1)
-        
-    except Exception as e:
-        print(f"\n💥 MAIN: Pipeline failed with unhandled exception: {e}")
-        logger.error(f"MAIN: Pipeline failed: {e}")
-        sys.exit(1)
-
+        print("\nStopped by user")
 
 if __name__ == "__main__":
     main()

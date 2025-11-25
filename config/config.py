@@ -32,7 +32,7 @@ POSTGRESQL_CONFIG = {
     'host': os.getenv('POSTGRESQL_HOST', '26.9.242.172'),
     'user': os.getenv('POSTGRESQL_USER', 'bank_app_user'),
     'password': os.getenv('POSTGRESQL_PASSWORD', 'TeamETL@123'),
-    'database': os.getenv('POSTGRESQL_DATABASE', 'bank_production'),  # Use lowercase
+    'database': os.getenv('POSTGRESQL_DATABASE', 'bank_production'),
     'port': int(os.getenv('POSTGRESQL_PORT', 5432))
 }
 
@@ -54,7 +54,7 @@ config = {
     'POSTGRESQL_HOST': os.getenv('POSTGRESQL_HOST', '26.9.242.172'),
     'POSTGRESQL_USER': os.getenv('POSTGRESQL_USER', 'bank_app_user'),
     'POSTGRESQL_PASSWORD': os.getenv('POSTGRESQL_PASSWORD', 'TeamETL@123'),
-    'POSTGRESQL_DATABASE': os.getenv('POSTGRESQL_DATABASE', 'bank_production'),  # Use lowercase
+    'POSTGRESQL_DATABASE': os.getenv('POSTGRESQL_DATABASE', 'bank_production'),
     'POSTGRESQL_PORT': int(os.getenv('POSTGRESQL_PORT', 5432)),
     
     # Other settings
@@ -89,40 +89,40 @@ PRODUCTION_TABLE_SCHEMAS = {
         'table_name': 'customers',
         'columns': ['customer_id', 'branch_id', 'first_name', 'last_name', 'dob', 'age',
                    'gender', 'email', 'phone', 'address', 'account_open_date', 'customer_tenure_days',
-                   'customer_segment', 'outlier_flag'],
+                   'customer_segment'], # Removed outlier_flag
         'mysql_columns': ['display_id', 'customer_id', 'branch_id', 'first_name', 'last_name', 'dob', 'age',
                          'gender', 'email', 'phone', 'address', 'account_open_date', 'customer_tenure_days',
-                         'customer_segment', 'outlier_flag'],
+                         'customer_segment'], # Removed outlier_flag
         'primary_key': 'customer_id',
         'date_columns': ['dob', 'account_open_date'],
         'sql_types': {
             'customer_id': 'SERIAL',
-            'branch_id': 'VARCHAR(50)',  # Changed from INTEGER to VARCHAR
+            'branch_id': 'VARCHAR(50)',
             'first_name': 'VARCHAR(100)',
             'last_name': 'VARCHAR(100)',
             'dob': 'DATE',
             'age': 'INTEGER',
-            'gender': 'VARCHAR(10)',
+            'gender': 'CHAR(1)', # Changed to CHAR(1) for M/F optimization
             'email': 'VARCHAR(255)',
             'phone': 'VARCHAR(20)',
             'address': 'TEXT',
             'account_open_date': 'DATE',
             'customer_tenure_days': 'INTEGER',
-            'customer_segment': 'VARCHAR(50)',
-            'outlier_flag': 'BOOLEAN'
+            'customer_segment': 'VARCHAR(50)'
+            # Removed outlier_flag
         }
     },
     'loans': {
         'table_name': 'loans',
         'columns': ['loan_id', 'customer_id', 'loan_type', 'loan_amount', 'interest_rate',
-                   'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category', 'outlier_flag'],
+                   'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category'], # Removed outlier_flag
         'mysql_columns': ['display_id', 'loan_id', 'customer_id', 'loan_type', 'loan_amount', 'interest_rate',
-                         'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category', 'outlier_flag'],
+                         'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category'], # Removed outlier_flag
         'primary_key': 'loan_id',
         'date_columns': ['start_date', 'end_date'],
         'sql_types': {
             'loan_id': 'SERIAL',
-            'customer_id': 'VARCHAR (50)',
+            'customer_id': 'VARCHAR(50)',
             'loan_type': 'VARCHAR(50)',
             'loan_amount': 'DECIMAL(15, 2)',
             'interest_rate': 'DECIMAL(5, 2)',
@@ -130,16 +130,16 @@ PRODUCTION_TABLE_SCHEMAS = {
             'end_date': 'DATE',
             'loan_status': 'VARCHAR(50)',
             'loan_duration_months': 'INTEGER',
-            'risk_category': 'VARCHAR(50)',
-            'outlier_flag': 'BOOLEAN'
+            'risk_category': 'VARCHAR(50)'
+            # Removed outlier_flag
         }
     },
     'transactions': {
         'table_name': 'transactions',
         'columns': ['transaction_id', 'customer_id', 'transaction_date', 'transaction_type',
-                   'amount', 'balance_after', 'fraud_flag', 'transaction_category', 'outlier_flag'],
+                   'amount', 'balance_after', 'fraud_flag', 'transaction_category'], # Removed outlier_flag
         'mysql_columns': ['display_id', 'transaction_id', 'customer_id', 'transaction_date', 'transaction_type',
-                         'amount', 'balance_after', 'fraud_flag', 'transaction_category', 'outlier_flag'],
+                         'amount', 'balance_after', 'fraud_flag', 'transaction_category'], # Removed outlier_flag
         'primary_key': 'transaction_id',
         'date_columns': ['transaction_date'],
         'large_table': True,
@@ -151,8 +151,8 @@ PRODUCTION_TABLE_SCHEMAS = {
             'amount': 'DECIMAL(15, 2)',
             'balance_after': 'DECIMAL(15, 2)',
             'fraud_flag': 'BOOLEAN',
-            'transaction_category': 'VARCHAR(50)',
-            'outlier_flag': 'BOOLEAN'
+            'transaction_category': 'VARCHAR(50)'
+            # Removed outlier_flag
         }
     }
 }
@@ -189,7 +189,7 @@ STAGING_TABLE_SCHEMAS = {
     }
 }
 
-# Transformed Table Schemas
+# Transformed Table Schemas (Updated)
 TRANSFORMED_TABLE_SCHEMAS = {
     'branches': {
         'table_name': 'transformed_branches',
@@ -201,21 +201,21 @@ TRANSFORMED_TABLE_SCHEMAS = {
         'table_name': 'transformed_customers',
         'columns': ['display_id', 'customer_id', 'branch_id', 'first_name', 'last_name', 'dob', 'age',
                    'gender', 'email', 'phone', 'address', 'account_open_date', 'customer_tenure_days',
-                   'customer_segment', 'outlier_flag'],
+                   'customer_segment'], # Removed outlier_flag
         'primary_key': 'customer_id',
         'date_columns': ['dob', 'account_open_date']
     },
     'loans': {
         'table_name': 'transformed_loans',
         'columns': ['display_id', 'loan_id', 'customer_id', 'loan_type', 'loan_amount', 'interest_rate',
-                   'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category', 'outlier_flag'],
+                   'start_date', 'end_date', 'loan_status', 'loan_duration_months', 'risk_category'], # Removed outlier_flag
         'primary_key': 'loan_id',
         'date_columns': ['start_date', 'end_date']
     },
     'transactions': {
         'table_name': 'transformed_transactions',
         'columns': ['display_id', 'transaction_id', 'customer_id', 'transaction_date', 'transaction_type',
-                   'amount', 'balance_after', 'fraud_flag', 'transaction_category', 'outlier_flag'],
+                   'amount', 'balance_after', 'fraud_flag', 'transaction_category'], # Removed outlier_flag
         'primary_key': 'transaction_id',
         'date_columns': ['transaction_date'],
         'large_table': True
